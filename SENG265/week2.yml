@@ -1,0 +1,47 @@
+Command Sequencing
+- use semicolons to sequence commands
+- cd ~ ; ls
+- use brackets to group all commands into one output for piping
+
+- echo `date` - to get the date variable
+- if you add a "&" to the end of a command, it will process in the background and not lock the terminal
+
+- using weak quotes '' will allow the terminal to interpret as a string
+- strong quotes "" will allow for variable evaluation (might have it backwards)
+
+- using commands as variables
+    - text=`cat`
+    - echo $text
+
+- grep filters lines
+- 
+
+![Alt text](image.png)
+ 
+
+#!/bin/bash
+filename='test.txt'
+i=0
+j=0
+cat $filename | while read -r line
+do
+    ((i++))
+    echo "Line $i: $line"
+    for word in $line
+    do
+        ((j++)) 
+        echo "Word $j: $word"
+    done
+done
+
+#!/bin/bash
+if [ -e /home/zastre/seng265/assign1 ] ; then
+echo 'Hooray! The file exists!'
+else
+echo 'Boo! The file ain't yet there…'
+fi
+# Other tests:
+# -f True if file is a regular file
+# -d True if file is a directory
+# -w True if file exists and is writable
+# -O True if the account running script owns the file

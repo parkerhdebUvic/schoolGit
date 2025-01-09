@@ -1,0 +1,347 @@
+---
+title: "Midterm 2"
+author: "Parker DeBruyne - V00837207"
+date: "21/03/2022"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+setwd("/Users/admin/Documents/School/STAT 123/Midterms/midterm2/midterm2 practice")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r }
+
+```
+
+Question 1: Use the built-in data set UCBAdmissions to answer this question.
+
+```{r 1}
+UBCA = UCBAdmissions
+```
+
+(a) Create a single table called status_dept_totals which summarizes the total number of applicants who are accepted and rejected for each department. 
+
+```{r }
+
+status_dept_totals = UCBAdmissions[,1,]+UCBAdmissions[,2,]
+
+
+```
+
+(b) Print out the status_dept_totals table. 
+
+```{r }
+status_dept_totals
+```
+
+(c) Create a grouped bar plot which displays the information from the status_dept_totals table. Your plot should include the following:
+- a main title
+- titles for the x-axis and y-axis
+- colours to help differentiate the bars 
+- a legend to identify what each colour represents
+
+```{r }
+barplot(status_dept_totals,legend=rownames(status_dept_totals),
+        main="Status and Department of Applicants", 
+        col = c("blue","red"),
+        xlab ="Status and Department", ylab="Frequency",beside=TRUE)
+```
+
+(d) Create and print out a vector called percent_dept which contains the percent of applicants who applied to each department (rounded to 2 decimal places). Show any additional code needed to create this vector. 
+
+```{r }
+applied_totals = colSums(status_dept_totals)
+percent_dept = round((applied_totals/sum(applied_totals))*100,2)
+percent_dept
+```
+
+(e) Create a pie chart displaying the information in the percent_dept vector. Your graph should include:
+- a main title
+- labels for each wedge
+- a different colour for each wedge
+- the percentages displaying next to each wedge. 
+```{r question 1}
+
+dept_labels = paste(names(percent_dept),percent_dept," %")
+pie(percent_dept,labels=dept_labels,main="Applicants by Department",
+    col=rainbow(length(percent_dept)))
+
+```
+
+
+
+
+Question 2: Use the built-in data set LakeHuron to answer this question. 
+
+```{r }
+```
+
+(a) What is the variable being measured in the data set? 
+
+```{r }
+?LakeHuron
+```
+
+(b) What is the most appropriate type of graph to visualize the distribution of this variable? 
+
+```{r }
+# Line plot
+```
+
+(c) Graph the distribution of the variable (using the type of graph that you identified in part (c)). Your graph should include:
+- a main title.
+- x-axis title. 
+- scales on the x and y-axis which fully extend from atleast the min value to at least the max value. 
+
+```{r }
+plot(LakeHuron,main="Level of Lake Huron (1875-1972)",
+     xlab = "Year", 
+     ylab = "Level (in ft)",
+     xlim=c(1870,1980))
+```
+
+(d) Are there any overall trends or seasonal variations that you can see from the graph? 
+
+```{r Question 2}
+
+# (a) Answer below:
+
+# (b) Answer below:
+
+# (c) Answer below:
+
+# (d) Answer below:
+
+```
+
+
+
+
+
+Question 3: Use the built-in data set rock to answer this question. 
+
+```{r }
+```
+
+(a) Create a histogram displaying the distribution of the area variable. 
+
+```{r }
+?rock
+hist(rock$area,main="Area of Petroleum Rocks",xlab="Area")
+```
+
+(b) Describe the shape of the distribution (that is, symmetric, left-skewed, right-skewed).
+
+```{r }
+# (b) Answer below:
+# The distribution does not appear symmetric and has a slight left-skew.
+
+```
+
+(c) What is an appropriate measure for the center of the area distribution? 
+
+```{r }
+# (c) Answer below:
+# Since the distribution is not symmetric, the median is the appropriate
+# statistic to use to measure the center of the distribution.
+
+```
+
+(d) Compute the observed value of this statistic. 
+
+```{r }
+# (d) Answer below:
+median(rock$area)
+```
+
+(e) What is an appropriate measure for the spread of the area distribution?
+
+```{r }
+# (e) Answer below:
+# Since we used the median to measure to center of the distribution
+# the first and third quartiles Q1 and Q3 are the appropriate way to
+# measure the spread.
+
+```
+
+(f) Compute the observed value of this statistic. 
+
+```{r }
+quantile(rock$area,c(0.25,0.75))
+```
+
+
+```{r Question 3}
+
+# (a) Answer below:
+
+# (b) Answer below:
+
+# (c) Answer below:
+
+# (d) Answer below:
+
+# (e) Answer below:
+
+# (f) Answer below:
+
+
+```
+
+
+
+Question 4: Download and save the new_NHL_data.csv data set that is posted in Brightspace and use it to answer Question 4 and 5. 
+
+```{r }
+```
+
+(a) Read the data set into R and save it as nhl_data.
+
+```{r }
+nhl_data = read.csv("new_NHL_data.csv")
+```
+
+(b) Suppose you are looking to explore the relationship between the number of goals that a player scores (G) and the number of assists that a player gets (A). What direction do you expect the relationship to have, why? 
+
+```{r }
+# I would expect a positive direction for the relationship since I would
+# imagine players that score more goals are also more likely to get assists.
+```
+
+(c) Create a graph which visualizes the relationship between these two variables. Set the number of assists as the explanatory variable. 
+
+```{r }
+plot(nhl_data$A,nhl_data$G,main="Relationship between Goals and Assists",
+xlab="Number of Assists", ylab="Number of Goals")
+```
+
+(d) What issues do you see in the graph? Can you identify direction and/or form from this graph? 
+
+```{r }
+# The graph appears very crowded with no immediately clear form (although
+# perhaps it could be linear). The direction does appear to be positive
+# as predicted.
+```
+
+(e) Create a vector which contains the number of assists for players on the Vancouver Canucks (VAN) and call this vector van_assists. 
+
+```{r }
+van_index = which(nhl_data$Team == "VAN")
+van_assists = nhl_data$A[van_index]
+```
+
+(f)  Create a vector which contains the number of goals for players on the Vancouver Canucks (VAN) and call this vector van_goals.  
+
+```{r }
+van_goals = nhl_data$G[van_index]
+```
+
+(g) Create a graph which visualizes the relationship between the number of assists and number of goals for players on the Vancouver Canucks. Your graph should include:
+- a main title.
+- a title for both the x-axis and the y-axis
+- the scale should not be in scientific notation. 
+
+```{r }
+plot(van_assists,van_goals,main="Relationship between Goals and Assists",
+xlab="Number of Assists", ylab="Number of Goals")
+```
+
+(h) Describe the direction and form of the relationship. 
+
+```{r }
+# The direction of the relationship is positive and the form appears
+# possibly quadratic (since the points go up and then appear to go back down)
+```
+
+Ignore this question (i) Compute the correlation between the two variables and describe what this implies for the linearity and strength of the relationship. 
+
+```{r Question 4}
+
+cor(van_assists,van_goals)
+
+# We get a linear correlation value of approximately 0.5573 which further
+# suggests that the relationship is not linear (if it is then it is only of
+# moderate strength). Since the correlation is positive we can confirm that
+# the positive direction that we observed is supported by the linear
+# correlation.
+
+```
+
+
+
+
+Question 5: Consider again the new_NHL_data.csv data set that was used in Q4. For this question, we will be focussing on the column associated with the number of penatly minutes (PIM). 
+
+```{r }
+
+```
+
+
+(a) Bootstrap 10000 sample third quartile values (Q3) for the number of penalty minutes in the NHL (PIM). Save your bootstrapped Q3's to a vector called boot_Q3. 
+
+```{r }
+n = length(nhl_data$PIM)
+boot_Q3 = numeric()
+for(k in 1:10000){
+  temp_samp = sample(nhl_data$PIM,n,replace=TRUE)
+  boot_Q3[k] = quantile(temp_samp,0.75)
+}
+```
+
+(b) Plot the sampling distribution for the Q3 statistic. Be sure to include the following in your graph. 
+- a main title
+- a title for the x-axis
+
+```{r }
+hist(boot_Q3, main="Sampling Distribution for Q3",xlab="Values of Q3")
+```
+
+(c) Would it be appropriate to use a critical value from a normal distribution in order to find a confidence interval for the true Q3 value?
+
+```{r }
+# (c) Answer below:
+# No it would not be appropriate to use a critical value form a normal
+# distribution since the distribution does not appear to be normal.
+# (d) Answer below:
+
+```
+
+(d) What is your estimate for Q3? 
+
+```{r }
+est_Q3 = mean(boot_Q3)
+est_Q3
+```
+
+(e) Compute a 70% confidence interval for the true value of Q3. 
+
+```{r }
+quantile(boot_Q3,c(0.15,0.85))
+```
+
+(f) Determine how many players in the NHL have had more than your estimate for Q3 minutes of penalty time. Show your code. 
+
+```{r }
+more_penalty_thanQ3 = nhl_data$PIM[which(nhl_data$PIM > est_Q3)]
+length(more_penalty_thanQ3)
+```
+
+(g) Compute the percentage of players in the NHL who have had more than your estimate for Q3 minutes of penalty time. Is this value close to what you might expect? Explain. 
+
+```{r }
+length(more_penalty_thanQ3)/n
+```
+
+```{r question 5}
+
+# We see that approximately 27.37% of players in the NHL have had more
+# penalty minutes than our estimate of Q3. This is around what we would expect
+# since Q3 is the 75% percentile which means we expect about 75% of values
+# to lie below Q3 (which means about 25% will like above).
+
+```

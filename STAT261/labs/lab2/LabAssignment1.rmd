@@ -1,0 +1,81 @@
+---
+title: "Lab Assignment 1"
+author: "Parker DeBruyne - V00837207"
+date: "Feb 2, 2024"
+output:
+  pdf_document: default
+---
+
+# Likelihood methods for the Poisson distribution
+
+* Put your name in the author section and fill in the date section above.
+* Write R code in the R chunks provided to answer the questions posed.
+* Execute each chunk of code to ensure that your code works properly.
+* If you cannot compile all of your code without errors before the end of the lab, 
+comment out the chunks that are not working.
+* Save the Rmd file in your personal directory (refer to Lab 0 instructions if needed)
+* knit to pdf (or Word/HTML, but then print those to pdf)
+* Upload the pdf file to the Lab Assignment 1 Activity in Brightspace. 
+
+## 1.  First generate 1 observation from the Poisson(lambda=5) distribution and print the value.
+
+
+```{r data}
+set.seed(12345)   #use this seed!
+
+pdat <- rpois(1, lambda = 5)
+pdat
+```
+
+## 2.  Compute the Log-likelihood for a vector sequence of lambda values from 2 to 7 in steps of .05 .
+(Hint:  See help for the R function called *dpois*.)
+
+```{r LogLik}
+lambda <- seq(2,7,by=1)
+
+ploglike <- dpois(pdat, lambda, log = TRUE)
+ploglike
+```
+
+
+## 3. Plot the Log-Likelihood function values from your answer in 2 versus lambda. Axes must be labelled and the plot must have a title.
+
+```{r plotLog}
+head(cbind(lambda, ploglike))
+
+
+plot(ploglike ~ lambda, ylab='Log-Likelihood', xlab='lambda', type='b', main='Poisson Log-Likelihood for Lab Assignment 1')
+
+
+```
+
+
+## 4.  Generate n=10 observations from the same distribution and compute the sample mean of the 10 observations.  
+(Hint:  See help for the R function called *mean*.)
+
+```{r mean}
+set.seed(12345) #use this seed!
+n <- 10
+pdat3 <- rpois(n, lambda = 5)
+pdat3
+
+sample_mean = mean(pdat3)
+sample_mean
+```
+
+## 5.  Plot the log-likelihood function given the n=10 observations.  Axes must be labelled and the plot must have a title.
+
+```{r plotLog10}
+lambda <- seq(2,7,by=1)
+
+ploglike3 <- 0
+for (i in 1:n){
+  ploglike3 <- ploglike3 + dpois(pdat3[i], lambda, log=TRUE)
+}
+
+head(cbind(lambda, ploglike3))
+
+plot(ploglike3 ~ lambda, ylab='Log-Likelihood', xlab='lambda', type='b', main='Poisson Log-Likelihood for Lab Assignment 1')
+```
+
+

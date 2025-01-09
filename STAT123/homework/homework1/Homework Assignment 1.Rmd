@@ -1,0 +1,144 @@
+---
+title: "Homework Assignment 1"
+author: "Parker DeBruyne - V00837207"
+date: '2022-01-27'
+output:
+  pdf_document: default
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(tinytex.verbose = TRUE)
+```
+
+
+## 1. A farmer wants to determine the proportion of carrot seeds planted in her field that successfully grow into carrots. It would take too much time to count the total amount of seeds planted in the field and the total yield of carrots that result. Thus, she decides that she needs to take a sample to estimate this proportion.
+
+### (a) State the population and the variable of interest to this farmer.
+
+Population: All carrot seeds.  
+Variable: Whether or not they grew into carrots.  
+
+
+
+### (b) Give an example of a way the farmer could perform a convenience sample.
+She could take a sample from the closest patch to her house.
+
+
+
+### (c) Give an example of a way the farmer could perform a simple random sample.
+She could assign each seed intended to be planted with digets n (equal to the number of seeds), create a data table of random numbers, select a random row, and then scan until one of the assigned numbers for the objects is found. Repeat until the desired sample size has been chosen.
+
+Or draw a random amount out of a bag.
+
+
+
+### (d) Give an example of a way the farmer could perform a stratified random sample.
+If the farmer believed there would be varience between groups, she could divide her field into different section (such as closest to a water feature, trees, rocks, or sunny patches) and then take a SRS from each group.
+      
+
+
+### (e) What is the population proportion of interest? What would be a good statistic to use to estimate the population parameter?
+The proportion of seeds that successfully grow, to the seeds that do not.
+
+The Population Proportion statistic *p*, which is the number of individuals with a certain characteristic divided my the number of individuals in the population.
+
+
+## 2. The following question deals with the data set lynx which is one of the built-in data sets included with R.
+
+### (a) Describe what information is contained in the data set. How did you determine this? 
+This data set contains information on the annual numbers of lynx trappings for 1821-1934 in Canada. Taken from Brockwell & Davis (1991), this appears to be the series considered by Campbell & Walker (1977).
+    
+I obtained this description by first loading the data using the data command and then by quering the data set.
+```{r Q2a}
+data(lynx)
+?lynx
+```
+
+### (b) Create a character vector called years which contains the years of the trappings.
+```{r Q2b}
+years = c(1821:1934)
+```
+
+### (c) Set the names of the lynx vector equal to years. 
+```{r Q2c}
+names(lynx) = years
+```
+
+### (d) How many lynx were trapped in 1899?
+```{r Q2d}
+lynx["1899"]
+```
+153
+
+### (e) What is the average number of lynx trappings in a year?
+```{r Q2e}
+mean(lynx)
+```
+1538.018
+
+## 3. The following question deals with the data set vegas which can be found in Brightspace by clicking on Content − > Homework Assignments. This data set represents the winnings and losses of a group of friends who went to Las Vegas together.
+
+### (a) Use the head() function to determine the games these friends played in Vegas.
+```{r Q3a}
+setwd("/Users/admin/Documents/School/STAT 123/homework/homework1")
+getwd()
+vegas = read.csv("vegas.csv")
+head(vegas)
+class(vegas)
+games = names(vegas)
+games
+```
+
+### (b) Create a character vector called friends which contains the values from the first column of the data set.
+```{r Q3b}
+friends = vegas$Name
+friends
+```
+
+### (c) Using the R command as.matrix(), create a matrix called gameResults which contains all the columns except the first one from the vegas data set.
+```{r Q3c}
+length(vegas)
+gameResults = as.matrix(vegas[2:6])
+head(gameResults)
+```
+
+### (d) Create a vector called totals which contains the row sums of the matrix gameResults. What do the values in this vector represent?
+```{r Q3d}
+totals = rowSums(gameResults)
+totals
+```
+These values represent the total winnings/losses of each friend across all games.
+
+### (e) Set the names of the vector totals equal to friends.
+```{r Q3e}
+names(totals) = friends
+totals
+```
+
+### (f) Use the R functions min() and max() to determine which friend won the most money and which friend lost the most money in Vegas.
+```{r Q3f}
+findmin <- totals == min(totals)
+findmin
+totals[findmin]
+
+findmax <- totals == max(totals)
+findmax
+totals[findmax]
+```
+Calum lost the most money, and John won the most money.
+
+
+### (g) What was the average amount of money won or lost by the group of friends on the trip?
+```{r Q3g}
+mean(totals)
+```
+$15.167
+
+### (h) Set a seed to 34. Take a random sample of 4 of the friends and determine the sample average amount of money won or lost by the sample of friends on the trip.
+```{r Q3h}
+set.seed(34)
+mean(sample(totals, 4, replace=F))
+```
+$178.7725

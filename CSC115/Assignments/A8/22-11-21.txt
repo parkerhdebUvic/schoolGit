@@ -1,0 +1,12 @@
+public class Entry< extends Comparable<k>, v> 
+
+remove:
+    - No child?
+        set parent's left to null
+
+    - One child?
+        set parent's next to cur's next
+    
+    - Two children?
+        replace with successor or predessor
+        

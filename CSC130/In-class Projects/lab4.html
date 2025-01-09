@@ -1,0 +1,119 @@
+
+<!-- saved from url=(0091)https://bright.uvic.ca/content/enforced/143984-202109CSC130A01(10782)CO/labs/lab4/lab4.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Lab 4</title>
+	<link href="lab4.css" type="text/css" rel="stylesheet">
+<script>function lti_launch( vars, target ) {
+						var query = '';
+						var new_tab = false;
+
+						for(var key in vars) {
+							if(query.length == 0) {
+								query += '?' + key + '=' + encodeURIComponent(vars[key]);
+							}
+							else {
+								query += '&' + key + '=' + encodeURIComponent(vars[key]);
+							}
+						}
+
+						var url = '/d2l/customization/pearsonlti/6606/Launch' + query;(target == '_blank') ? window.open( url, '_blank' ) : location.replace( url );}</script><script src="./lab4_files/MathML.js"></script><script>document.addEventListener('DOMContentLoaded', function() { D2LMathML.DesktopInit('https://s.brightspace.com/lib/mathjax/2.7.4/MathJax.js?config=MML_HTMLorMML','https://s.brightspace.com/lib/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML%2cSafe','120',true); });</script><script>window.addEventListener('message', function(event) { 
+					if( !event.data ) {
+						return;
+					}
+
+					var params;
+					try {
+						params = JSON.parse( event.data );
+					}
+					catch {
+						return;
+					}
+					if( !params.subject || params.subject !== 'lti.frameResize' ) {
+						return;
+					}
+
+					const MAX_FRAME_HEIGHT = 10000
+					if( !params.height || params.height < 1 || params.height > MAX_FRAME_HEIGHT ) {
+						console.warn( 'Invalid height value received, aborting' );
+						return;
+					}
+					var el = document.getElementsByTagName( 'iframe' );
+					for ( var i=0; i < el.length; i++ ) {
+						if( el[i].contentWindow === event.source ) {
+							el[i].style.height = params.height + 'px';
+							el[i].style.width = '100%';
+							console.info( 'Setting iFrame height to ' + params.height );
+							console.info( 'Setting iFrame width to 100%' );
+						}
+					}
+				});</script></head>
+<body>
+
+<h2>Lab 4</h2>
+<ol>
+	<li>Complete the section outlining the exam details</li>
+	<li>Add style according to the instructions .pdf document</li>
+</ol>
+
+<div class="details">
+	<h2 id="exam_details">Exam Details</h2>
+	<div class="subtopic">
+		<h2>Topics:</h2>
+			<ul>
+				<li><a href="https://www.w3schools.com/html/">HTML</a></li>
+				<li><a href="https://www.w3schools.com/css/">CSS</a></li>
+			</ul>
+	</div>
+	
+	<div class="subtopic">
+		<h2>Rules:</h2>
+		<ol>
+			<li>No questions during the exam. If you feel there is an error or ambiguity, write your assumption and answer the question based on that assumption.
+				<ul><li>Because we are writing in the lecture hall, it would be too distupting if I had to answer a question halfway down a row.</li></ul></li>
+			<li>The exam is closed book.
+				<ul><li>No books or notes are permitted.</li>
+					<li>No electronic devices of any type are permitted.</li>
+				</ul>
+				</li>
+			<li>Each part is labeled by the nuber of marks it is worth, labeled within square brackets (example: [5 marks])
+				<ul><li>Partial marks are available on all written questions</li>
+					<li>Clearly indicate only one answer to be graded. Questions with more than one answer will be given a zero grade.</li>
+					<li>The last page is blank for scratch work. If you write an answer on that page, clearly indicate this for the grader under the question</li>
+				</ul>
+				</li>
+		</ol>
+	</div>
+	<div class="subtopic">
+		<h2>Marks breakdown:</h2>
+		<table width="40%">
+			<tr>
+				<th><b>type</b></th>
+				<th><b>marks</b></th>
+			</tr>
+			<tr>
+				<td>true or false</td>
+				<td>8</td>
+			</tr>
+			<tr>
+				<td>multiple choise</td>
+				<td>8</td>
+			</tr>
+			<tr>
+				<td>writing html and css</td>
+				<td>22</td>
+			</tr>
+			<tr>
+				<td>advanced css</td>
+				<td>12</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+
+
+
+
+
+</body></html>

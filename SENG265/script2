@@ -1,0 +1,28 @@
+#!/bin/bash
+
+i=0
+
+while read -r line; do
+	((i++))
+	
+	OLDIFS=$IFS
+	IFS='/'
+	j=0
+	directory_path=""
+
+	for word in $line; do
+		((j++))
+
+		if [[ $word != *.* && $j -eq 1 ]]; then
+			continue
+		fi
+
+		directory_path="$directory_path'/'$word"
+	done
+
+	IFS=$OLDIFS
+	directory_path="${directory_path#/}"
+	mkdir -p "$directory_path"
+done < "$1"
+
+

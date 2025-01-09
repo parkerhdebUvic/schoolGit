@@ -1,0 +1,44 @@
+---
+title: "If Statement and Loops Practice"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Question 1: Consider the built-in rivers data set. If you type sum(rivers > 500) this will return the number of North American rivers that are longer than 500 miles. Now try to get this number a different way:
+
+
+Set a variable called count = 0. Use a combination of a for-loop and an if statement to compute how many rivers are longer than 500 miles and store this value to the variable count. You should get the same answer that sum(rivers > 500) gives.
+```{r Question 1}
+
+
+```
+
+
+Question 2: Download the scores.csv data set from Brightspace and write an if-else statement to return a result telling us whether the home team won or lost the third match.
+
+Print out "home team won" if the number of goals scored by the home team is greater than the number of goals scored by the away team in the third match and print "home team did not win" if the condition specified above is not met. 
+
+```{r Question 2}
+
+
+```
+
+
+Question 3: Consider the vector savings given in the chunk below. Write a loop which runs while the total sum of the savings vector is greater than $600. Each time you pass through the loop, remove a random element from the savings vector. 
+
+Hint: one way to remove a random element from a vector is to take a random sample of n-1 elements without replacemnt from this vector.
+
+```{r Question 3}
+
+savings <- c(400,750,200,50,1000,25,100,150,20,200,90)
+
+```
+
+
+
+
+

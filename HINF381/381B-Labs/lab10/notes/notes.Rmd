@@ -1,0 +1,312 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+I want to show that social isolation LEADS to addiction. So:
+GEN_030
+SWL_030
+SWL_035
+SWL_045
+SPS_015
+SPS_035
+SPS_040
+# SPSDVINT
+# SPSDVCON
+
+
+
+vs
+SMK_020
+SMK_030
+ALC_010
+ALC_015
+ALCDVTTM
+ALWDVWKY
+MED_005
+MED_010
+MED_015
+MED_020
+MED_050
+MED_080
+DRGDVLCA
+DRGDVYA
+DRGDYAC
+CMH_005
+SUI_010
+INCG035
+INCDGPER
+
+
+ADJUSTMENTS
+DOSDC
+SDC_015
+
+
+
+INDEPENDANT VARIABLES
+- Houshold size
+- friend circle size
+- marital status
+- Emotional support
+- mentorship
+- support in crisis
+- relationship satisfaction
+- relationship strain
+- social exclusion / inclusion
+- social isolation (hours spent alone vs with friends)
+- community belonging
+- living alone
+- hours of internet, social media, or video game use
+- 
+
+DEPENDANT VARIABLES
+- survival & mortality
+- cardiovascular disease
+- hypertension
+- diabetes
+- infections diseases
+- depression and anxiety
+- suicidal tendancies
+- smoking
+- alcohol
+- addiction
+- mental health
+- physical health
+- financial insecurity
+- income levels
+- opioid addiction
+- 
+
+
+
+
+
+
+
+####
+DHHGMS 0028-0028 Marital status
+DHHDGHSZ 0032-0032 Household size - (D)
+DHHDGLVG 0034-0035 Living / family arrangement of selected respondent - (D)
+####
+
+#############
+GEN_005 0047-0047 Perceived health
+#############
+GEN_010 0048-0049 Satisfaction with life in general
+GEN_015 0050-0050 Perceived mental health
+
+####
+```{r}
+ADJUSTMENTS
+#
+GEO_PRV 0015-0016 Province of residence of respondent
+GEODGHR4 0021-0025 Health region - (D)
+ALECLASS 0026-0026 Canadian Active Living Environments
+DHH_SEX 0027-0027 Sex
+DHHGAGE 0036-0037 Age
+INCDGHH 1685-1685 Total household income - all sources - (D)
+INCDGPER 1686-1687 Personal income - all sources - (D)
+#
+
+DEPENDANT VARIABLES
+######################################
+GEN_020 0051-0051 Perceived life stress
+######################################
+###############
+GENDVHDI 0054-0054 Perceived health - (D)
+###############
+GENDVMHI 0055-0055 Perceived mental health - (D)
+GENDVSWL 0056-0056 Satisfaction with life in general - (D)
+###
+
+INDEPENDANT VARIALBES
+#################################
+SPS_035 1085-1085 Relationships - part of a group who share attitudes and beliefs
+#################################
+
+########################
+GEN_030 0053-0053 Sense of belonging to local community
+########################
+
+################################
+SWL_030 1035-1035 Satisfaction - relationships with family members
+SWL_035 1036-1036 Satisfaction - relationships with friends
+################################
+
+SPS_040 1086-1086 Relationships - strong emotional bond with a least one person
+#########
+SPS_005 1079-1079 Relationships - people to depend on for help
+SPS_010 1080-1080 Relationships - people who enjoy same social activities
+SPS_015 1081-1081 Relationships - sense of emotional security and wellbeing
+SPS_020 1082-1082 Relationships - someone to talk to about important decisions
+SPS_025 1083-1083 Relationships - competence and skill are recognized
+SPS_030 1084-1084 Relationships - trustworthy person for advice
+SPS_045 1087-1087 Relationships - talents and abilities are admired
+SPS_050 1088-1088 Relationships - people to count on in an emergency
+########
+SPSDVGUI 1089-1090 Social provisions scale - guidance - (D)
+SPSDVINT 1091-1092 Social provisions scale - social integration - (D)
+SPSDVATT 1093-1094 Social provisions scale - attachment - (D)
+SPSDVWOR 1095-1096 Social provisions scale - reassurance of worth - (D)
+SPSDVALL 1097-1098 Social provisions scale - reliable alliance - (D)
+SPSDVCON 1099-1100 Social provisions overall scale - (D)
+#####
+```
+
+
+
+
+
+
+
+######################
+SWL_005 1030-1030 Satisfaction - job / main activity
+######################
+
+SWL_010 1031-1031 Satisfaction - leisure activities
+SWL_015 1032-1032 Satisfaction - financial situation 
+SWL_020 1033-1033 Satisfaction - with oneself
+SWL_025 1034-1034 Satisfaction - body image
+
+
+
+
+WST_070 1063-1063 Job satisfaction - 12 mo
+
+
+
+
+
+SWL_040 1037-1037 Satisfaction - housing
+SWL_045 1038-1038 Satisfaction - neighbourhood
+
+MAC_010 0041-0041 Worked at job / business - 12 mo
+MAC_015 0042-0042 Currently attending school / college / CEGEP / university
+EHG2DVR3 0044-0044 Highest level of education - respondent, 3 levels - (D)
+
+
+HWTDGWTK 0064-0069 Weight (kilograms) - self-reported - (D)
+HWTDGCOR 0079-0084 Body mass index (adjusted) - (D)
+HWTDGBCC 0085-0085 Body mass index (self-reported) - (D)
+CCC_195 0118-0118 Has a mood disorder (depression, bipolar, mania, dysthymia)
+CCC_200 0119-0119 Has an anxiety disorder (phobia, OCD, panic)
+CIH_030A 0229-0229 Barrier to improving health - lack of will power
+CIH_030D 0232-0232 Barrier to improving health - addiction to drugs / alcohol
+CIH_030F 0234-0234 Barrier to improving health - too stressed
+CIH_040D 0244-0244 Health improvement - quit smoking / reduce amount smoked
+CIH_040E 0245-0245 Health improvement - drink less alcohol
+SMK_005 0319-0319 Type of smoker (daily / occasionally / not at all) - presently
+SMK_020 0322-0322 Smoked more than 100 cigarettes - lifetime
+SMKG040 0327-0328 Age - began smoking daily (daily / former daily smoker)
+SMK_045 0329-0331 Num of cigarettes smoked each day (daily smoker)
+SMK_050 0332-0334 Num of cigarettes smoked per day (occasional smoker)
+SMK_055 0335-0336 Num of days - smoked 1 cigarette or more (occasional smoker) -
+NDE_005 0375-0375 Time between waking up and first cigarette
+ALC_015 0396-0397 Drank alcohol - frequency - 12 mo
+ALCDVTTM 0400-0400 Type of drinker - 12 months - (D)
+DOALW 0401-0401 Alcohol use - past week - Inclusion Flag - (F)
+ALW_005 0402-0402 Drank alcohol - past week
+ALWDVWKY 0424-0426 Weekly consumption - (D)
+ALWDVDLY 0427-0429 Average daily alcohol consumption - (D)
+MED_005 0433-0433 Used pain relievers - codeine products - 12 mo
+MED_010 0434-0434 Used pain relievers - oxycodone products - 12 mo
+MED_015 0435-0435 Used pain relievers - other opioid products - 12 mo
+MED_020 0436-0437 Used pain relievers - frequency - 12 mo
+MED_025 0438-0438 Used pain relievers - prescribed - 12 mo
+MED_050 0439-0439 Used stimulants - 12 mo
+MED_080 0440-0440 Used sedatives - 12 mo
+DRMDVLA 0442-0442 Any illicit drug use - lifetime - (D)
+DRMDVLAY 0443-0443 Any illicit drug use - 12 months - (D)
+DRGDVYA 0447-0447 Illicit drug use - 12 mo (incl "one time only" marij / hash)
+DRGDVYCM 0448-0448 Marij / hash drug use - 12 mo (excl "one time only") - (D)
+CPGDVGAM 0454-0454 Gambling activity - gambler vs non-gambler - (D)
+CPGDVSEV 0455-0456 Problem gambling severity index (PGSI) - modified version - (D)
+CPGDVTYP 0457-0457 Type of gambler - (D) 
+PAA_030 0474-0474 Did sports / fitness / rec phys act - 7 d
+PAA_035 0475-0475 Sports / fitness / rec phys act - sweat
+PAA_045 0483-0485 Sports / fitness / rec phys act - 7 d - total - hours
+PAA_050 0486-0489 Sports / fitness / rec phys act - 7 d - total - minutes
+PAA_075 0499-0501 Other physical activities - 7 d - total - hours .
+PAA_080 0502-0505 Other physical activities - 7 d - total - minutes
+PAA_095 0506-0506 Physical activities - vigorous intensity
+PAA_100 0507-0509 Physical activities - vigorous intensity - 7 d - total - hours
+PAA_105 0510-0513 Physical activities - vigorous intensity - 7 d - total - minutes
+PAADVARC 0530-0535 Average minutes per day - recreational activities - (D)
+PAADVMVA 0547-0551 Total minutes of moderate to vigorous activity - 7 d - (D)
+PAADVVIG 0554-0558 Total minutes of vigorous activity - 7 d - (D) .
+PAADVDYS 0572-0573 Number of active days - 7 d - (D)
+DOPAY 0576-0576 Physical activities for youth - Inclusion Flag - (F)
+PAY_005A 0577-0577 Physical activities - attend school - 7 d
+PAY_005B 0578-0578 Physical activities - attend a day camp - 7 d 
+PAY_005C 0579-0579 Physical activities - paid or unpaid work - 7 d
+PAY_025 0582-0582 Did sports / fitness / rec phys act - school / camp - 7 d
+PAY_030 0583-0583 Sports / fitness / rec phys act - school / camp - sweat
+PAY_045 0584-0584 Physical activities - leisure time - 7 d
+PAY_100 0596-0598 Physical activities - vigorous intensity / out of breath - hours
+PAY_105 0599-0602 Physical activities - vigorous intensity / out of breath - minutes
+PAYDVDYS 0651-0652 Total days physically active - (D)
+SACG005 0726-0727 Num of hours - reading (including electronic format) - 7 d
+SACG010 0728-0729 Num of hours - watching TV / movies / Internet videos - 7 d
+SACG015 0730-0730 Num of hours - playing video games requiring physical activity - 7 d
+SACG020 0731-0732 Num of hours - playing other video / computer games - 7 d
+SACG025 0733-0734 Num of hours - computer / tablet / smart phone - 7 d
+SACDVTER 0735-0736 Total number hours / week - sedentary activities (excl reading) - (D)
+SACDVTOT 0737-0738 Total number hours / week - sedentary activities - (D)
+SXB_005 0740-0740 Had sexual intercourse - lifetime .
+SXBDVPRT 0784-0787 Total number of sexual partners - 12 mo - (D)
+SXB_030 0743-0743 Had sex with a female - 12 mo
+SXB_060 0745-0745 Had sex with a male - 12 mo
+CMH_005 1020-1020 Consulted mental health professional - 12 mo
+CMHG010 1021-1022 Consulted mental health professional - num of times - 12 mo
+
+DODEP 1039-1039 Depression - Inclusion Flag - (F) 
+DEPDVPHQ 1040-1041 Depression severity scale - (D)
+DEPDVSEV 1042-1042 Depression scale - severity of depression - (D) .
+SUI_005 1044-1044 Has considered suicide - lifetime
+SUI_010 1045-1045 Considered suicide - 12 mo
+WST_070 1063-1063 Job satisfaction - 12 mo
+WST_050 1056-1057 Job - hostility or conflict from coworkers - 12 mo
+WST_055 1058-1059 Job - helpful supervisor - 12 mo
+WST_060 1060-1061 Job - helpful co-workers - 12 mo
+
+
+LOP_005 1606-1606 Worked at a job / business - 3 mo
+DOSDC 1636-1636 Socio-demographic characteristics - Inclusion Flag - (F)
+SDC_015 1637-1637 Aboriginal - First nations / Métis / Inuk (Inuit)
+SDCDVIMM 1642-1642 Immigrant flag - (D)
+SDCDGCGT 1644-1644 Cultural / racial background - (D)
+DOFSC 1660-1660 Food security - Inclusion Flag - (F)
+FSC_010 1661-1661 Worried food would run out - 12 mo
+FSC_015 1662-1662 Food didn’t last and no money to buy more - 12 mo 
+FSC_020 1663-1663 Could not afford to eat balanced meals - 12 mo
+FSC_040 1667-1667 Adults skipped or cut size of meals - 12 mo
+FSC_050 1669-1669 Ate less than felt should - 12 mo
+FSC_055 1670-1670 Was hungry but couldn’t afford enough food - 12 mo
+FSC_040 1667-1667 Adults skipped or cut size of meals - 12 mo
+FSCDVAFS 1679-1679 Food security - adult status - (D)
+FSCDVCFS 1680-1680 Food security - child status - (D)
+FSCDVHFS 1681-1681 Household food security status - modified version - (D)
+
+INCDVRCA 1688-1689 Distribution of household income ratio - national level - (D)
+INCDVRPR 1690-1691 Distribution of household income - provincial level - (D)
+INCDVRRS 1692-1693 Distribution of household income - health region level - (D)
+ADM_040 1694-1694 Interview by telephone or in person
+ADM_045 1695-1695 Respondent alone during interview
+ADM_050 1696-1696 Answers possibly affected by presence of another person 
+WTS_M 1697-1704 Weights - Master
+

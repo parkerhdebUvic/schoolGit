@@ -1,0 +1,159 @@
+---
+title: "Lab2"
+author: "Parker DeBruyne - V00837207"
+date: "02/02/2022"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+setwd("/Users/admin/Documents/School/STAT 123/Labs/Lab2")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Lab 2: Matrices
+The following worksheet is due by 8pm ONE day after your lab. You can find the submission dropbox in Brightspace by clicking on Content − > Lab Content.
+
+## 0. Open a new R Markdown file.
+Note: Your worksheet is to be submitted as the output of an R Markdown file (you can knit it to HTML and then convert it to PDF, or you can knit it to PDF if you have LaTeX on your computer, or you can knit it to Word and then convert that to a PDF).
+
+## 1. Download the data set FlowerData posted under Lab Content in Brightspace (under Lab 2) and save it to whatever file you are using for this course.
+
+```{r Q1}
+getwd()
+```
+
+### (a) Read the FlowerData file into R and call it Fdata. 
+```{r Q1a}
+Fdata = read.csv("FlowerData.csv")
+```
+
+### (b) Is F data a matrix or a data frame? Explain why.
+
+```{r Q1b}
+head(Fdata)
+class(Fdata)
+```
+Fdata is a data frame because it contains a mix of data types.
+
+### (c) Create a matrix called FlowerMatrix which contains the numerical columns of Fdata. 
+
+```{r Q1c}
+FlowerMatrix = as.matrix(Fdata[,2:3])
+```
+
+(d) Re-name the columns of FlowerMatrix to be: Age (in days) and Height (in cm).
+
+```{r Qd}
+FMnames = c("Age (in days)", "Height (in cm)")
+
+colnames(FlowerMatrix) = FMnames
+```
+
+### (e) Re-name the rows of FlowerMatrix using the Individuals column from Fdata.
+```{r Qe}
+rowNames = Fdata$Individual
+rownames(FlowerMatrix) = rowNames
+
+FlowerMatrix
+```
+
+
+## 2. 
+
+### (a) Determine the average age of the flowers in the data set. 
+```{r Q2a}
+mean(FlowerMatrix[,"Age (in days)"])
+```
+Average age of the flowers is 37.42222 Days
+
+### (b) Determine the average height of the flowers in the data set.
+```{r Q2b}
+mean(FlowerMatrix[,"Height (in cm)"])
+```
+Average height is 11.87778
+
+### (c) Determine which individual has the largest height and which individual is the oldest flower.
+```{r Q2c}
+names(which.max(FlowerMatrix[,"Height (in cm)"]))
+names(which.max(FlowerMatrix[,"Age (in days)"]))
+```
+Individual "jj" has the largest height.
+Individual "b" has the oldest flower.
+
+### (d) Determine which individual has the smallest height and which individual is the youngest flower.
+```{r Q2d}
+names(which.min(FlowerMatrix[,"Height (in cm)"]))
+names(which.min(FlowerMatrix[,"Age (in days)"]))
+```
+Individual "e" has the smallest height.
+Individual "h" has the youngest flower.
+
+### (e) What colour are the flowers in your answer to parts (c) and (d)?
+```{r Q2e}
+Individuals = c()
+Individuals <- append(Individuals, names(which.max(FlowerMatrix[,"Age (in days)"])))
+Individuals <- append(Individuals, names(which.max(FlowerMatrix[,"Height (in cm)"])))
+Individuals <- append(Individuals, names(which.min(FlowerMatrix[,"Age (in days)"])))
+Individuals <- append(Individuals, names(which.min(FlowerMatrix[,"Height (in cm)"])))
+
+IndCols = c()
+for(val in 1:length(Individuals)){
+  Individual = which(Fdata == Individuals[val], arr.ind=TRUE)[1]
+  IndCol = Fdata$Colour[Individual]
+  IndCols <- append(IndCols,IndCol)
+}
+
+names(IndCols) = Individuals
+IndCols
+```
+
+## 3. 
+
+### (a) How many rows are there in the matrix? Call this value n.
+```{r Q3a}
+n = length(Fdata$Individual)
+n
+```
+45 Rows
+
+### (b) Take a random sample of size 15 between the numbers 1 to n. Call this sample samp.
+```{r Q3b}
+samp = sample(c(1:n), 15, replace=F)
+samp
+```
+
+### (c) Create a new matrix called SampleMatrix that contains the rows samp from FlowerMatrix. For example, if your sample came back as numbers 1-15 (which is very unlikely), then
+your SampleMatrix would contain the first 15 rows of FlowerMatrix.
+```{r Q3c}
+
+longvector = c()
+for(val in 1:length(samp)){
+  longvector <- append(longvector, FlowerMatrix[samp[val],])
+}
+
+SampleMatrix = matrix(longvector, byrow=TRUE, ncol=2)
+
+rIndv = c()
+for(val in 1:length(samp)){
+  rIndv <- append(rIndv,Fdata$Individual[samp[val]])
+}
+rownames(SampleMatrix) = rIndv
+colnames(SampleMatrix) = colnames(FlowerMatrix)
+
+SampleMatrix
+
+```
+
+### (d) What is the sample average height and age of the flowers in your SampleMatrix? Are they similar to your answer to Q2. (a) and (b)?
+```{r Q3d}
+AvAge = round(mean(SampleMatrix[,1]), digits = 2)
+print(paste0("AvAge = ", AvAge))
+
+AvHeight = round(mean(SampleMatrix[,2]), digits = 2)
+print(paste0("AvHeight = ", AvHeight))
+```

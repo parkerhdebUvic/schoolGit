@@ -1,0 +1,725 @@
+Faith
+- As though you are already in possession of what you desire
+- 
+
+
+SENG 265
+Week 1
+In Class
+
+Instructor name: Roberto Bittencourt
+Office: ECS 458
+Phone: (250) 472-5762
+Email: rbittencourt@uvic.ca
+
+Office Hours:	Comments
+Mon	04:30pm-05:30pm	 
+Wed	01:30pm-03:30pm	 
+
+Get good at command line interfacing for scripting
+
+Instead of "vi" uou can use gedit
+"virtualbox" is provided by Oracle
+
+Unix was written in C and was portable; uses a small amount of assembly code
+Ubuntu is the most popular linux distribution
+MacOS uses zsh, ubuntu uses bash
+
+Why use UNIX?
+- multiuser
+- multitasking
+- remote processing
+- stable (fewer viruses)
+- highly modular
+- some versions are free (open source)
+- large community (system engineers love it)
+
+UNIX model of user interaction
+- User talks to shell (with built in commands, some commands talks directly to the UNIX Kernel), then output is given to the user
+- other interactive tools: vi, abd
+- "shell is just a vocer for the kernel that is inside"
+- 
+
+UNIX Model
+- hardware -> Kernel -> shell -> application programs
+- Kernel talks to all your hardware
+    - Does that mean the kernel must use assembly?
+- For computers to talk to each other, they first must go "down through the layers then back up"
+- Shell reads and interprets user commands at the console )or from within a "shell script"
+- implements job control
+- many shells have been developed:
+    - sh, csh, ksh, tcsh, zsh, bash ....
+        - bash means "born again shell"
+
+Kernel
+- The protected core; you don't touch it!
+- The kernel itself is a big program
+- 4 basic tasks (some say 7)
+    - OS talks to memory
+    - Schedules, loads and executes  program to execute
+    - talks to I/O devices
+    - bootstraps the system
+        - Initiates the operating system
+    - file system
+
+UNIX filesystem
+- practically anythin can be abstracted as a file
+    - devices, programs, data, memory, IPC, etc
+    - what kind of data structure and classes does it use? 
+    - is the kernel written in C?
+- has a hierarchy (tree-like structure)
+    - called "directories", but people often call them "folders"
+    - forward slash "/" is used to separate directories
+
+UNIX filesystem tree
+- (check week 1 sep 7th course slides)
+- /
+    - dev
+        - disk0
+        - ttys0
+    - home
+        - username
+            - alc
+            - al
+    - usr
+        - ucb
+        - bin
+        - lib
+            - X11
+            - rgb.txt
+
+- absolute paths start from root: /home/username/......
+    - but you can use ".." to go up
+
+Some properties of directories
+- Every directory contains two special directory entries
+    - ".." go to parent
+    - "." refers to current directory (itself)
+    - "~" used to denote a home directory
+        - % cd ~
+            - goes to home directory
+
+Directory commands (ignore %)
+- % cd /home
+- listing directories
+    - % ls 
+        - shows: keyboardcat
+    - % ls keyboardcat
+        - shows: hi-rez.mp4 tinder-stuff.txt
+- relative pathnames
+    - use a dot, or just the directory name. eg:
+        - % open key
+
+Navigation
+- Absolute paths specify a file or directory in relation to the root directory: begins with "/"  
+
+- Relative paths specify a file or directory in relation to where we currently are in the system: does not begin with "/"
+
+- Using relative pathing for ls does not change your working directory
+
+More on Paths
+- ~ (tilde) is a shortcut to home directory
+- . (dot) reference to current directory
+- .. (dotdot) reference to the parent directory
+- whenever you refer to a file or directory you are actually referring to a path
+
+Moving Around
+- cd [location]
+- if you use cd with no arguments, it takes you back to home 
+- pwd print working dir
+
+Tab completion
+- pressing tab when you start typing a path (anywhere) will invoke an auto complete action
+
+Other
+- /etc stores config files for the system
+- /var/log stores log files for system programs
+- /bin location of several commonly used programs
+- /usr/bin another location for programs on the system
+
+More about Files
+- Everything is a file, even hardware
+
+Linux is an Extensionless System
+- file extensions usually denote what type a file is
+- In Linux, the system ignores the extension and looks inside the file to determine what file type it is
+- you can rename file extensions and it won't matter
+- to tell what a file type actually is, use:
+    - file [path]
+        - remember, everything is a path in the command line
+
+Linux is Case Sensitive
+- including file extension names
+
+Spaces in names
+- spaces in names are valid, but need to be wrapped in quotes or the command line will think there are separate arguments, OR use escape characters "\"
+    - 'Holiday Photos', "Holiday Photos", Holiday\ Photos
+- Escape characters (\) nullifies the meaning of the next character
+
+Hidden Files and Directories
+- if a file or directory name begins with a '.' then that file or directory is hidden. 
+- You don't need a special command or action to make a file hidden, just put a period in front: .journal.txt
+- likewise, you can rename and remove the period infront of a file name to make it unhidden
+- ls does not list hidden files or dirs by default, use: ls -a
+
+Manual Pages
+- A set of pages that explain every command on your system
+    - man <command to look up>
+    - press 'q' to quit the display
+- You can search for a keyword on the Manual pages
+    - man -k <search term>
+    - or press '/' followed by the term you want to search for and hit 'enter', then cycle through with 'n' button
+
+More on Running of Commands
+- longhand command line opitons begin with two dashes "--", shorthand is one "-"
+- When using a single dash we may invoke several opitons together after the dash: "ls -alh"
+
+File Manipulation
+Making a Directory
+- mkdir [options] <Directory>
+    - -p option makes parent directories as needed
+    - -v makes mkdir tell us what it is doing
+        - eg: mkdir -pv linuxtutorialwork
+
+Removing a Directory
+- rmdir [options] <Directory>
+    - supports -pv
+- there is no "undo" when it comes to commandline
+- a directory must be empty before it may be removed (there is a way to get around this though)
+
+Creating a Blank File
+- many commands will create a file if you're referring to it but it doesn't exist
+    - we can take advantage of this by using 
+        - touch [options] <filename>
+- touch can be used to modify the access and modification times on a file (not normally needed)
+    - there are ways to detect if the modification date has been edited
+- Many things in Linux are done indirectly by knowing extra behaviour of commands instead of directly
+
+Copying a File or Directory
+- helps protect files you want to edit
+- cp [options] <source> <destination>
+    - Note that both the source and destination are paths
+    - the destination becomes the new name of the file copy
+    - there are ways to copy several files in one go (more on this later)
+- -r option stands for recursive can copy entire directories
+
+Moving a File or Directory
+- opporates in similar way to cp, but you don't have to use the -r option
+    - mv [options] <source> <destination>
+        - If the destination path is in the same directory but ends in a name that does not exist, it will rename the file to that new name
+            - mv example1 backups/example2
+                - renames example1 as example2
+
+Renaming Files and Directories
+- may not be undone
+- rm [options] <file>
+
+Removing non empty Directories
+- use the recursive argument -r
+    - rm -r <directory>
+- add the -i option to be prompted for the removal of each file
+
+Vi Text Editor!
+- Mastering this will save you time
+- puts content into files and edits that content
+- A Command Line Editor
+    - has more power than notepad or textedit
+    - does not use a mouse, only keyboard
+- Two modes:
+    - Insert (or Input)
+    - Edit 
+        - deleting, copying, search and replace, saving, etc
+    - make sure you're in the right mode
+
+Opening VI
+- vi <file>
+    - if you forget to specify a file, you can open one within VI, but it's easiest to just quit and reopen
+    - if the file doesn't exist, it will create it
+- press "i" to enter insert mode 
+- press "esc" to go back to edit mode. Pressing it again does nothing
+- as long as it doesn't say "INSERT" at the bottom, you are in edit mode.
+
+- i - insert mode
+- "esc" - edit mode
+- ZZ - save and exit
+- :q! - discard all changes and exit
+- :w - save file but don't exit
+- :wq - save and exit
+
+- most commands are executed as soon as you press the sequence of keys
+    - commands with a ":" at the start require you to hit <enter> to complete the command
+- 
+
+Other ways to view files
+- cat <file>
+    - concatenate, used for joining files but can be used to view in the command line as well if single arg is used
+    - if you accidentally forget to use a file name, use 
+        <Ctrl> + c to get out
+    - good for small text files, but not for large ones
+- less <file>
+    - lets you move up and down within a file using arrow keys
+    - pressing SpaceBar moves forward a page, pressing "b" moves back
+    - "q" quits
+
+Navigating a file in Vi
+- in insert mode, arrow keys move you around
+- j, k, h, l - move the cursor down, up, left, and right (like arrow keys)
+- ^ (caret) - moves the cursor to beginning of line
+- $ - moves cursor to end of line
+- nG - move to the nth line (eg 5G)
+- G - move to last line
+- w - move to beginning of next word
+- nw - move forward n words (eg 2w)
+- b - move to beginning of previous word
+- nb - move back n words
+- { - move backward one paragraph
+- } - move forward one paragraph
+- :set nu - enables line numbers
+
+Deleting content
+- x - delete a single character
+- nx - delete n characters (ex 5x)
+- dd - delete the current line
+- dn - delete to where a movement would take you (eg d5w, d2G)
+
+Undoing
+- u - undoes last action
+- <ctrl> + r - redo
+
+Taking VI further
+- you can also copy and paste, search and replace, buffers, markers, ranges, and settings
+
+
+Wildcards!
+- * - represents zero or more characters
+    - eg: ls b* 
+        - lists every entry beginning with b
+- ? - represents a single character
+- [] - represents a single character
+- these are sort of like filters, but also multipliers of the command on every instance found
+
+eg: every file with txt extension at the end
+    - ls /home/ryan/linuxtutorial/*.txt
+
+- you use the wildcards to build the pathname
+eg: each file whose second letter is i
+    - ls ?i*
+
+- every file with a three letter extension
+    - ls *.???
+
+-  "or" operator [ ]. Every file that begins with s or v
+    - ls [sv]*
+- also may use hyphens to specify a range
+    - ls *[0-9]*
+
+May also exclude a range using the caret (^), as in "not anything starting with ___"
+    - ls [^a-k]*
+
+Some real world examples
+- find the type of every file in a directory
+    - file /home/ryan/*
+- move all files of type either jpg or png into another directory
+    - mv public_html/*.??g public_html/images/
+- find out the size and modification time of the .bash_history file in every users home directory
+    - ls -lh /home/*/.bash_history
+
+This is how viruses are written.... you can write things like "copy every image file in your system to an external drive"
+
+Permissions
+- linux permissions dictate 3 things you may fo with a file
+    - read, write, and execute
+- r - read
+- w - write
+- x - execute
+
+- every file has 3 sets of people whom we may specify permissions
+    - owner (usually creater)
+    - group (multiple people)
+    - others (everyone else)
+
+View Permissions
+- ls -l [path]
+- use long listing option for ls
+
+eg: 
+ls -l /Users/parker/Documents/School/SENG 265/linuxtutorialwork
+-rw-r--r--  1 parker  staff  34 Sep  9 07:08 textvi
+
+- first character is the file type, (-) means normal file
+    - d means directory
+- next 3 characters represent permissions for the owner
+    - a (-) represents the absence of a permission
+- the next 3 characters represent permissions for the group
+- the last 3 characters represent the permissions for everyone else
+
+Changing Permissions
+- chmod [permissions] [path]
+    - 3 components: 
+        - who are we changing hte permission for? 
+        - Are we granting or revoking permissions? (+) or (-)
+        - Which permission are we setting? (r, w, x)
+    eg:
+        - chmod g+X frog.png (group)
+        - chmod u-w frog.png (user)
+        - chmod go-x frog.png (group and other)
+- cannot remove our ability to set permissions
+
+Setting Permissions Shorthand
+- Previous method can be tedius if we want to apply the same permissions to multiple files (in scripting)
+- use 3 octal numbers to turn things on and off
+    - each digit uses 3 binary bits for rwx : 111, 101, 000, etc
+    - eg: chmod 751 frog.png
+            chmod 240 frog.png
+- 755 or 750 are commonly used
+
+Permissions for Directories
+- same permissions may be used for directories but have different behaiour (rwx)
+- r - ability to read contents
+- w - ability to create files and directories
+- x - ability to enter a directory (cd)
+
+- eg: chmod 400 testdir
+    - ls -ld testdir  (d option lists directories as plain files)
+    - dr-------- 1 ryan users 2.7K Jan 4 07:32 testdir
+    - cd testdir
+    - cd: testdir: Permission denied
+    - ls testdir
+    - file1 file2 file3
+- these permissions are for the directory itself, not the files within
+
+The root user
+- On any linux system, there are usually only 2 people who may change permissions of a file or dir
+    - the owner of the file or dir, and the root user
+- The root user is a superuser who can do anything and everything
+- Administrators of a system would normally be the only ones to have access
+- Normal users would only have access to files and directories in their home directory (and maybe a few others for sharing)
+
+Basic Security
+- Your home directory is your own personal space on the system (make sure it stays that way)
+- you should not give either a group or others write access to your home directory, but execute without read can come in handy sometimes (this allows people to enter the home directory but not see what is there- eg, personal webpages)
+- 
+
+Filters!
+(Turning data into information)
+- principle: every item should do one thing and one thing only
+- principle: we can easily join items together
+- A filter is a program that accepts textual data then transforms it
+- good to read the man page on each filter
+eg
+- cat [-options] [path]
+    - usually concatonates, but also gives a glimpse of the data
+- head [-options] [path]
+    - prints the first 10 lines by default (can do more)
+        - head -4 mysampledata.txt
+            - prints first 4 lines
+- tail [-options] [path]
+    - prints the last 10 lines (same as head but opposite)
+- sort mysampledata.txt
+    - will sort alphabetically by default (check man page)
+    sort [-options][path]
+- nl [-options] [path]
+    - stands for number lines. It numbers the lines.
+    - nl mysampledata.txt
+    - more options:
+    nl -s '. ' -w 10 mysampledata.txt
+         1. Fred apples 20
+         2. Susy oranges 5
+         3. Mark watermellons 12
+    - -s specifies what should be printed after the number
+    - -w specifies how much padding to put in front
+- wc [-options] [path]
+    - stands for word count (as well as characters and lines)
+    - (lines) (words) (characters)
+    - can limit it with options
+    - wc -l mysampledata.txt (limits it to lines)
+- cut [-options] [path]
+    - used for removing field columns
+    - uses the TAB character as a separator for fields
+    - -d option changes the separator
+    - -f option specifies which fields we want
+    - eg: 
+        cut -f 1,2 -d ' ' mysampledata.txt
+- sed <expression> [path]
+    - stands for Stream Editor
+    - does search and replace on our data
+    - basic expression example:
+        s/search/replace/g
+    - s stands for substitute and specifies the action
+    - / ____ / specifies what we're searching for
+    - / ____ / is what we wish to replace it with
+    - g stands for global and is optional (omiting it only replaces the first instance of search on each line)
+    - eg: 
+        sed 's/oranges/bananas/g' mysampledata.txt
+    - important: sed does not identify words, but strings of characters
+    - using quotes around the expression allows for escape characters
+- uniq [options] [path]
+    - stands for unique; reomves duplicate lines from data
+        - lines must be adjacent in sequence
+- tac [path]
+    - this is actually 'cat' in reverse; does the opposite
+    - it will print the data starting at the last line first
+- others
+    - awk
+    - diff
+
+Grep and Regular Expressions!
+- Regular expressions: similar to wildcards (same characters, slightly different behaviour)
+    - 'identify every line with an email address or url'
+
+- egrap [options] <pattern> [path]
+    - extended grep
+    - -v option tells grep to print every line that doesn't match
+    - eg: identify every line which contains the string "mellon"
+        - egrep 'mellon' mysampledata.txt
+    - will print the entire line when found
+    - always use quotes around patterns and expressions
+    - -n option displays number lines
+    - -c option only displays the count of lines with matches
+
+Learning Regular Expressions
+- you can use "https://www.debuggex.com/" to experiment with regular expressions
+- . - single character
+- ? - preceding character matches 0 or 1 times only
+- * - preceding character matches 0 or more times
+- + - preceding character matches 1 or more times
+- {n} - preceding character matches exactly n times
+- {n,m} - preceding character matches at least n times but not more than m times
+- [agd] - character is one of those included in the brackets
+- [^abc] - character is not one included in the brackets
+- [c-f] - the dash within the brackets operates as a range
+- () - allows us to group several characters to behave as one
+- | - logical OR 
+- ^ - matches beginning of line
+- $ - matches end of line
+
+- Some Examples
+    - we wish to identify any line with two or more vowels in a row 
+        - the multiplier {2,} applies to the preceding item which is a range
+        - egrep '[aeiou]{2,}' mysampledata.txt
+    - any line with a 2 on it whch is not the end of the line
+        - + multiplier applies to the . which is any character
+        - egrep '2.+' mysampledata.txt
+    - the number 2 as the last character on the line
+        - egrep '2$' mysampledata.txt
+    - each line which contains either 'is' or 'go' or 'or'.
+        - egrep 'or|is|go' mysampledata.txt
+    - orders for everyone who's name begins with A - K.
+        - egrep '^[A-K]' mysampledata.txt
+
+Piping and Redirection
+- creates powerful workflows to automate work
+- every program we run has 3 data streams
+    - STDIN (0) - standard input 
+    - STDOUT (1) - standard output
+    - STDERR (2) - standard error (error messages)
+- piping is connecting these streams between programs
+
+Redirecting to a File
+- Sometime we want to save the output to a file, feed to another system, or send to someone else
+- the > operator indicates what we want to do
+- ls > myoutput
+    - this creates a file called myoutput that records the list. The file is created first, then the listing
+
+Some Observations
+- if we redirect a file which does not exist, it will be created for us
+- if we save into a file that already exists, it will be overwritten
+- We can instead get the new data to be appended to the file by useing double >>
+    - ls >> myoutput
+
+Redirecting from a file
+- If we use < operator we can read data from a file and feed it into a program
+    - wc -l myoutput
+        8 myouput
+    - wc -l < myoutput
+        8
+        - notice that the output is different: data is piped anonymously
+- Many programs can be supplied a file as an argument
+    - but piping moves data anonymously
+- we can combine the two ofrms into one command line
+    - wc -l < barry.txt > myoutput
+
+Redirecting STDERR (Standard Error)
+- The three streams have numver associated with them
+    - STDIN (0)
+    - STDOUT (1)
+    - STDERR (2)
+- We may use these numbers to identify the streams by placing a number before the > operator
+    - if we don't use a number it defaults to stream 1
+        - eg: ls -l video.mpg blah.foo 2> errors.txt
+- we can save both output and error messages into a single file by redirecting the STDERR stream to the STDOUT stream and redirecting STDOUT to a file
+    - we identify the redirection to a stream by placing an & in front of the stream number (otherwise it would redirect to a file called 1)
+        - eg: ls -l video.mpg blah.foo > myoutput 2>&1
+- (flows left to right)
+
+Piping
+- Sending data from one program to another
+- uses (|) operator
+    - feeds the output from the program on the left as input to the program on the right
+    - eg: ls | head -3
+- we may pipe as many programs together as we like. 
+    - eg: ls | head -3 | tail -1
+    - new command line arguments must be next to that program
+- build your pipes incrementally to check and make sure each pipe is giving you the output you are expecting!
+- you may also combine pipes and redirections too
+    - ls | head -3 | tail -1 > myoutput
+
+More Examples
+- sorting the listing of a directory so that all the directories are listed first
+    - ls -l /etc | tail -n +2 | sort
+- feed the output of a program into the program less so that we can view it easier.
+    - ls -l /etc | less
+- Identify all files in your home directory which the group has write permission for.
+    - ls -l ~ | grep '^.....w'
+- Create a listing of every user which owns a file in a given directory as well as how many files and directories they own.
+    - ls -l /projects/ghosttrail | tail -n +2 | sed 's/\s\s*/ /g' | cut -d ' ' -f 3 | sort | uniq -c
+
+Summary:
+- > - save output to file
+- >> - append output to file
+- < - read input from file
+- 2> - redirect error messages
+- | send output from one program as input to another program
+- Streams
+Every program you may run on the command line has 3 streams, STDIN (0), STDOUT (1) and STDERR (2).
+
+
+Process Management!
+- How we manage programs, or processes, on a Linux system
+
+So what are they?
+- A program is a series of instructions
+- when running a program, instructions are copied into memory and space is allocated for variables 
+- This running instance of a program is called a process
+
+What is currently running?
+- many processes at the same time
+- to get a snapshot of a program, use the "top" command
+    - Tasks: just another name for processes, many will be sleeping
+- gives a breakdown of RAM usage and Virtual memory
+- listing of most resource intensive processeson the system (in order)
+    - two important columns: memory and CPU usage
+        - if either are high for a long time, might be worth investigating why
+    - USER column shows who owns the process 
+    - PID colum identifies a prcess's Process ID which is a unique idetifier
+- top is always real time and shows whatever will fit on the screen
+    - ps - shows the processes running in your terminal 
+    - ps [aux] - shows a complete system view which is more helpful (without the brackets)
+        - people usually pipe the output to grep to filter out just teh data they want
+
+Killing a Crashed Process
+- first identify the process id, then use kill command
+- kill [signal] <PID> 
+    - eg: ps aux | grep 'firefox'
+    -     kill 6978
+- Kill sends the default signal (1) to process which effectively asks the process nicely to quit
+- if it doesn't fully kill it, "use the sledge hammer": use -9 argument
+    - kill -9 <PID>
+
+My Desktop has locked up
+- sometimes a crash locks the entire desktop
+- linux runs several virtual consoles, which can still be accessed!
+    - windows - CTRL + ALT + F<Console> (f keys)
+    - mac - CTRL + OPTION + CMD + Q
+        - you can then run the commands to identify the process and kill it, then use same command to get back to see if it's been fixed
+        - someitmes youo need to just keep killing high usage programs until you find the one causing the lock. Worst case scenario, restart the computer
+
+Foreground and Background Jobs
+- most programs run in the foreground
+- for programs that will take a long time to process, we can run it in the background and continue in the foreground
+- sleep - wait a given number of seconds then quit
+    - if we put an "&" after then we are telling the terminal to run this process in the background
+- jobs - list current background jobs
+- can move jobs between foreground and background
+    - CTRL + z
+- fg <job number> - stands for foreground to bring background processes into foreground
+
+Bash Scripting!
+- A bash script is a document that tells bash what to say and do
+- allows us to define a series of actions
+- anything you can run on the command line may be placed into a script
+- when building scripts, it's often easiest to test your commands in the terminal
+- scripts are just plain text files
+
+
+
+A simple example
+- always include at the top line of a script, specify what shell language you want to use: #!/bin/bash
+        - which - tells you where your interpreter is located
+- echo prints to the screen
+    - echo <message>
+- anything following a # is a comment
+    - good practice to include name and date
+- we need ./ to run a script
+
+Important Points
+The Shebang
+- #!(the shebang) - no spaces, tells what shell language you're using
+- which <program> - finds out where out where our interpreter is located
+    - which bash
+        bin/bash
+    - which zsh
+        bin/zsh
+
+The Name
+- Extensionless: call it whatever you want. Doesn't matter if you put .sh after the name
+    - this is how viruses are written.....
+
+Comments
+- # - comments out the rest of the line
+- leave a comment at the top with a description of what your script does
+
+Why the ./ ?
+- echo $PATH - preset directories, separated by colons
+    - system wont look anywhere other than these dirs, not evern your current dir
+    - writing a path overrides this 
+    - ./myscript.sh tells the system to look in current directory 
+    - prevents the use of malicious scripts (like if someone named a script ls and put it in your directory. You have to use ./ls in this case)
+
+Permissions
+- by default we don't have execute permissions (even if we are the owner) of scripts
+- use chmod 755 <script> 
+
+Variables
+- A container for a simple piece of data
+- haev a specific syntax
+    - name=value - no spaces, when creating a variable
+    - $name - when calling a variable
+
+Command line arguments and More
+- there are several automatic variables
+    - $0 - name of the script
+    - $1 - $9 - any commandline arguments given to the script
+    - $# - the number of commandline arguments given to the script
+    - $* - all of the command line arguments
+
+Back ticks
+- `<command>`- Saving the output of a command to a variable: wrap in back ticks
+
+A Sample Backup Script
+###
+#!/bin/bash
+# Backs up a single project directory
+# Ryan 11/9/2023
+
+date=`date +%F`
+mkdir ~/projectbackups/$1_$date
+cp -R ~/projects/$1 ~/projectbackups/$1_$date
+echo Backup of $1 completed
+###
+- uses a relative path to make it more generic (can send a copy)
+- always try to make your scripts flexible and generic
+
+IF Statements
+if [ <var> <arg> <var> ] - the spaces are important
+then 
+    <command>
+    exit
+
+fi
+
+- if [] then else fi -
+
+
+
+

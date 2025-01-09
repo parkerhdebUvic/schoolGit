@@ -1,0 +1,35 @@
+predesessor: go left once, go right as far as you can.
+successor: go right once, go left as far as you can.
+
+url for printing tree structures:http://www.webgraphviz.com/?source=techstories.org
+
+- A binary tree expands exponentially
+- Therefore, it reduces the runtime of a search
+    to a factor of log(n)
+    - It is bounded by the height of the tree
+- 
+
+//Searching for an element in a BST
+
+public TreeNode find(int key){
+    return find(root, key);
+}
+
+public void find(){
+    if (cur == null){
+        return null;
+    }
+
+    if (cur.data == key){
+        return cur;
+    }
+
+    if (cur.data > key){
+        return find(cur.left, key);
+    }
+
+    return find(cur.right, key);
+}
+
+
+//Insert into a BST

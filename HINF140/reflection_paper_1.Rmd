@@ -1,0 +1,28 @@
+---
+title: 'HINF 140 A01 - Reflection Paper #1'
+author: "Parker DeBruyne - V00837207"
+date: "17/01/2023"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+indent: true
+header-includes:
+    - \usepackage{setspace}\doublespacing
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+setwd("/Users/admin/Documents/School/HINF 140")
+knitr::opts_chunk$set(echo = TRUE)
+```
+\newpage
+Included in this paper will be a personal reflection on the constituents of health and well-being by myself, Parker DeBruyne, and my current understanding of the Canadian healthcare system. This reflection is in no means well informed and I will not be including citations or references; merely my own observations as a Canadian citizen from birth, and a collection of experiences that range from training as a Emergency Medical Responder (EMR) to exploring and developing software for homeless shelters in Victoria, B.C.\
+  
+Health to me is something far more broad than just physical. In my personal time, I have looked up longitudinal studies conducted in both New Zealand and the United States that sought to analyze the factors that promote long and happy living. This implies health. What they found was surprising: the strength and quality of an individual's personal relationships have a remarkable impact on long term well-being. To be succinct, bonding with friends, family, and significant others can quite literally keep you out of the hospital when looked upon by a 60-year-lens. The contrapositive also appears to be true: fractured relationships and poor social skills can increase a child's risk of criminal activity, drug addiction, or homelessness within the next 20 years of their life- which brings me to Canada.\
+
+Indigenous cultures have known for a long time the importance of community and how it relates to health and well-being. When immigrants arrived from Europe, they brought with them new diseases and a culture that placed productivity above the needs of the individual. As the decades went on, the medical priorities of the immigrated populace evolved from venereal diseases and epidemics, to in-home care, to in-hospital care, then to a mix of both as policies and health systems were established and growing in scope. At present, Canada maintains one of the worlds leading universal health care systems, but with the progression of time and technology the scope of our problems have expanded; we are once again discovering the link between community and health.\
+
+Despite its colonial origins and flaws, there is much to be proud of in the principals that guide Canadian health care. There has been a constant ebb and flow between compensating doctors fairly and providing universal coverage for Canadians. Currently, Canadians can enjoy not going into debt due to an injury, and are able to walk into any hospital in the country and receive treatment. Due to the shortage of doctors however, along with other systemic issues, they may be waiting in that hospital for many hours before receiving care or may have to wait months for test results. How can we incentivize the population to educate new doctors and retain them in the country while keeping costs low for citizens? It is a question that has remained on the table, unanswered, for decades in Canada- but it is there. The fact that this is a question for us at all is something for us to be proud of.\
+
+It is my hope that as technology progresses and the cost of medical treatments fall- making healthcare more affordable and accessible- the scope of our problems and what we are able to tackle will increase. I wish for mental health and social health to become chief concerns for Canadian healthcare, and for us to start looking at "the health of an individual" as something that involves the community. Social integration is one of the best preventative measures against long-term ailment. Perhaps it is worth looking backward to what already existed before we arrived?

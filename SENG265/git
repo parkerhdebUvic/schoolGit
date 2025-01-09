@@ -1,0 +1,126 @@
+Repository
+- Remembers every committed change to every controlled file
+- can choose to view previous states of file structure
+ 
+To avoid merge conflicts
+- one option is to lock files that are being worked on
+- not efficient
+- gives false sense of security
+
+Merge conflicts without locking
+- copy, modify, merge
+- allows users to work in parallel
+    - assumes files are line-based text files
+- most concurrent changes do not overlap
+- consistency amongst files is explicitly managed (conflicts must be checked?)
+- git associates a hash with each commit; a SHA-1 checksum of the git object created by the commit
+
+What is git?
+- A framework for version-contol system workflows
+- tracks changes to files and directories over time
+
+Some git history
+- Linus Torvalds built a "lower-level" VCS
+
+Basic Concepts: Repository
+- any number of clients can connect to the repository
+- push - writing to remote repo
+- pull - reading from remote repo
+- each user has a local repo
+    - a copy of the main repo
+
+Basic general git cycle (assuming shared repo)
+- 1 - preform a clone or init
+- 2 - edit files in your working copy
+- 3 - if needed, update your local copy with a pull (and perhaps also a merge)
+    - picks up changes made by team members 
+- 4 - build / run / test / etc / your work
+- 5 - add the name of changed files to staging
+- 6 - commit your changes to local repo
+- 7 - if changes are not yet ready, go to step 2
+- 8 - push committed changes to remote repo
+- 9 - go to step 2
+
+Basic concepts: working copy
+- cloning an existing repo or preforming init
+    - usually done only once
+    - all work is done in a working copy
+- Repository access methods differ:
+    - direct access via local disk, ssh, http or https
+
+Basic Concepts: Commit
+- To keep track of some changes to a file
+    - edit file
+    - time and date edited will be more recent that file in local repo
+    - record changes by committing your changed file to the repository
+- add - stages our changes
+- commits are always to our local repo
+- to have results available to otheres, we must push them to remore repo
+- commits are frequent, pushes are much less frequent
+-  each commit creates a new snapshot of the contents in your working copy to your local repo
+    - kept in chronological order
+- git log - produces a list of snapshots
+- refault order is reverse chronological
+
+- git status - reports relationshiop amongst files in working dr with what's in git's local repo
+
+- commit is NOT the same as push
+    - commits are made to the local repo, not the remote repo
+    - git separates the tracking of file changes from their storage on remote servers
+
+
+basic concepts: update
+- what if someone starts working on a project after someone else's commit?
+    - "git pull" is actually two commands together:
+        - "git fetch", followed by "git merge origin/master"
+
+What is "origin" and "master"?
+- local repo may be associated with several remote repos and may have several branches
+- the default remote repo is named origin
+- main branch of code development is named "master" by convention
+
+A note on "add"
+- every file must be added at least once in the project's lifetime to be tracked by git
+- to stage and commit files without having to use add:
+    - git commit -a -m "message"
+
+Warning:
+- Never store generated files in the repository
+    - generated .class or .jar files from java for example
+
+Use .gitignore
+- thie text file needs to be committed to the project
+- normally stored in top-level of working directory
+- each line in file is used as a pattern. Eg:
+    - *.pyc
+    - *.o
+    - DS_STORE
+    - *.class
+
+What amout "conflicts"?
+- suppose you've fetched changes and merged them into your master branch
+- sometimes we don't see a clean report. eg:
+    - two people pull at the same time, make different changes, one pushes, then the other gets a CONFLICT error when they try
+
+Resolving a merge conflict
+- two parts
+    - human part (harder)
+        - decide what part of the human code should be kept
+    - technical part (easy)
+        - edit that file in that way, then commit and push
+
+Some useful commands
+- clone
+- add
+- commit
+- status
+- log
+- diff - shows differences of working dir contents with local repo
+- pull
+- push
+- fetch
+- merge
+- rm
+- init
+- git <command> --help
+

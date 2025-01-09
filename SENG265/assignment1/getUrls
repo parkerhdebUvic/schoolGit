@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# Check if a URL is provided as an argument
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <URL>"
+    exit 1
+fi
+
+# Function to extract and normalize subpage links
+extract_and_normalize_subpage_links() {
+    local url="$1"
+    local base_url="$2"
+    wget -q --spider "$url"
+    if [ $? -eq 0 ]; then
+        # URL is valid, proceed to normalize it
+        wget -q -O - "$url" | grep -o 'href=["'\''][^"\'']*' | sed -e 's/href=["'\'']//' | while read -r link; do
+            if [[ "$link" == http* || "$link" == www* ]]; then
+                echo "$link"
+            elif [[ "$link" == /* ]]; then
+                echo "${base_url}${link}"
+            else
+                # Use the directory of the base URL as the context
+                context_dir=$(dirname "$base_url")
+                # Construct the normalized URL
+                normalized_url="$context_dir/$link"
+                echo "$normalized_url"
+            fi
+        done
+    fi
+}
+
+# Main script
+start_url="$1"
+output_file="subpage_urls.txt"
+root_domain="http://morganebbett.com"  # Set the root domain
+
+# Create a temporary file to track visited URLs
+visited_file="visited_urls.tmp"
+
+# Extract subpage links from the start URL and normalize them
+subpage_links=$(extract_and_normalize_subpage_links "$start_url" "$start_url")
+
+# Write the start URL to the output file
+echo "$start_url" > "$output_file"
+
+# Loop through the subpage links, validate them, and append valid and unique URLs to the output file
+for link in $subpage_links; do
+    if [[ $link == "$root_domain"/* ]]; then
+        # Check if the URL is not already visited
+        if ! grep -q -x "$link" "$visited_file" && wget -q --spider "$link"; then
+            echo "$link" >> "$output_file"
+            # Mark the URL as visited in the temporary file
+            echo "$link" >> "$visited_file"
+        fi
+    fi
+done
+
+# Sort and remove duplicates from the output file
+sort -u -o "$output_file" "$output_file"
+
+# Remove the temporary file
+rm -f "$visited_file"
+
+# Print a completion message
+echo "Done: $output_file"

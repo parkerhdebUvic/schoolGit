@@ -1,0 +1,270 @@
+Addresses and Pointers 
+- related to memory access
+- All variables refer to data
+- all data resides in memory
+- every memory location has an address
+
+- everything has an address
+ 
+Pointers:
+- just a variable with a memory address inside it instead of an integer itself
+- can be used as a formal function parameter to receive the address of a variable
+- & - to obtain an address
+- * - to use an address
+
+When declaring a pointer variable
+- int *a;
+- double *f;
+
+When getting the address of a memory location:
+- double f = 30.0;
+- double *g = &f;
+- printf( "%lf %lf\n", f, *g );
+- so essentially, if you update the value of x, anyhting that points to x will now have that value
+
+Pointer arrays
+- char *st[10]
+
+void swap(int *a, int *b) {
+int temp = *a;
+*a = *b;
+*b = temp;
+}
+
+/* ... some code here ... */
+void blarg() {
+int x = 2;
+int y = 1;
+swap(&x, &y);
+printf("x = %d, y = %d\n", x, y);
+}
+
+Example word-count method:
+___________________________
+#include <ctype.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define MAX_LINE_LEN 256
+int main (int argc, char **argv) {
+FILE *infile;
+char line[MAX_LINE_LEN];
+int num_chars = 0;
+int num_lines = 0;
+int num_words = 0;
+char *c;
+if (argc < 2) {
+fprintf(stderr, "usage: %s filename\n", argv[0]);
+exit(1);
+}
+infile = fopen(argv[1], "r");
+if (infile == NULL) {
+fprintf(stderr, "%s: cannot open %s", argv[0], argv[1]);
+exit(1);
+}
+
+while (fgets(line, MAX_LINE_LEN-1, infile) != NULL) {
+num_lines += 1;
+num_chars += strlen(line);
+if (strncmp(line, "", MAX_LINE_LEN) != 0) {
+num_words++;
+}
+for ( c = line; *c; c++ ) {
+/* Not quite good enough!! */
+if (isspace(*c)) {
+num_words++;
+}
+}
+}
+fclose(infile);
+printf ("%s: %d %d %d\n", argv[1],
+num_lines, num_words, num_chars);
+return 0; /* return the success code */
+_________________
+
+- general purpose language
+    - network protocol
+    - database management system
+    - compiler for another language
+- ubiquitous: where you find UNIX, you usually find C
+- popular for embedded systems as it has a small footprint
+- good for porting programs
+- no native array accesss bound checking!
+- no native null-pointer checks (library for this)
+- no native checks on uninitialized variables
+
+####write a c file in terminal by:
+    $ cat > hello.c
+    - control+D to exit
+- compile with
+    $ gcc -c hello.c
+- produce an executeable
+    $ gcc hello.o -o hello
+    $ gcc hello.o -o hello -lm # Version which links in math libraries
+- or (shorter)
+    $ gcc -g -std=c11 -Wall hello.c -o hello
+- run the executeable
+    $ ./hello
+
+Basic rules
+- all C programs must have at most one main()
+- keywords are always lowercase
+- statements must be terminated with a semicolon
+- /* ... */ - comments
+- hello.c - for compiling
+- hello.o - object file
+
+Formatting style
+- any amount of white space is considered a single space - use tabs and spaces liberally
+- white space improves readability
+- declarations must appear at the beginning of a scope
+- snake_case_variable_names instead of camelCaseVariableNames
+
+C data types
+- char, int, float, double
+- struct - (for heterogeneous aggregate tyeps)
+- {arrays} - (for homogenous aggregate types)
+- enum - assign names to integral constants
+- union - (tricky to use, but nice when needed)
+
+Storage
+- static
+- extern
+- auto (assumed as default)
+- register
+
+Qualifier
+- const
+- volitile
+
+Literals: examples
+- char c = 65; /* Same as 'A' */
+- float x = 3.14159f;
+- double x = 1.25, y = 2.5E10, z = -2.5e-10;
+- long double x = 3.5e3L;
+- int a = 10;
+- int b = 0x1CE;
+- int c = 0777;
+- unsigned int x = 0xfffU;
+- long int y = 2L;
+
+Coding Example
+- reference a variable inside a print statement string
+    - printf("message s is: '%s'\n", s);
+
+Intro to C continued
+- user defined types: structures (struct)
+    - type synonyms (typedef)
+    - (briefly) enumerations (enum)
+- Simple I/O
+
+C Arrays
+- same elements
+- static or dynamic allocation
+    - static cannot grow at runtime
+    - Dynamic can
+- may be multidimensional; X[row][column]
+- 0 t0 n-1 size
+- C provides no array bounds checking!
+- <storage class> <type> <identifier>[<size>]
+    - eg: double vector[3]
+- size must be known at compile time
+
+Control Flow
+- Five basic flow control statements
+    - it-then, if-then-else
+    - switch
+    - while
+    - do-while
+    - for
+- other control flow constructs
+    - goto
+    - continue, break
+    - setjmp, longjmp
+
+Control Flow: true & false?
+- No boolean type!
+- relational operators: >, <, >=, <=
+- equality operators: ==, !=
+- logical operators: &&, ||, !
+- 0 is false, otherwise is true
+
+Switch cases:
+switch(toupper(ch)) {
+    case 'A':
+    case 'E':
+    case 'I':
+    case 'O':
+    case 'U':
+    res = TRUE;
+        break;
+    default:
+        res = FALSE;
+}
+
+While loops:
+while (...) {
+    S;
+}
+
+do {
+    S;
+} while (...)
+
+for (;;) {
+    S;
+}
+
+while (1) {
+    S;
+}
+
+FUNCTION SYNTAX:
+[<storage class>] <return type> name (<parameters>) {
+    <statements>
+}
+
+Use void if no return or parameter value
+    void f(void);
+
+Parameter passing: Call-by-value semantics
+- copies actual parameters into formal parameters
+- eg:
+    - void some_other_function() {
+        double g = 4.0;
+        int h = power2(g);
+        printf( "%f" %d \n", g, h );
+    }
+
+Addresses and Pointers
+- all variable refer to data, all data resides in memory
+- every memory location has an address
+
+POINTERS
+Pointer variables
+- Holds the address of a memory location
+    - that is storing a value of some data type
+- Often is an address within aggregated data type (array)
+- TO OBTAIN AN ADDRESS: use the & symbol
+- TO USE AN ADDRESS: use the * symbol
+- eg:
+    - int *a; variable holding address to an 'int'
+    - double *f; variable holding address to a 'double'
+
+Notation (expression)
+- &x - gets the memory address of variable X
+- *y - read the address y, go to that address, and get the data
+- char *st[10]; "st is a variable that holds ten addresses to char"
+
+- why do we need pointers?
+    - if we want to values to be modified inside the call function
+    - passing a large structure as an argument
+- functions can only return a single value 
+    - what if we need multiple vales to change?
+
+Invalid pointers
+- C does not check the valididity of a pointer!
+
+Pointers and arrays
+- 
+

@@ -1,0 +1,36 @@
+.main {
+    background-color: #F0FFF0;
+    border-radius: 10px;
+    border: 5px solid #228822;
+}
+
+.box {
+    border-radius: 10px;
+    background-color: aliceblue;
+    border: 5px solid darkblue;
+    padding: 0px 10px 10px 10 px;
+    margin: 8px 20px 8px 20px;
+}
+
+.right {
+    position: absolute;
+    right: 0px;
+}
+
+.left {
+    position: absolute;
+    left: 0px;
+}
+
+.center {
+    margin-left: 135px;
+    margin-right: 190px;
+}
+
+#newest {
+    color: red;
+}
+
+div {
+    background-color: red;
+}

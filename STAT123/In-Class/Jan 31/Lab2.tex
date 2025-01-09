@@ -1,0 +1,158 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Lab2},
+  pdfauthor={Parker DeBruyne - V00837207},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Lab2}
+\author{Parker DeBruyne - V00837207}
+\date{02/02/2022}
+
+\begin{document}
+\maketitle
+
+\#Lab 2: Matrices The following worksheet is due by 8pm ONE day after
+your lab. You can find the submission dropbox in Brightspace by clicking
+on Content − \textgreater{} Lab Content.
+
+\hypertarget{open-a-new-r-markdown-file.}{%
+\subsection{0. Open a new R Markdown
+file.}\label{open-a-new-r-markdown-file.}}
+
+Note: Your worksheet is to be submitted as the output of an R Markdown
+file (you can knit it to HTML and then convert it to PDF, or you can
+knit it to PDF if you have LaTeX on your computer, or you can knit it to
+Word and then convert that to a PDF).
+
+\hypertarget{download-the-data-set-flowerdata-posted-under-lab-content-in-brightspace-under-lab-2-and-save-it-to-whatever-file-you-are-using-for-this-course.}{%
+\subsection{1. Download the data set FlowerData posted under Lab Content
+in Brightspace (under Lab 2) and save it to whatever file you are using
+for this
+course.}\label{download-the-data-set-flowerdata-posted-under-lab-content-in-brightspace-under-lab-2-and-save-it-to-whatever-file-you-are-using-for-this-course.}}
+
+\hypertarget{a-read-the-flowerdata-file-into-r-and-call-it-f-data.-b-is-f-data-a-matrix-or-a-data-frame-explain-why.}{%
+\subsubsection{(a) Read the FlowerData file into R and call it F data.
+(b) Is F data a matrix or a data frame? Explain
+why.}\label{a-read-the-flowerdata-file-into-r-and-call-it-f-data.-b-is-f-data-a-matrix-or-a-data-frame-explain-why.}}
+
+\hypertarget{c-create-a-matrix-called-flowermatrix-which-contains-the-numerical-columns-of-fdata.-d-re-name-the-columns-of-flowermatrix-to-be-age-in-days-and-height-in-cm.}{%
+\subsubsection{(c) Create a matrix called FlowerMatrix which contains
+the numerical columns of Fdata. (d) Re-name the columns of FlowerMatrix
+to be: Age (in days) and Height (in
+cm).}\label{c-create-a-matrix-called-flowermatrix-which-contains-the-numerical-columns-of-fdata.-d-re-name-the-columns-of-flowermatrix-to-be-age-in-days-and-height-in-cm.}}
+
+\hypertarget{e-re-name-the-rows-of-flowermatrix-using-the-individuals-column-from-fdata.}{%
+\subsubsection{(e) Re-name the rows of FlowerMatrix using the
+Individuals column from
+Fdata.}\label{e-re-name-the-rows-of-flowermatrix-using-the-individuals-column-from-fdata.}}
+
+\hypertarget{section}{%
+\subsection{2.}\label{section}}
+
+\hypertarget{a-determine-the-average-age-of-the-flowers-in-the-data-set.-b-determine-the-average-height-of-the-flowers-in-the-data-set.}{%
+\subsubsection{(a) Determine the average age of the flowers in the data
+set. (b) Determine the average height of the flowers in the data
+set.}\label{a-determine-the-average-age-of-the-flowers-in-the-data-set.-b-determine-the-average-height-of-the-flowers-in-the-data-set.}}
+
+\hypertarget{c-determine-which-individual-has-the-largest-height-and-which-individual-is-the-oldest-flower.}{%
+\subsubsection{(c) Determine which individual has the largest height and
+which individual is the oldest
+flower.}\label{c-determine-which-individual-has-the-largest-height-and-which-individual-is-the-oldest-flower.}}
+
+\hypertarget{d-determine-which-individual-has-the-smallest-height-and-which-individual-is-the-youngest-flower.}{%
+\subsubsection{(d) Determine which individual has the smallest height
+and which individual is the youngest
+flower.}\label{d-determine-which-individual-has-the-smallest-height-and-which-individual-is-the-youngest-flower.}}
+
+\hypertarget{e-what-colour-are-the-flowers-in-your-answer-to-parts-c-and-d}{%
+\subsubsection{(e) What colour are the flowers in your answer to parts
+(c) and
+(d)?}\label{e-what-colour-are-the-flowers-in-your-answer-to-parts-c-and-d}}
+
+\hypertarget{section-1}{%
+\subsection{3.}\label{section-1}}
+
+\hypertarget{a-how-many-rows-are-there-in-the-matrix-call-this-value-n.}{%
+\subsubsection{(a) How many rows are there in the matrix? Call this
+value
+n.}\label{a-how-many-rows-are-there-in-the-matrix-call-this-value-n.}}
+
+\hypertarget{b-take-a-random-sample-of-size-15-between-the-numbers-1-to-n.-call-this-sample-samp.}{%
+\subsubsection{(b) Take a random sample of size 15 between the numbers 1
+to n.~Call this sample
+samp.}\label{b-take-a-random-sample-of-size-15-between-the-numbers-1-to-n.-call-this-sample-samp.}}
+
+\hypertarget{c-create-a-new-matrix-called-samplematrix-that-contains-the-rows-samp-from-flowermatrix.-for-example-if-your-sample-came-back-as-numbers-1-15-which-is-very-unlikely-then}{%
+\subsubsection{(c) Create a new matrix called SampleMatrix that contains
+the rows samp from FlowerMatrix. For example, if your sample came back
+as numbers 1-15 (which is very unlikely),
+then}\label{c-create-a-new-matrix-called-samplematrix-that-contains-the-rows-samp-from-flowermatrix.-for-example-if-your-sample-came-back-as-numbers-1-15-which-is-very-unlikely-then}}
+
+your SampleMatrix would contain the first 15 rows of FlowerMatrix.
+
+\hypertarget{d-what-is-the-sample-average-height-and-age-of-the-flowers-in-your-samplematrix-are-they-similar-to-your-answer-to-q2.-a-and-b}{%
+\subsubsection{(d) What is the sample average height and age of the
+flowers in your SampleMatrix? Are they similar to your answer to Q2. (a)
+and
+(b)?}\label{d-what-is-the-sample-average-height-and-age-of-the-flowers-in-your-samplematrix-are-they-similar-to-your-answer-to-q2.-a-and-b}}
+
+\end{document}

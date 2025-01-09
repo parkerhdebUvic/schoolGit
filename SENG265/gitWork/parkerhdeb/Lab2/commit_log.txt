@@ -1,0 +1,17 @@
+commit eea6b4243cab4a3e6fa167d457f05aedc1f5113e
+Author: Parker DeBruyne <parkerhdeb@uvic.ca>
+Date:   Fri Sep 22 11:52:04 2023 -0700
+
+    commit log has text in it now
+
+commit 3dcb9cddecb74b417cddc54aae8dc346e8556ea3
+Author: Parker DeBruyne <parkerhdeb@uvic.ca>
+Date:   Fri Sep 22 11:49:12 2023 -0700
+
+    adding the commit_log.txt file
+
+commit 5cdef2c153bb312a2856980650bbf991deb76c7c
+Author: Lynn Palmer <lpalmer@uvic.ca>
+Date:   Wed Sep 13 11:26:35 2023 -0700
+
+    initial

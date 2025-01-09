@@ -1,0 +1,115 @@
+---
+title: "STAT 261, Lab 1"
+author: "Parker DeBruyne, Arjun Banik"
+date: "January 26, 2024"
+output:
+  pdf_document: default
+---
+
+# Likelihood methods for the Binomial distribution
+
+* Put your name in the author section above.
+* Execute each chunk of code to ensure that your code works properly.  The TA will review the code with you.
+* Sometimes one of your chunks of code will not compile properly, but you must hand
+your document in.  In that case, 'Comment' out the R code that is not working properly using # as the first character in your lines of code. Do that now for the chunk of code in Section number 4, below. Put #  at the start of each line of R code. 
+* Complete question 6 below. Execute your question 6 code chunk to ensure that it works properly.  If you cannot compile it without errors before the end of the lab, comment out the chunk.
+* Save the Rmd file
+* Knit the Rmd file to pdf (either directly or by knitting to Word/HTML and printing to pdf)
+* You are welcome to submit this pdf into the "Lab 0 (practice submission)" activity if you have not already completed the practice submission, or if you want your instructor to look at your work.
+
+## 1.  First we generate 1 observation from the Binomial(100, theta=.07) distribution
+
+
+```{r data}
+#This is a comment inside of a chunk of R code.
+
+set.seed(54321)   #setting the random number generator seed 
+                  #SHOULD always be done before simulating.
+# Ask your Lab instructor to explain set.seed()
+
+bdat <- rbinom(1, size=100, prob=.07 )   # see ?rbinom for information
+bdat
+```
+
+## 2.  We know that the MLE for the probability of success, theta, is the sample proportion.
+
+```{r MLE_theta}
+thetahat <- bdat/100
+thetahat
+```
+
+The MLE of theta is `r thetahat`.  
+
+## 3.  Compute the vector of Log-Likelihoods for a sequence of theta values given the one data point bdat.
+
+
+```{r Log-Like}
+#create a vector of values from 0.02 to 0.14 in steps of 0.005
+theta <- seq(0.02, 0.14, by=.005)
+
+#compute the log of binomial probabilities
+bloglike <- dbinom(bdat, size=100, prob=theta, log=TRUE)
+
+#combine the theta values and the log probabilities as column vectors
+head(cbind(theta, bloglike))
+```
+
+## 4. Plot the Log-Likelihood function versus theta.
+
+There are several ways to call the *plot* function in R.  Here are two
+ways to plot **Y versus X**.  
+1.  plot(x, y)  
+2.  plot(y ~ x)    
+Where y is plotted on the vertical axis and x is plotted on horizontal axis.
+
+```{r plot}
+plot(bloglike ~ theta, ylab='Log-Likelihood', xlab='theta', type='b')
+title('Binomial Log-likelihood for Lab 1')
+```
+
+## 5.  Generate n=10 observations from the same distribution and plot the log-likelihood function given the n observations.
+
+```{r Sample}
+set.seed(54321)
+n <- 10
+bdat2 <- rbinom(n, size=100, prob=.07 )   # this generates n binomial observations
+bdat2
+theta <- seq(0.02, 0.14, by=.005)
+
+bloglike2 <- 0
+for (i in 1:n){
+  bloglike2 <- bloglike2 + dbinom(bdat2[i], size=100, prob=theta, log=TRUE)  
+  #computes the sum of the log of binomial probabilities over the observations
+} 
+
+head(cbind(theta, bloglike2))
+
+plot(bloglike2 ~ theta, ylab='Log-Likelihood', xlab='theta', type='b')
+title(paste('Binomial Log-likelihood for Lab 1', n='', n, sep=''))
+```
+
+## 6. Now it is your turn.  In the R code chunk below, redo question 5 for n=100 observations from the same distribution.  How does the log-liklihood function compare with that in question 5?  Write your comments in the section below the R chunk.
+
+```{r YourTurn}
+set.seed(54321)
+n <- 100
+bdat3 <- rbinom(n, size=100, prob=0.07)
+bdat3
+
+theta <- seq(0.02, 0.14, by=.005)
+
+bloglike3 <- 0
+for (i in 1:n){
+  bloglike3 <- bloglike3 + dbinom(bdat3[i], size=100, prob=theta, log=TRUE)
+}
+
+head(cbind(theta, bloglike3))
+
+plot(bloglike3 ~ theta, ylab='Log-Likelihood', xlab='theta', type='b')
+title(paste('Binomial Log-likelihood for Lab 1', n='', n, sep=''))
+```
+
+Comments:  
+
+
+

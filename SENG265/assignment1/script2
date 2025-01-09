@@ -1,0 +1,35 @@
+#!/bin/bash
+
+i=0
+
+while IFS= read -r line; do
+    ((i++))
+
+    OLDIFS=$IFS
+    IFS='/'
+    j=0
+    directory_path=""
+
+    for word in $line; do
+        ((j++))
+
+	if [ $j -ge 3 ]; then
+
+        	if [[ $word == *.* && $word != *.com && $word != *.ca && $word != *.[0-9] ]]; then
+            	continue
+        	fi
+
+        	directory_path="$directory_path/$word"
+	fi
+    done
+
+    IFS=$OLDIFS
+
+    # Remove leading slash from directory_path
+    directory_path="${directory_path#/}"
+
+    # Check if directory_path is empty before creating the directory
+    if [ -n "$directory_path" ]; then
+        mkdir -p "$directory_path"
+    fi
+done < "$1"

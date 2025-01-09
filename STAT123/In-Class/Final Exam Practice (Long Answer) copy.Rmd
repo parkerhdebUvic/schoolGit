@@ -1,0 +1,139 @@
+---
+title: "Final Exam Practice (Long Answer Portion)"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+setwd("/Users/admin/Documents/School/STAT 123/In-Class")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Question 1: Consider the realEstate.csv data set available in Brightspace. Read this data set into R and save it as RE. 
+```{r}
+RE = read.csv("realEstate.csv")
+```
+(a) Create a table called storeCounts which contains the total number of houses in the data set near each number of convenience stores (that is, how many houses in the data set are near 0 stores, near 1 store, etc...).
+
+```{r}
+storeCounts = table(RE$X4.number.of.convenience.stores)
+```
+
+(b) Print storeCounts. 
+```{r}
+storeCounts
+```
+
+(c) Create a bar graph which displays the information in the table. 
+```{r}
+barplot(storeCounts)
+```
+
+(d) Create a vector called percents which contains the percent of houses in the data set near each number of convenience stores. 
+
+```{r}
+percents = round(((storeCounts/sum(storeCounts)*100)),2)
+percents
+```
+
+(e) Create a pie chart which displays the percents. 
+
+
+```{r Question 1}
+labs = paste(names(percents), "stores:", percents, "%")
+
+pie(percents,
+    labels = labs)
+```
+
+
+Question 2: Consider again the realEstate.csv data set. 
+
+(a) Plot the distribution of the price per unit area variable. 
+
+```{r}
+hist(RE$Y.house.price.of.unit.area)
+```
+
+(b) Describe the shape of the distribution. 
+```{r}
+#Right skewed
+```
+(c) Compute an estimate of the mean price per unit area. 
+```{r}
+mean_ppua = mean(RE$Y.house.price.of.unit.area)
+mean_ppua
+```
+(d) Bootstrap 10000 sample means of the price per unit area. Save the bootstrapped means to a vector called boot_means. 
+
+```{r}
+n = length(RE$Y.house.price.of.unit.area)
+boot_means = numeric()
+for (i in 1:10000) {
+  boot_means[i] = mean(sample(RE$Y.house.price.of.unit.area, n, replace=TRUE))
+}
+```
+
+(e) Plot the sampling distribution. 
+```{r}
+hist(boot_means,
+     prob = TRUE)
+lines(density(boot_means), col="red")
+```
+(f) Use the quantile function to compute a 95% confidence interval for the mean price per unit area. 
+```{r}
+quantile(boot_means, c(0.025, 0.975))
+```
+(g) Use a different method (which considers the distribution of the sample mean) to compute a 95% confidence interval for the mean.  
+
+```{r}
+cv = quantile(0.975)
+ese = sd(boot_means)/sqrt(n)
+
+c(mean(boot_means) - cv*ese, mean(boot_means) + cv*ese)
+```
+
+
+Question 3: Consider the gapminder dataset (available by either loading into the R session or reading in the .csv file available in Brightspace).
+
+(a) Plot the GDP per Capita and the Life Expectancy for Germany in a scatterplot. Be careful to to put the correct variable on the x-axis. 
+```{r}
+library(gapminder)
+germany_index = which(gapminder$country == "Germany")
+y = gapminder$lifeExp[germany_index]
+x = gapminder$gdpPercap[germany_index]
+
+plot(x,y)
+```
+(b) Describe the direction and the form of the relationship that you see. 
+```{r}
+# Strong, positive, linear.
+```
+(c) Comment on the strength of the relationship. Use a numerical value to justify your answer. 
+```{r}
+model = lm(y~x)
+summary(model)
+cor(germany_GDP, germany_lifeEx)
+r = sqrt(summary(model)$r.squared)
+r
+
+# The relationship is very strong as r is close to 1.
+```
+(d) Find the model which represents the relationship seen in part (b). Be sure to write out the model. 
+```{r}
+# y = 63.72383979 + 0.00047287*(x)
+```
+(e) Use the model found in part (b) to predict the life expectancy of Germans should the GDP per capita be $16000. 
+```{r}
+y = 63.72383979 + 0.00047287*(16000)
+y
+```
+(f) What proportion of variation in life expectancy can be attributed to variation in GDP per capita in Germany? 
+
+```{r Question 3}
+# r^2 = 0.9725 which means that 97.25% of the variation of life expectancy can be attributed to vaariations in GDP...... (for Germany.)
+```
+
+
+
+

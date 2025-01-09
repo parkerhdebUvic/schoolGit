@@ -1,0 +1,156 @@
+---
+title: "Gapminder Sandbox!"
+author: "Parker DeBruyne"
+date: "17/04/2022"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+setwd("/Users/admin/Documents/School/STAT 123/Projects/gapminder_sandbox")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Let's check our packages!
+```{r check and load packages}
+search()
+#load gapminder, dplyr, and ggplot2
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+search()
+```
+
+```{r data loading and cleaning}
+#load and explore gapminder.
+
+df = gapminder
+names = colnames(df)
+
+# let's try a rename
+
+df2 = df %>% rename(cy=country,
+                    ct=continent,
+                    yr=year,
+                    le=lifeExp,
+                    gdp=gdpPercap)
+
+# let's get the number of countries
+country_names = df2$cy
+
+unique_names = df2 %>% distinct(cy, .keep_all = FALSE)
+
+canada = df2 %>% filter(cy == "Canada")
+
+first_year = min(canada$yr)
+last_year = max(canada$yr)
+```
+
+Let's find the mean of each life expectancy, population, and gdp.
+
+```{r canada analysis}
+mean_le = mean(canada$le)
+mean_pop = mean(canada$pop)
+mean_gdp = mean(canada$gdp)
+
+#What's our year range?
+year_range = c(first_year, last_year)
+
+#What are our standard errors?
+# take the standard deviation and divide by sqrt(n)
+# What is n?
+
+n = length(canada$yr)
+
+sd_le = sd(canada$le)
+sd_pop = sd(canada$pop)
+sd_gdp = sd(canada$gdp)
+
+#Now we're going to bootstrap our means (assuming that we only have a sample size of 12 and want to make predictions about years not in the set without extrapolating)
+
+#life expectancy
+boot_mean = numeric()
+for (i in 1:10000){
+  temp_samp = sample(canada$le,n,replace=TRUE)
+  temp_mean = mean(temp_samp)
+  boot_mean[i] = temp_mean
+}
+
+bs_mean_le = mean(boot_mean)
+
+#population
+boot_mean = numeric()
+for (i in 1:10000){
+  temp_samp = sample(canada$pop,n,replace=TRUE)
+  temp_mean = mean(temp_samp)
+  boot_mean[i] = temp_mean
+}
+
+bs_mean_pop = mean(boot_mean)
+
+#gdp
+boot_mean = numeric()
+for (i in 1:10000){
+  temp_samp = sample(canada$gdp,n,replace=TRUE)
+  temp_mean = mean(temp_samp)
+  boot_mean[i] = temp_mean
+}
+
+bs_mean_gdp = mean(boot_mean)
+
+```
+
+Now, what are the bootstrapped means and their confidence intervals at varying percentages?
+
+```{r }
+
+#What are our critical values for a 92% confidence interval?
+cv_le = qnorm(0.96)
+cv_pop = qnorm(0.96)
+cv_gdp = qnorm(0.96)
+
+#What are your estimated standard errors for the means?
+# ese(xbar) = sd(xbar) / sqrt(n)
+
+ese_le = sd(canada$le) / sqrt(n)
+ese_pop = sd(canada$pop) / sqrt(n)
+ese_gdp = sd(canada$gdp) / sqrt(n)
+#What is the margin of error?
+# moe = cv * ese
+options(scipen=999)
+moe_le = cv_le * ese_le
+moe_pop = cv_pop * ese_pop
+moe_gdp = cv_gdp * ese_gdp
+#Determine a 92% confidence interval
+
+ci_92_le = c(mean_le - moe_le,  mean_le + moe_le)
+ci_92_pop = c(mean_pop - moe_pop, mean_pop + moe_pop)
+ci_92_gdp = c(mean_gdp - moe_gdp, mean_gdp + moe_gdp)
+
+print(ci_92_le, ci_92_pop, ci_92_gdp)
+```
+
+Now let's explore if there's a relationship between our variables.
+
+```{r relationsihps}
+# We have life expectancy (le), population (pop), and gdp.
+# Which of these should be the explanatory variable?
+# GDP.
+
+y = df2$gdp
+x1 = df2$le
+x2 = df2$pop
+
+par(mfrow=c(1,2))
+plot(y,x1)
+plot(y,x2)
+```
+
+
+
+
+
+

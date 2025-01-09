@@ -1,0 +1,3 @@
+function alert_user() {
+    alert("YOU CLICKED THE BUTTON");
+}

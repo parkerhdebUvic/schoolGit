@@ -1,0 +1,192 @@
+---
+title: 'STAT 260 Fall 2023: R Assignment 2'
+author: "Parker DeBruyne - V00837207"
+date: "13/03/2023"
+output:
+  html_document: default
+  pdf_document:
+    latex_engine: xelatex
+indent: true
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+setwd("/Users/admin/Documents/School/STAT 260")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Part 1 
+A radioactive object emits particles according to a Poisson process at an average rate of 5.5 particles per second. We observe the object for a total of 6.5 seconds.
+\newline
+\newline
+**(a) [1 mark] What is the probability that no more than 40 particles will be emitted during this interval?**
+```{r 1a}
+result = ppois(40, lambda=(5.5*6.5))
+
+result
+
+output = paste(" Probability that no more than 40 \n",
+               "particles will be emitted during \n", 
+               "a 6.5 second interval:",
+               round(100*result, 0), "%")
+writeLines(output)
+```
+
+\newline
+\newline
+**(b) [1 mark] What is the probability that exactly 38 particles will be emitted during this interval?**
+```{r 1b}
+result = dpois(38, lambda=(5.6*6.5))
+
+result
+
+output = paste(" Probability that exactly 38 particles \n", 
+               "will be emitted during a 6.5 second \n", 
+               "interval:",round(100*result, 0), "%")
+
+writeLines(output)
+```
+
+
+\newline
+\newline
+**(c) [2 marks] Suppose it is known that at least 34 particles will be emitted during this interval. What is the probability that no more than 42 particles will be emitted during this interval?**
+```{r 1c}
+result = (ppois(42, lambda=(5.6*6.5)) - ppois(33, lambda=(5.6*6.5))) / 
+         (1 - ppois(33, lambda=(5.6*6.5)))
+
+result
+
+output = paste(" Probability that no more than 42 particles \n", 
+               "will be emitted—given that at least 34 partercles \n", 
+               "will be emitted—during a 6.5 second \n", 
+               "interval:",round(100*result, 0), "%")
+
+writeLines(output)
+```
+
+\newpage
+## Part 2 
+A manufacturer of ceramic blades estimates that 0.81% of all blades produced are too brittle to use. Suppose we take a random sample of 145 blades and test them for brittleness. We want to find the probability that at least 3 blades will be too brittle to use.
+
+\newline
+\newline
+**(a) [1 mark] Find the exact probability that at least 3 blades will be too brittle to use.**
+```{r 2a}
+result = 1 - pbinom(2, size=145, prob=0.0081)
+
+result
+
+output = paste(" Probability that at least 3 blades will be \n", 
+               "too brittle to use:",round(100*result, 0), "%")
+
+writeLines(output)
+```
+
+\newline
+\newline
+**(b) [1 mark] Use an appropriate approximation to find the approximate probability that at least 3 blades will be too brittle to use.**
+```{r 2b}
+output = paste(" The questions states that n=145, p=0.0081, np=1.1745.\n", 
+               "Since n>=100, p<=100, and np<=20, Poisson Approximation\n", 
+               "may be used with lambda=n*p")
+writeLines(output)
+
+result = 1 - ppois(2, lambda=1.1745)
+
+result
+
+output2 = paste(" Probability that at least 3 blades will be\n", 
+                "too brittle to use, using a \n", 
+                "Poisson Approximation:",round(100*result, 0), "%")
+
+writeLines(output2)
+
+```
+
+\newpage
+## Part 3 
+The fracture toughness (in MP a√m) of a particular steel alloy is known to be normally distributed with a mean of 29.2 and a standard deviation of 2.17. We select one sample of this alloy at random and measure its fracture toughness.
+
+\newline
+\newline
+**(a) [1 mark] What is the probability that the fracture toughness will be between 24.8 and 31.5?**
+```{r 3a}
+result = pnorm(31.5, mean=29.2, sd=2.17) - pnorm(24.8, mean=29.2, sd=2.17)
+
+result
+
+output = paste(" Probability that the fracture toughness \n", 
+               "will be between 24.8 and 31.5:",round(100*result, 0), "%")
+
+writeLines(output)
+```
+
+\newline
+\newline
+**(b) [1 mark] What is the probability that the fracture toughness will be at least 28.2?**
+```{r 3b}
+result = 1 - pnorm(28.2, mean=29.2, sd=2.17)
+
+result
+
+paste("Probability that the fracture toughness will be at least 28.2:",round(100*result, 0), "%")
+```
+
+\newline
+\newline
+**(c) [2 marks] Given that the fracture toughness is at least 26, what is the probability that the fracture toughness will be no more than 32.1?**
+```{r 3c}
+result = (pnorm(32.1, mean=29.2, sd=2.17) - pnorm(26, mean=29.2, sd=2.17)) / 
+         (1 - pnorm(26, mean=29.2, sd=2.17))
+
+result
+
+output = paste(" Probability that the fracture toughness will be no more than\n", 
+               "32.1 given that it is at least 26:",round(100*result, 0), "%")
+```
+
+\newpage
+## Part 4 
+The purpose of this question is to help you visualize the normal approximation to the binomial distribution which have seen in Set 16. 
+
+\newline
+\newline
+**(a) [1 mark] Let X ∼ binomial(n = 85, p = 0.32). Create a vector called simulation.data which contains a simulation for 3700 values for X. (i.e. Simulate 3700 experiments, each being binomial with n = 85 and p = 0.32.) Provide a copy of the R command which you used to create this vector. You do not need to copy the 3700 values you generated.**
+```{r 4a}
+simulation.data = rbinom(3700, size=84, prob=0.32)
+max(simulation.data)
+```
+
+\newline
+\newline
+**(b) [2 marks] Create a histogram of simulation.data and copy it and your line of R code into your assignment. Your histogram should have an appropriate title and an appropriate label on the x-axis. Comment on the shape of the histogram. (We are looking for a single phrase here to describe the histogram. It should be a shape we’ve discussed recently.)**
+```{r 4b}
+hist(simulation.data,
+     main="Sumulation of X~binomial(n=85, p=0.32) * 3700",
+     xlab="Number of successes per random trial, 0 <= n <= 85")
+```
+```{r}
+output = paste("The shape of the histogram appears to be a bell\n", 
+               "curve and closely resembles the normal distribution.")
+writeLines(output)
+```
+
+\newline
+\newline
+**(c) [2 marks] Calculate the sample mean of simulation.data. Copy the command used, and the output. How close is your sample mean to what you would expect? (Hint: We have discussed the expected value of the sample mean X. We have also discussed the expected value of a binomial random variable X.)**
+```{r 4c}
+result.mean = mean(simulation.data)
+paste("Mean of 3700 experiments:", round(result.mean, 1))
+
+result.np = 85*0.32
+paste("Expected value of n*p:",
+result.np)
+
+print("Calculating the mean the binomial distribution experiments gives us an answer remarkably close to our formula for the expected value of binomial distributions. It is within 1% of accuracy it seems.")
+```
+
+
+

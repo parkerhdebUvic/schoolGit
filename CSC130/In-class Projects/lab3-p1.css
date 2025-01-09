@@ -1,0 +1,19 @@
+.item {
+	background-color: lightslategrey;
+	padding: 20px;
+	width: 200px;
+	margin-top: 10px;
+	font-weight: bold;
+	text-align: center;
+    list-style: none;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+a {
+	color: black;
+}

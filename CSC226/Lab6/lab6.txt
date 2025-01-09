@@ -1,0 +1,56 @@
+Make psuedo code for:
+
+Implement
+Purpose: Find the maximum subset of jobs in a job list that is not overlapped with others
+
+note: jobs[i]=[s,f] where s = start time and f = finish time
+    : all jobs worth equivalently regardless of the length
+
+parameter: List[List[int]] job - e.g [[0,6],[0,3],[0,18],[5,10],[8,11]]
+return: List[List[int]] - the maximum subset of jobs e.g [[0,3],[5,10]]
+Hint: 1. sort by finish-time, 2. compatible if f_j is less than s_i OR f_i is less than s_j
+
+Steps:
+-get finish time
+    [[0,6],[0,3],[0,18],[5,10],[8,11]]
+-sort finish time
+    [[0,3],[0,6],[5,10],[8,11],[0,18]]
+
+// sort by finish time
+for (int i=0; i<n-1; i++) {
+    if (L[i][f] > L[i+1][f]) {
+        temp = L[i];
+        L[i] = L[i+1];
+        L[i+1] = temp;
+    }
+}
+
+localFinish = -1
+list = []
+
+for (int j=0; j<n; j++){
+    if (localFinish < L[j][f]):
+        localFinish = L[j][f];
+        list.append(L[j]);
+}
+return list
+
+
+
+
+PYTHON
+def solution(jobs):
+    # greedy - earliest finish time
+    jobs.sort(key=lambda k: k[1])
+    localFinish = -1
+    list = []
+    for job in jobs:
+        # check compatible (overlaps)
+        if (localFinish < job[0]):
+            localFinish = job[1]
+            list.append(job)
+        return list
+
+
+
+

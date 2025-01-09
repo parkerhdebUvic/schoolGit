@@ -1,0 +1,562 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework Assignment 1},
+            pdfauthor={Parker DeBruyne - V00837207},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework Assignment 1}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Parker DeBruyne - V00837207}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2022-01-26}
+
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A farmer wants to determine the proportion of carrot seeds planted in
+  her field that successfully grow into carrots. It would take too much
+  time to count the total amount of seeds planted in the field and the
+  total yield of carrots that result. Thus, she decides that she needs
+  to take a sample to estimate this proportion.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  State the population and the variable of interest to this farmer.
+  Population: All carrot seeds. Variable: Whether or not they grew into
+  carrots.
+\item
+  Give an example of a way the farmer could perform a convenience
+  sample. She could take a sample from the closest patch to her house.
+\item
+  Give an example of a way the farmer could perform a simple random
+  sample. She could assign each seed intended to be planted with digets
+  n (equal to the number of seeds), create a data table of random
+  numbers, select a random row, and then scan until one of the assigned
+  numbers for the objects is found. Repeat until the desired sample size
+  has been chosen.
+\end{enumerate}
+
+Or draw a random amount out of a bag.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\item
+  Give an example of a way the farmer could perform a stratified random
+  sample. If the farmer believed there would be varience between groups,
+  she could divide her field into different section (such as closest to
+  a water feature, trees, rocks, or sunny patches) and then take a SRS
+  from each group.
+\item
+  What is the population proportion of interest? What would be a good
+  statistic to use to estimate the population parameter?
+\end{enumerate}
+
+The proportion of seeds that successfully grow, to the seeds that do
+not.
+
+The population Proportion statistic ``p'', which is the number of
+individuals in the sample divided my the number of individuals in the
+population.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The following question deals with the data set lynx which is one of
+  the built-in data sets included with R.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Describe what information is contained in the data set. How did you
+  determine this? This data set contains information on the annual
+  numbers of lynx trappings for 1821-1934 in Canada. Taken from
+  Brockwell \& Davis (1991), this appears to be the series considered by
+  Campbell \& Walker (1977).
+\end{enumerate}
+
+I obtained this description by first loading the data using the data
+command and then by quering the data set.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(lynx)}
+\NormalTok{?lynx}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Create a character vector called years which contains the years of the
+  trappings.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{years }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{1821}\SpecialCharTok{:}\DecValTok{1934}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Set the names of the lynx vector equal to years.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(lynx) }\OtherTok{=}\NormalTok{ years}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  How many lynx were trapped in 1899?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lynx[}\StringTok{"1899"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1899 
+##  153
+\end{verbatim}
+
+153
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  What is the average number of lynx trappings in a year?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(lynx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1538.018
+\end{verbatim}
+
+1538.018
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The following question deals with the data set vegas which can be
+  found in Brightspace by clicking on Content − \textgreater{} Homework
+  Assignments. This data set represents the winnings and losses of a
+  group of friends who went to Las Vegas together.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Use the head() function to determine the games these friends played in
+  Vegas.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{setwd}\NormalTok{(}\StringTok{"/Users/admin/Documents/School/STAT 123/homework/homework1"}\NormalTok{)}
+\FunctionTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "/Users/admin/Documents/School/STAT 123/homework/homework1"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vegas }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"vegas.csv"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(vegas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Name BlackJack  Poker   Slots Roulette   Craps
+## 1  Betty     50.46  41.68  262.88  -114.46  106.59
+## 2   John      6.80   4.00  212.70    48.46  890.84
+## 3 Dwayne    -98.29 -54.82  252.58   -66.82   38.65
+## 4 Sophia    183.73  59.49   95.19  -115.82   15.20
+## 5  Luisa     43.12  38.79  -10.95  -230.82   29.88
+## 6 Carlos     49.40  68.40 -289.88    53.92 -275.19
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(vegas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "data.frame"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{games }\OtherTok{=} \FunctionTok{names}\NormalTok{(vegas)}
+\NormalTok{games}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Name"      "BlackJack" "Poker"     "Slots"     "Roulette"  "Craps"
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Create a character vector called friends which contains the values
+  from the first column of the data set.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{friends }\OtherTok{=}\NormalTok{ vegas}\SpecialCharTok{$}\NormalTok{Name}
+\NormalTok{friends}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] Betty     John      Dwayne    Sophia    Luisa     Carlos    Andrew   
+##  [8] Charlotte Calum     Layla    
+## 10 Levels: Andrew Betty Calum Carlos Charlotte Dwayne John Layla ... Sophia
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Using the R command as.matrix(), create a matrix called gameResults
+  which contains all the columns except the first one from the vegas
+  data set.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{length}\NormalTok{(vegas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gameResults }\OtherTok{=} \FunctionTok{as.matrix}\NormalTok{(vegas[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{6}\NormalTok{])}
+\FunctionTok{head}\NormalTok{(gameResults)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      BlackJack  Poker   Slots Roulette   Craps
+## [1,]     50.46  41.68  262.88  -114.46  106.59
+## [2,]      6.80   4.00  212.70    48.46  890.84
+## [3,]    -98.29 -54.82  252.58   -66.82   38.65
+## [4,]    183.73  59.49   95.19  -115.82   15.20
+## [5,]     43.12  38.79  -10.95  -230.82   29.88
+## [6,]     49.40  68.40 -289.88    53.92 -275.19
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Create a vector called totals which contains the row sums of the
+  matrix gameResults. What do the values in this vector represent?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{totals }\OtherTok{=} \FunctionTok{rowSums}\NormalTok{(gameResults)}
+\NormalTok{totals}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  347.15 1162.80   71.30  237.79 -129.98 -393.35 -133.02  -56.85
+##  [9] -738.01 -216.16
+\end{verbatim}
+
+These values represent the total winnings/losses of each friend across
+all games.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Set the names of the vector totals equal to friends.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(totals) }\OtherTok{=}\NormalTok{ friends}
+\NormalTok{totals}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Betty      John    Dwayne    Sophia     Luisa    Carlos    Andrew 
+##    347.15   1162.80     71.30    237.79   -129.98   -393.35   -133.02 
+## Charlotte     Calum     Layla 
+##    -56.85   -738.01   -216.16
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Use the R functions min() and max() to determine which friend won the
+  most money and which friend lost the most money in Vegas.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{findmin }\OtherTok{\textless{}{-}}\NormalTok{ totals }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(totals)}
+\NormalTok{findmin}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Betty      John    Dwayne    Sophia     Luisa    Carlos    Andrew 
+##     FALSE     FALSE     FALSE     FALSE     FALSE     FALSE     FALSE 
+## Charlotte     Calum     Layla 
+##     FALSE      TRUE     FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{totals[findmin]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Calum 
+## -738.01
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{findmax }\OtherTok{\textless{}{-}}\NormalTok{ totals }\SpecialCharTok{==} \FunctionTok{max}\NormalTok{(totals)}
+\NormalTok{findmax}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Betty      John    Dwayne    Sophia     Luisa    Carlos    Andrew 
+##     FALSE      TRUE     FALSE     FALSE     FALSE     FALSE     FALSE 
+## Charlotte     Calum     Layla 
+##     FALSE     FALSE     FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{totals[findmax]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   John 
+## 1162.8
+\end{verbatim}
+
+Calum lost the most money, and John won the most money.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  What was the average amount of money won or lost by the group of
+  friends on the trip?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(totals)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15.167
+\end{verbatim}
+
+\$15.167
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Set a seed to 34. Take a random sample of 4 of the friends and
+  determine the sample average amount of money won or lost by the sample
+  of friends on the trip.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{34}\NormalTok{)}
+\FunctionTok{mean}\NormalTok{(}\FunctionTok{sample}\NormalTok{(totals, }\DecValTok{4}\NormalTok{, }\AttributeTok{replace=}\NormalTok{F))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 178.7725
+\end{verbatim}
+
+\$178.7725
+
+
+\end{document}

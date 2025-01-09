@@ -1,0 +1,215 @@
+Intorduciton to Version Control
+
+What is git?
+- version-contol system for tracking file changes
+ 
+Reposityory
+- stored on a remote server
+- everyone writes and reads into the same place
+
+Centralized VCS
+- keeps track of the versions
+- checkouts: pulling version copies
+- check in: puts the changes back into the system
+
+Distributed VCS
+- Repository is not in one server, it's everywhere
+- more flexible
+- You don't "checkout" from a central repo, and instead you 
+    - clone or "pull" the whole repository
+    - you will also have your local copy
+- you have to then push the changes back into the server
+- can have merge conflicts when pushing
+
+git snapshots
+- Subversion VCS tracks version data for each individual file
+- git keeps "snapshots" of a project's full state
+    - each checkin version as a copy of each file changed in that version
+    - some files do not change on a checkin
+    - redundancy gives speed
+- first pull copies the whole repository, then only updates things as needed when pulling changes
+    - every version has all the files
+- everyone has a repository
+- uses a SHA-1 hash for every commit since linear versions would not make sense
+
+On your working copy of the repo:
+- modify - files in your dir
+- stage - adding snapshots to your staging area
+- commit - take files from staging area, storing the snapshot in local repo
+- difference between fetch, clone, and pull
+    - You have your workspace, staging area, local repository, and remote repository
+    workspace:
+        - git add/mv/rm (to staging area)
+        - or, git commit -a (right to local repo)
+        - git clone (first time from remote repository)
+        - git pull (from remote repository)
+    staging
+        - git commit (to local repo)
+    Local repository
+        - git push (to remote repository)
+        - git fetch (from remote repository)
+- for this course, use the seng265 repository, do not use github
+
+- git config --global user.name "Name Surname"
+- git config --global user.email youremail@uvic.ca
+- git config -list
+- git config --global core.editor nano
+
+do not use "git init" in this course! They're all prepared for each student
+
+
+#!/bin/bash
+filename='filtered_crawling.txt'
+i=0
+cat $filename | while read -r line
+do
+    ((i++))
+    echo "Line $i: $line"
+    OLDIFS=$IFS
+    IFS='/'
+    j=0
+    for word in $line
+    do
+        ((j++))
+        echo "Word $j: $word"
+        if [ $j -eq 3 ]
+        then
+            echo "Web server: $word"
+        fi
+    done
+    IFS=$OLDIFS
+done
+
+#!/bin/bash
+filename=$1
+i=0
+cat $filename | while read -r line
+do
+    ((i++))
+    OLDIFS=$IFS
+    IFS='/'
+    directory_path=''
+    j=0
+    for word in $line
+    do
+        ((j++))
+        if [ $j -eq 3 ]
+        # if it is the third word, it is the first directory (web server name)
+            then
+                directory_path=$word
+            elif [[ $j -gt 3 && ! $word == *.* ]]
+                # if it is the third word 
+                # or greater and it is not a file
+                # then concatenate the word with 
+                # the path to form the directory name
+
+            then
+            directory_path=$directory_path'/'$word
+            fi
+        done
+        IFS=OLDIFS
+        echo $directory_path
+    done
+
+##### C Programing
+
+## Write an application
+
+$ cat > hello.c
+#include <stdio.h>
+int main() {
+printf("Hello, world!\n");
+}
+^D
+
+## Compile the source file into an object file
+$ gcc hello.o –o hello
+
+
+## • Link the object file to the “Standard C Runtime Library” to produce an executable (hello)
+
+$ gcc –c hello.c
+$ gcc hello.o –o hello –lm # Version which links in math libraries
+
+Difference between compiling and interpreting code:
+    - compiling: translates into machine code
+    - interpreter: executed line by line
+
+Formatting style
+- spaces matter in C
+- commenting: /* ... */
+- use snake_case_variable_names instead of camelCaseVariableNames
+
+C Data types
+- Integers, floats, etc
+    - different types of integers because of space 
+- types:
+    - char
+        - "strings" are char arrays
+        - signed
+        - unsigned
+    - int
+        - signed
+        - unsigned
+        - short
+        - long
+        - long long
+    - float
+    - double
+        - double
+    - struct
+        - sort of like classes
+    - {arrays}
+        - all must be the same inner types
+        - can possibly use an array of pointers
+    - enum
+    - union
+
+
+
+- qualifier
+    - const
+    - volatile
+- storage
+    - static
+    - extern
+        - global variable in ANOTHER file
+    - auto
+    - register
+- Always use UPPERCASE for constants, and lowercase for variables
+
+Literals:
+- all characters have two values; themselves, and an integer
+- char bell = '\a';
+- char ch = 'A';
+
+Strings in C
+- String literals
+    - char *s = "unable to open file\n"
+        - unchanging. If you want to change, use char arrays
+- every string has "true zero" at the end: '\0'
+
+Example:
+    #include <stdio.h>
+    int main() {
+        char person_A[50] = "Anakin Skywalker";
+        char *person_B = "Darth Vader";
+
+        printf("%s; %s\n", person_A, person_B);
+
+        person_A[1] = '\0';
+        printf("%s\n", person_A);
+
+        person_B[1] = '\0';
+        printf("%s\n", person_B);
+}
+
+- you don't know the size of an array with a funtion, there's not "length funciton": you have to declare it
+
+Different ways of initializing arrays:
+double f[3] = {0.1, 2.2, -100.51};
+
+int freq[10] = {20,12}; /*  freq[0] = 20,
+                            freq[1] = 12,
+                                freq[2] = 0,
+                            freq[9] = 0 */

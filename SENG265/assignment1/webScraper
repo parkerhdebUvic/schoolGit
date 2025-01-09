@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Check if a URL is provided as an argument
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <URL>"
+    exit 1
+fi
+
+# Get the base URL without the "http://" or "https://"
+base_url=$(echo "$1" | sed -e 's/https\?:\/\///')
+
+# Extract the domain name from the URL using awk
+domain_name=$(echo "$base_url" | awk -F/ '{print $1}')
+
+# Create a subdirectory with the domain name
+mkdir -p "$domain_name" || { echo "Failed to create directory $domain_name"; exit 1; }
+
+# Create an output file in the subdirectory
+output_file="$domain_name/output.txt"
+
+# Function to download and append HTML content
+download_and_append() {
+    local url="$1"
+    local output_file="$2"
+    wget -q -O - "$url" >> "$output_file" || echo "Failed to download $url"
+}
+
+# Download the homepage and save it to the output file
+download_and_append "$1" "$output_file"
+
+# Extract subpage links from the homepage (adjust the pattern as needed)
+subpage_links=$(grep -o '<a href="[^"]*"' "$output_file" | sed -e 's/<a href="//' -e 's/"//')
+
+# Loop through the subpage links and append their HTML to the output file
+for link in $subpage_links; do
+    # Ensure the link is not an external link
+    if [[ $link == /* ]]; then
+        subpage_url="$1$link"
+        download_and_append "$subpage_url" "$output_file"
+    fi
+done
+
+# Print a completion message
+echo "Done: $output_file"

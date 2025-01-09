@@ -1,0 +1,81 @@
+- assignment submission will be using git and jupitor notebook
+- https://rocket.csc.uvic.ca
+    use for group communication
+- This course is much more than just SQL
+    Looks at the theoretical underpinnings of a database
+- SQL defines what the return result should look like
+- Types of theory:
+    - Relational algebra
+    - Normal forms
+    - E/R, UML model
+- Database "Programming"
+- Goal:
+    - Provide theory and practice to understand databases
+    - ensure knowledge of how database systems change with technology
+- Time complexity matters tremendously 
+- SQL is not turing complete
+    - can be with some effort
+- "once you realize what the algebra is trying to give you,
+    then you can understand how the queries work"
+- an abstraction happens when we fit "the real world" into a 
+    data model
+- Three parts of a data model
+    1. Structure
+        Syntax in code
+    2. Operations
+        allocation of memory
+        traverse through graphs
+    3. Constraints
+        types of data in the fields
+        imposed by the DTD scheme
+- Some SQL terms:
+    relationonal structures
+        tuples, attributes, 
+    rho (renaming)
+    pi (projection)
+    sigma (selection)
+    assertions
+    triggers
+- It's really hard to have efficient databse processing 
+    while allowing for multiple users to make changes at once
+- Is it a table or a set of tuples?
+    It's both!
+- Basic concepts
+    Attributes
+    Tuple
+    Domain
+    Relation schema
+    Relation instance
+    Database (a collection of schemas and relations, not a 'single table')
+- relations are sets of tuples, not lists because the math is better
+- Understanding mathematical relations makes understanding SQL simpler
+DECLARING A RELATION:
+
+    CREATE TABLE <name> (
+        <list of elements>
+    );
+
+    CREATE TABLE Sells (
+        pub     CHAR(20),
+        beer    VARCHAR(20),
+        price   REAL
+    );
+
+DELEING A RELATION:
+    DROP TABLE <name>;
+
+SQL values
+- use two single quotes to escape a single quote
+    'Bob''s bar'
+- an attribute or list of attributes may be declared PRIMARY KEY or UNIQUE
+    - subtle difference
+    - either indicates no two tuples may agree in all attributes on the list
+    - this is an example of a constraint
+
+    CREATE TABLE Beers (
+        name    CHAR(20) UNIQUE,
+        brewery VARCHAR(20),
+        abv     REAL
+    );
+
+

@@ -1,0 +1,72 @@
+JSON.parse()
+// converts a JSON string to a JS object
+// JSON.stringify()
+// converts a JS object to a JSON string
+// *everything sent from a server is going to come in as raw text format*
+//  you need to be able to convert between data types.
+
+// let obj = {
+//     name: "John",
+//     age: 30,
+//     city = "New York"
+// };
+
+// let json = {
+//     name: "John",
+//     age: 30,
+//     "city" : "New York"
+// };
+
+// a number: treated just like we expect a number to be operated on
+// a string: written within quotes " ". Treated as text. + operator appends strings together.
+// a boolean:  either true or false
+// an object: multiple attributes together that define data { attribute : value, ...}
+// an array: a collection of elements: [element1, element2, ...]
+
+// .legnth: the number of elements in the array
+// .toString(): gets the string representation of the array
+// .push(element): inserts element into the array (at the back)
+
+// example: 
+
+{
+    "squadName": "Super hero squad",
+    "homeTown": "Metro City",
+    "formed": 2016,
+    "secretBase": "Super tower",
+    "active": true,
+    "members": [
+      {
+        "name": "Molecule Man",
+        "age": 29,
+        "secretIdentity": "Dan Jukes",
+        "powers": [
+          "Radiation resistance",
+          "Turning tiny",
+          "Radiation blast"
+        ]
+      },
+      {
+        "name": "Madame Uppercut",
+        "age": 39,
+        "secretIdentity": "Jane Wilson",
+        "powers": [
+          "Million tonne punch",
+          "Damage resistance",
+          "Superhuman reflexes"
+        ]
+      },
+      {
+        "name": "Eternal Flame",
+        "age": 1000000,
+        "secretIdentity": "Unknown",
+        "powers": [
+          "Immortality",
+          "Heat Immunity",
+          "Inferno",
+          "Teleportation",
+          "Interdimensional travel"
+        ]
+      }
+    ]
+  }

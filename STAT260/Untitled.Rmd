@@ -1,0 +1,93 @@
+---
+title: "STAT 260 - R Assignment 1"
+author: "Parker DeBruyne - V00837207"
+date: "18/01/2023"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+indent: true
+
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+setwd("/Users/admin/Documents/School/STAT 260")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Part 1
+
+In a study of factors thought to be responsible for the adverse effects of smoking on human reproduction, cadmium level determinations (nanograms per gram) were made on placenta tissue of a random sample of 22 mothers who were smokers and an independent random sample of 18 non-smoking mothers. The results were as follows: 
+
+Non-smokers: 17.4 14.1 19.7 20.2 15.5 28.2 18.7 18.0 21.4 14.6 14.3 13.9 19.6 18.7 17.4 18.8 20.1 16.0 
+
+Smokers: 25.5 24.3 20.4 18.5 29.0 31.1 24.6 19.9 18.3 24.8 30.0 13.6 25.2 27.1 20.9 22.6 26.8 20.2 25.3 22.9 20.2 32.4 
+
+(a) Store the data for non-smokers in a vector called nonsmokers. We want to test the research hypothesis that the mean cadmium level for non-smoking mothers is less than 19 nanograms per gram. Copy and paste the appropriate R command and output you would use to do this test. 
+```{r a}
+nonsmokers = c(17.4, 14.1, 19.7, 20.2, 15.5, 28.2, 18.7, 18.0, 21.4, 14.6, 14.3, 13.9, 19.6, 18.7, 17.4, 18.8, 20.1, 16.0)
+
+t.test(nonsmokers, mu=19, alternative="less")
+```
+
+(b) Clearly state the p-value you found from part (a). Using the significance level α = 0.10, should we reject the null hypothesis? 
+```{r b}
+m.nonsmokers = mean(nonsmokers)
+sd.nonsmokers = sd(nonsmokers)
+n = 18
+
+p.value = 
+```
+
+(c) Write a sentence stating your conclusion of the hypothesis test you just performed. (i.e. Write your conclusion in plain language so that a non-statistician could understand the conclusion of the test.) 
+```{r c}
+
+```
+
+(d) Store the data for smokers in a vector called smokers. Calculate a 95% confidence interval (i.e. a two-sided confidence interval) for the mean cadmium level of mothers who smoke. Copy and paste the appropriate R command and output you would use to create your confidence interval. In an additional line, clearly state the values you get for the confidence interval from your output. 
+```{r d}
+smokers = c(25.5, 24.3, 20.4, 18.5, 29.0, 31.1, 24.6, 19.9, 18.3, 24.8, 30.0, 13.6, 25.2, 27.1, 20.9, 22.6, 26.8, 20.2, 25.3, 22.9, 20.2, 32.4)
+
+```
+
+(e) Is it reasonable to conclude that the mean cadmium level of mothers who smoke is 25 nanograms per gram? Explain, using your confidence interval. 
+```{r e}
+
+```
+
+Part 2
+From a random sample of 721 items made by a particular manufacturing process, it is found that 56 are defective. 
+
+(a) Suppose we want to test the research hypothesis that to proportion of defective items is greater than 6%. Copy and paste the appropriate R command and output you would use to do this test. 
+```{r a}
+
+```
+
+(b) Clearly state the p-value you found from part (a). Using the significance level α = 0.05, should we reject the null hypothesis? 
+```{r b}
+
+```
+
+(c) Write a sentence stating your conclusion of the hypothesis test you just performed. (i.e. Write your conclusion in plain language so that a non-statistician could understand the conclusion of the test.) 
+```{r c}
+
+```
+
+(d) Suppose that in another manufacturing centre in 529 items made by the same manufacturing process as above, it is found that 27 items are defective. Calculate a 95% confidence interval (i.e. a two-sided confidence interval) for the true proportion of defective items manufactured at this plant. Copy and paste the appropriate R command and output you would use to do this question. In an additional line, clearly state the values you get for the confidence interval from your output. 
+```{r d}
+
+```
+
+(e) According to your confidence interval in part (d), is it reasonable to conclude that 8% of the items created at this plant are defective? Explain, using your confidence interval.
+```{r e}
+
+```
+
+
+
+
+
+
+
+

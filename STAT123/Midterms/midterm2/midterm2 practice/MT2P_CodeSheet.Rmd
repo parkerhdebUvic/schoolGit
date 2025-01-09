@@ -1,0 +1,296 @@
+---
+title: "Midterm 2"
+author: "Parker DeBruyne - V00837207"
+date: "21/03/2022"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+setwd("/Users/admin/Documents/School/STAT 123/Midterms/midterm2/midterm2 practice")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Clear consol: ctrl+L
+
+```{r }
+
+```
+
+
+VECTORS
+```{r }
+nums = c(1:7)
+days = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+names(nums) = days
+nums
+
+#Makes a sequence
+bks = seq(floor(min(d5)), ceiling(max(d5)), by = 2)
+bks
+
+#Repeat
+repeated = rep(0, 10)
+repeated
+
+#Letter sets
+Fwd = LETTERS
+fwd = letters
+```
+
+
+TESTING DATA TYPES
+```{r }
+Fdata = read.csv("FlowerData.csv")
+head(Fdata)
+class(Fdata)
+str(Fdata)
+names(Fdata)
+```
+
+
+DATAFRAME'S & MATRICES
+```{r }
+FlowerMatrix = as.matrix(Fdata[,2:3])
+FlowerMatrix
+FMnames = c("Age (in days)", "Height (in cm)")
+colnames(FlowerMatrix) = FMnames
+rowNames = Fdata$Individual
+rownames(FlowerMatrix) = rowNames
+FlowerMatrix
+
+#Remove the first column from d5 and save this, again, as d5
+d5 = read.csv("data_wk5.csv")
+d5 = subset(d5, select= -c(1))
+
+#Omit NAs
+bb = read.csv("boombust.csv")
+bb = na.omit(bb)
+
+#number of rows
+n = dim(bb)[1]
+
+#Add row or column mat2 to end of mat1
+rbind(mat1, mat2[])
+cbind(mat1, mat2[])
+```
+
+```{r }
+#Example of an append() loop
+n = length(Fdata$Individual)
+samp = sample(c(1:n), 15, replace=F)
+longvector = c()
+for(val in 1:length(samp)){
+  longvector <- append(longvector, FlowerMatrix[samp[val],])
+}
+SampleMatrix = matrix(longvector, byrow=TRUE, ncol=2)
+
+rIndv = c()
+for(val in 1:length(samp)){
+  rIndv <- append(rIndv,Fdata$Individual[samp[val]])
+}
+rownames(SampleMatrix) = rIndv
+colnames(SampleMatrix) = colnames(FlowerMatrix)
+
+SampleMatrix
+```
+
+
+FINDING VALUES
+```{r }
+proj.df = read.csv("FantasyProjections.csv")
+
+names(which.max(FlowerMatrix[,"Height (in cm)"]))
+names(which.max(FlowerMatrix[,"Age (in days)"]))
+names(which.min(FlowerMatrix[,"Height (in cm)"]))
+names(which.min(FlowerMatrix[,"Age (in days)"]))
+
+nrow(FlowerMatrix)
+ncol(FlowerMatrix)
+
+lowest_player_value = min(proj.df$Value)
+min_pv_row = which(proj.df$Value == lowest_player_value,arr.ind = T)
+highest_player_value = max(proj.df$Value) #or min()
+```
+
+REPLACING VALUES
+```{r }
+proj.df = read.csv("FantasyProjections.csv")
+#gsub() is search and replace all matches. sub() replaces the first
+proj.df$Salary = gsub(",", "", proj.df$Salary)
+proj.df$Salary = as.numeric(proj.df$Salary)
+```
+
+SAMPLING
+```{r }
+samp = sample(c(1:n), 15, replace=T)
+```
+
+CHARTS
+```{r }
+#No data is loaded: syntax examples only.
+
+#PIE 
+percent = round((freq$n / 150) *100, digits = 2)
+freq$Name = paste(freq$Name, percent, "%")
+pie(freq$n[1:10], freq$Name[1:10], main="Player Exposure Chart", col = rainbow(length(freq$n[1:10])))
+
+#BAR
+names(cleaned_proj)
+barplot(height=cleaned_proj$pts, 
+        names.arg=cleaned_proj$Position, 
+        ylim=c(0,900), 
+        col=rainbow(length(cleaned_proj$Position)), 
+        main="Fantasy Points by Position",
+        xlab="Position",
+        ylab="Points")
+
+#LINE GRAPH
+plot(lamelo$fpts ~ lamelo$G, type="l", xlab="Game Number",
+     ylab = "Fantasy Points",
+     main = "Lamelo Ball Fantasy Points by Game")
+
+#HISTOGRAM
+hist(d5$x, main="Frequency of Values", xlab="Values", breaks=bks, col="goldenrod1", border="red")
+```
+
+
+STATISTICS
+```{r }
+
+#Quantiles: Find the 2.5% and 97.5% quantiles
+d5_quantiles = quantile(d5$x, probs=c(0.025, 0.975))
+qlow = d5_quantiles["2.5%"]
+qhigh = d5_quantiles["97.5%"]
+
+quantile(hw3Data[["C"]], 0.68)
+quantile(hw3Data[["C"]], 0.95)
+quantile(hw3Data[["C"]], 0.997)
+
+#Mean
+mean_d5 = mean(d5$x)
+
+#Standard Deviation
+sd_d5 = sd(d5$x)
+
+#qnorm
+nd = read.csv("normaldist.csv")
+mu = mean(nd$x)
+sig = sd(nd$x)
+percentage = 0.57
+  #Use the function qnorm() and the values mu and sig to find the value in nd that   is greater than 57% of the values in nd
+qn_57 = qnorm(0.57, mean = mu, sd = sig)
+qn_57
+
+```
+
+
+LOOPS
+```{r 1a, figures-side, fig.show="hold", out.width="33.33%"}
+# Backwards Alphabet
+bkwd = c()
+i = 26
+
+while (i!=0){
+  current_letter = fwd[i]
+  bkwd = append(bkwd, current_letter)
+  i = i-1
+}
+bkwd
+
+# Looped Histogram
+hw3Data = read.csv("homework3Data.csv")
+hw3Data_names = colnames(hw3Data)
+
+for(i in 2:length(hw3Data_names)){
+hist(hw3Data[[i]],
+     main = paste("Histogram of ",
+                  hw3Data_names[i]),
+     prob=TRUE,
+     xlab = hw3Data_names[i])
+abline(v=mean(hw3Data[[i]]),col='red')
+abline(v=median(hw3Data[[i]]),col='blue')
+lines(density(hw3Data[[i]]),col='green')
+}
+```
+
+
+R FUNCTIONS
+```{r }
+#apply(matrix, by row or col, function)
+apply(X=nums[,1:5], MARGIN=1, FUN=sum)
+
+#col and row sums
+rowSums()
+colSums()
+
+#embedding an image into markdown
+#     ![alt text](pathname)
+
+#load a library:
+library(dplyr)
+```
+
+
+BOOTSTRAPPING
+```{r }
+
+n = length(hw3Data)
+
+#Estimate the population mean
+boot_sample = numeric()
+for(i in 1:10000){
+  temp_samp = sample(hw3Data[["C"]], n, replace=TRUE)
+  temp_mean = mean(temp_samp)
+  boot_sample[i] = temp_mean
+}
+
+boot_mean = mean(boot_sample)
+print(paste("Bootstrapped population mean =", round(boot_mean, 2)))
+
+```
+
+
+STAT FUNCTIONS
+```{r }
+#Standard error estimate: (standard dev) / sqrt(n)
+std_err = sd(hw3Data[["C"]])/sqrt(n)
+print(paste("Standard error of C =", round(std_err,2)))
+
+#Estimate the critical value for an 88% confidence interval.
+diff_88 = (100-88)/2
+interval_88 = c(diff_88, 100-diff_88)
+
+crit_val_88 = qnorm(interval_88/100, mean=0, sd=1)
+print(paste("Critical Value estimate for an 88% confidence interval =", round(crit_val_88[2], 2)))
+
+#Estimate a 88% confidence interval for the population mean.
+# confidence interval: mean +- std_err
+confidence_int_88 = c(boot_mean - crit_val_88[2]*std_err, boot_mean + crit_val_88[2]*std_err)
+
+print(paste("Confidence interval for 88% = (",
+            round(confidence_int_88[1], 2), 
+            ",", 
+            round(confidence_int_88[2], 2), 
+            ")"))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

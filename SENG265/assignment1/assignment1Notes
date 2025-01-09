@@ -1,0 +1,81 @@
+- get rid of the files that are not text files
+    - produce a second file from the first one
+    - may host a list of known extensions in another file (like a helper funciton)
+        - or you may add them as strings
+    - may use
+        - -e, grep, -f, and grep -v (if you wish)
+
+- Create a dicrectory for each web server
+    - recover the web server address from the full URL
+        - (tokenize the URL line) use the web server address as a variable
+            - normally bash tokenizes strings with either spaces, tabs, or newlines as separators
+            - you may temporarily change the shell separator by changing the IFS variable
+                - don't forget to return the IFS variable to its original value
+            - example of tokenizing using the 'set' command. Notice that $# gives you the number of arguments to the script, and ${!i} gives you the value of one of those arguments indexed by the 'i' counter variable
+
+
+            #!/bin/bash 
+            string="don't//worry/be/happy"
+            OLDIFS="$IFS"
+            IFS="/"
+            set $string
+            total=$#
+            for (( i=1; i<=$total; i++))
+            do
+                echo "Position" $i "value: "${!i}
+            done
+            IFS="$OLDIFS"
+
+- after tokenizing, use the web server address to name a directory that will keep the directories and files from the given web server
+
+- then choose a directory for your data and create it
+    - inside, you may create the directories for each web server, using the web server address as the directory name
+
+- now, create a hierarchy of directories for each link inside the list
+    - create a directory path to the string
+    - additionally check if the url ends in a file
+        - (if URL ends with / it is a directory)
+        - easy to check the end of a string, no tokenization needed, just a comparison using if and a wildcard:
+            - if [[$string == */ ]]
+        - if it ends with a file, you will have to remove the file from your new directory path
+
+"The URL https://www.uvic.ca/ecs/computerscience/people/faculty/index.php, for instance, tells us that there should be some subdirectories inside the directory for www.uvic.ca web server that you created in the previous step. In this case, there should be a hierarchy of subdirectories (ecs, computerscience, people and faculty) for hosting the default HTML file that is received by requesting the index.php file. You may use mkdir –p to create the whole hierarchy with only one command. You may want to use man mkdir or mkdir –-helptounderstandwhat–pdoes.
+"
+- use mkdir -p to make it simplier
+
+- use 'curl' tool to download an individual file from a web server (just use the full URL as the parameter). This sends the file to the appropriate file inside the correct directory in the hierarchy of directories you've created
+
+- Use a convention for your downloaded files. There are at least three different situations:
+    1. URL ends in a directory: name the output file as index.html
+    2. URL has a named text file (.html or .txt): name the output file the same as the one in the web server
+    3. URL produces a dynamic web page (.php, .py, or .perl) - then use a convention to name them: index.php becomes index.php.html
+    To compare, you may use an array of dynamic extensions and loop over them:
+
+        extensions=(".php" ".py" ".perl") for extension in extensions
+        do
+            if [[ $line == *"$extension"* ]]
+                echo "Found it!"
+                break
+        fi done
+
+    (or use regular expressions or even grep command)
+
+For testing:
+
+https://getbootstrap.com/ https://getbootstrap.com/docs/5.3/getting-started/introduction/ https://getbootstrap.com/docs/5.3/assets/img/favicons/apple-touch-icon.png https://www.uvic.ca/ecs/computerscience/people/faculty/index.php https://www.uvic.ca/ecs/computerscience/people/faculty/profiles/bittencourt-roberto.php https://www.uvic.ca/ecs/computerscience/people/staff/index.php
+http://www.taco.com/
+http://www.taco.com/sysadmin.html
+http://www.taco.com/webhost.html http://www.taco.com/assets/images/autogen/Systems___and_Networks_Ntaco2big.gif http://www.taco.com/assets/images/autogen/Web___Hosting_Htaco2biga.gif
+
+Please name your files in a numerical sequence to facilitate grading: script1, script2, ... , script4
+Be sure to have execution permissions set to all
+
+Send your script files and additional data file(s) (eg data file with list of irrelevant file extensions) through brightspace. 
+
+
+Algorithm deleteTextFiles
+- create new empty file called "result"
+- take a line in a file, convert to single string
+- search for an ending of a text file
+	- if text file, add to file result
+- if not, skip

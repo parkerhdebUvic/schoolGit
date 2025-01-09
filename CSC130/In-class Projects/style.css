@@ -1,0 +1,60 @@
+#ecs-image {
+    background-image: url("https://www.uvic.ca/assets2012/images/photos/main/campus-info-maps-maps/main-blg-ecs.jpg");
+    background-repeat: no-repeat;
+    height: 250px;
+   }
+
+body {
+    background: linear-gradient(to bottom right, #35577D, #000000);
+
+    }
+
+h1 {
+    color: yellow
+    }
+
+p {
+    color: white
+    }
+
+h2 {
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    padding: 8px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 100;
+    width: 60%;
+    }
+
+a {
+    color: orange
+    }
+
+
+.content {
+    padding: 20px 20px 20px 20px
+    }
+
+.reference {
+    font-size: 10px;
+    color: rgb(187, 161, 77)
+    }
+
+.caption {
+    position: relative;
+    top: 200px;
+    left: 20px;
+    font-style: italic;
+    font-size: 16px;
+    font-family: arial;
+    color: blue;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 30px;
+    opacity: 0.7;
+    padding: 8px;
+    max-width: 320px;
+    border-radius: 2px;
+    }
+
+

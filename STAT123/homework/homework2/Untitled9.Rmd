@@ -1,0 +1,55 @@
+---
+title: "Mushroom Beef Jerky"
+author: "Parker DeBruyne"
+date: "12/02/2022"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+setwd()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Ingredients:
+
+Dried mushrooms amount not specified
+
+1 cup coconut oil
+
+1/4 cup soy sauce (he used low sodium)
+
+3 tablespoons maple syrup
+
+2 tablespoons water
+
+1 tablespoon white miso paste
+
+1 tablespoon mushroom seasoning
+
+1 teaspoon ground black pepper
+
+1 teaspoon liquid smoke
+
+1 teaspoon onion powder
+
+1 teaspoon garlic powder
+
+1/2 teaspoon lactic acid (or another acid like lemon or lime)
+
+Instructions:
+
+cut mushroom to 1/4 inch
+melt coconut oil
+toss coconut oil and mushrooms in a bowl
+tossing between each ingredient, add all remaining ingredients
+place mushrooms in a saucepan and fill halfway with water
+bring to a boil
+place a lid on the saucepan and leave to simmer for 30 minutes, checking periodically to make sure water is left and adding water if needed
+allow mushrooms to cool
+place mushrooms on a dehydrator at 125 and leave for 2-6 hours (personal preference, check periodically to see if you like the texture)
+for an oven place mushrooms on a baking sheet and in the oven on its lowest setting with the door cracked for about 6 hours (for his preferred texture, check periodically to see if you like the texture)
+enjoy:)

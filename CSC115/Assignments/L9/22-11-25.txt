@@ -1,0 +1,18 @@
+Q's
+
+Static?
+
+Comparables & signature?
+Generics & signature?
+
+Try catch blocks
+Exceptions signature
+
+Recusion tips?
+
+Maps signature & implimentation
+
+Super / inheritance
+
+
+

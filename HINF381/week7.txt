@@ -1,0 +1,174 @@
+How many subjects do you need to run a randomized control trial?
+    - Indicate if an intervention had an impact
+    
+How do we know that two compare groups are different or the same, 
+and not due to our selection process?
+    - 
+
+Possible outcomes 2x2 (cumulative of both sides, individually, is 1)
+![Alt text](image-1.png)
+    - Treatments are not different
+        - Correct decision
+        - Incorrect decision: type 1 error (alpha)
+    - Treatments are different
+        - Incorrect decision: type 2 error
+        - Correct decision
+
+- probability of making type 1 error (also alpha) or P-value,
+    is the likelihood of difference being by chance
+    - p <.05 indicates the difference between groups does reflect
+    any true difference between therapies A and B is only 0.05 (1 in 20)
+
+Power of study
+- each side adds up to one
+- the correct decision is called "power of the study"
+
+Summary of terms
+- alpha | probability of type 1 error; concluding they differ when they do not
+- beta | probability of type 2 error; concluding they do not differ when they do
+- power | 1 - beta; probability of concluding correctly that treatments differ
+
+Factors to estimate the sample size
+- difference in response rates to be detected
+- An estimate of the response rate in one of the groups
+- level of statistical significance (alpha)
+- the value of the power desired (1 - beta)
+- whether the test should be one-sided or two-sided (improvement, and or harm)
+        - every decision affects the number of people you need!
+
+If they give you the P value, sample size, and confidence intervals, but don't give you the strength of the study, then it's potentially BS!
+    - if the margin is too large, dump it
+
+Sample size table - two sided
+![Alt text](image.png)
+
+Looking at a Randomized trial article:
+A Randomized Outpatient Trial
+of a Decision-Support Information Technology Tool
+1.  Difference  |   0.05
+2.  Baseline    |   0.5
+3.  alpha       |   0.05        
+4.  1-beta      |   0.8         (power of study)
+5.  tails       |   one-tailed  (by not identifying 2 tail)
+6.  drop rate   |   not specified
+7.  ending sample size |    1425, did not achieve their desired count
+
+We don't know if they kept the number of people they needed
+
+Recuiting and Retention of Study Participants
+- Getting enough participants
+- randomize them
+- cannot convince or coerce people
+- the need to have sufficient informaiton to make an informed decision
+- need to know compensation and if there are untoward effects
+- necessary reparations need to be provided (compensation of paticipants wages / time) if they would lose income by participaiton
+- cannot provide cash incentives
+
+Efficiency & Number Needed to Treat (NNT)
+- Efficacy = ((placebo rate) - (rate of treatment)) / (placebo rate)
+- NNT = 1 / ((rate untreated) - (rate in treated))
+
+![Alt text](image-2.png)
+
+- in RCT paper
+    - placebo: stenting 2.9%
+    - intevention: endartaectomy 1.7%
+        Efficacy = (2.9 - 1.7) / 1.7 = 1.2 / 1.7 = ?
+        NNT = 1 / (2.9 - 1.7) = 1 / 1.2 = ?
+    - Rate of freedom
+        - stenting 97.8
+        - enartaectomy 97.3
+    - conclusion: there is almost no benefit of choosing stent vs enartaectomy
+
+Internal validity: how the study was conducted
+External validity: ability to generalize study findings to all patients with the disease
+
+Clinical implications
+- Would my patient improve or not from therapy A?
+- Would my patient be in the group that developed side effects?
+- Would my patient be in the group that benefited from treatmeny B?
+
+![Clinical implications](image-3.png)
+- what group is my patient likely to fall into?
+
+Phases in testing of new drugs ("Phase 1 Study", etc)
+- Phase 1   |   20-80 patients
+- Phase 2   |   100-200 patients
+- Phase 3   |   lage scale RCT
+- Phase 4   |   post market surveillance after approved for sale
+- Phase 5   |   integration of treament into widespread public health practice
+
+Ethical considerations
+- issues around randomization
+- use of placebo
+- obtain informed consent
+- early stoppage of a clinical trial
+- publication bias: every RCT is followed live to prevent publication bias
+
+"Solve the 15 questions related to the end of this chapter"
+
+
+Absolute risk, relative risk, and OR ration
+
+Absolute risk
+- magnitidue of risk in a group with a certain exposure
+- does not 
+- same as attack rate, but for the entire populaiton
+
+Determining the association between a disease and an exposure:
+- Ratio: (disease risk in exposes) / (disease risk in nonexposed)
+- delta difference: (disease risk in exposed) - (disease risk in non exposed)
+- you need to see the absolute risk numbers in order to tell if delta is valid
+
+Absolute risk calculation
+- 2x4 matrix
+![Alt text](image-4.png)
+
+Efficacy: the benefit in an RCT sample group
+Effectiveness: the benefit in the larger population
+
+
+Relative Risk = (risk in exposed) / (risk in nonexposed)
+relative risk = (incidence in exposed) / (incidence in nonexposed) = (a/(a+b)) / (c/(c+d))
+- if RR = 1, no association
+- if RR > 1, positive assocaition; possibly causal
+- if RR < 1, negative assocation; possibly protective
+
+
+Odds Ratio
+- (odds of an event happening) / (odds of an event not happening)
+- ad/bc
+![Odds Ratio](image-5.png)
+
+- odds ratio is a valid measure of risk when;
+    - cases are representative of the populaiton regarding exposure
+    - controls are representative of the population regarding exposure
+    - the disease occurrence is infrequent
+
+Calculating odds ratio in matched pairs:
+![Alt text](image-6.png)
+
+In an unmatched odds calculation, use (ad)/(bc)
+
+Chapter 12 questions:
+- 1: 
+        - exposed:2872, cancer:24, benign:52
+        - not exposed:5055, cancer:0, benign:6
+
+                Diseased 
+        e   52      |       2820
+        x         a | b
+        p   _____________________
+        o
+        s   6     c | d     5051
+        e           |
+        d
+
+    (a/(a+b)) = 52/2872 = 0.018
+    (c/(c+d)) = 6/5051 = 0.0011
+
+    0.018 / 0.0011 = 16.3
+
+    "16.3 times more likely to develope a benign thyrod tumor"
+
+    

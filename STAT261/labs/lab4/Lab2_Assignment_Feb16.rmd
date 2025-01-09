@@ -1,0 +1,70 @@
+---
+title: "Lab 2 Assignment"
+author: "Type your name here"
+date: "Type the date here"
+output:
+  pdf_document: default
+---
+
+# General Instructions
+
+* Put your name in the author section and fill in the date section above.
+* Write R code in the R chunks provided to answer the questions posed. You may use any code/materials, including past lab materials, on Brightspace.
+* Execute each chunk of code to ensure that your code works properly.
+* **If you cannot compile all of your code without errors before the end of the lab, comment out the chunks that are not working.**
+* Save the Rmd file in your personal directory (refer to Lab 0 instructions if needed)
+* knit to pdf (or Word/HTML, but then print those to pdf)
+* Upload the pdf file to the Lab Assignment 2 Activity in Brightspace.
+
+## 0. The Data. 
+Suppose a city council was interested in improving accessibility to public amenities. They want to count the number of public restrooms available in their downtown area per city block. They sample 12 blocks and count the number of restrooms per city block. If the locations of restrooms are random, then a Poisson(lambda) model should be appropriate for the data. variable `pdat` holds the data the council collected.  
+
+```{r poisson_sample}
+pdat <- c(1, 6, 1, 2, 0, 1, 5, 1, 4, 3, 3, 0)
+```
+
+
+## 1. Compute and print the sample mean of `pdat`, which is the MLE of lambda given this data. Then create a sequence of lambda values from 1 to 6 in steps of .05.
+
+```{r sample_mean}
+
+```
+
+## 2. Write a function to compute the log-likelihood given the n observations. Plot the log-likelihood against lambda. Your plot must have an appropriate title and labelled axes.
+
+
+```{r log-like}
+
+```
+
+## 3. Use the `optimize()` function to numerically compute the MLE. Print your results.
+
+_use ?optimize() to learn more about the function_
+```{r MLE}
+
+```
+
+
+## 4.  Write a function to compute the log relative likelihood minus ln(p). Plot the function against the lambda sequence you created in part 3, using p=0.1. Your plot must have an appropriate title and labelled axes. Include a horizontal line at y=0.
+
+```{r log_relative}
+## function arguments: 
+# __ = vector of lambda values
+# __ = mle of lambda
+# __ = observed data
+# __ = numerical p, for 100p% LI calc.
+
+
+
+
+```
+
+## 5. Compute the 10% Likelihood Interval using the `uniroot()` function. Print the bounds of the interval.
+
+_use ?uniroot() to learn more about the function_ 
+```{r roots}
+
+```
+
+
+

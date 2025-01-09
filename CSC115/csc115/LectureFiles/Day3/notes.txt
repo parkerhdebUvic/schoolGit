@@ -1,0 +1,51 @@
+Office hours:
+
+Mondays, 4:30pm - 5:30pm in ECS 253
+Wednesdays, 1:30pm - 3:00pm in ECS 253
+Thursdays, 4:30pm - 6:00pm in ECS 253
+Fridays, 10:00am - 12:00pm in ECS 253
+Fridays, 1:00pm - 2:00pm in ECS 253
+
+
+int x = 3
+
+format: type name = value
+
+type[] name = ... this makes an array
+the contents of the array are stored somewhere else in memory
+(ie, a reference value is stored and redirects to it)
+it looks for a place in memory that can hold n amount of values.
+
+Zero indexing makes sense because you're asking it to "go down _n_ spots" to the right address.
+
+If you make a new array equal an old one, all it does
+is use the same reference number. If you then update
+an array value, they will both be changed.
+
+using new array[4] will create an array of length 4
+it will still be 0-indexed though
+
+Use a for-loop when you know how many times you want
+to run it.
+Use a while-loop when you don't.
+
+int sum = 0;
+for (int i=0; i<nums.length; i++){
+    if(nums[i]>0){
+        sum += nums[i]
+    }
+}
+return sum;
+
+the compiler makes sure all the types are set appropriately.
+When you specify an array type, Java fills all the spots
+with the appropriate default data type.
+int: 0
+double: 0.0
+etc
+
+for (int i=0; i<nums.length; i++){
+    nums[i] = nums[i]*2;
+}
+this will change the original array
+

@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//Dtd HTML 4.01 transitional//EN" "http://www.w3c.org/tr/1999/REC-html401-19991224/loose.dtd">
+<HTML lang=en><!-- InstanceBegin template="/Templates/me-template.dwt" codeOutsideHTMLIsLocked="false" -->
+<HEAD> <meta name="verify-v1" content="E2sJuH9dTC8mZsKjds1aznT9K8mh4aLn8TR/qyJKKXo=" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<TITLE>Job seekers need resumes and interview skills, we can help find employment and write resumes and cover letters</TITLE>
+<!-- InstanceEndEditable --> 
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META content="Morgan Ebbett Career Services provides career and business services to individuals and entrepreneurs because we know that life is too short for the wrong job!" name=description>
+<META content="morgan ebbett, career, services, resume, resumes, resume writer, comox, valley, courtenay, BC, interview, counselling, find jobs, career change, success circle" name=keywords>
+<STYLE type=text/css media=screen>@import url(me_styles.css);
+</STYLE>
+<!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+ 
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+</HEAD>
+<body onLoad="MM_preloadImages('images/New%20Buttons/resume%20button.JPG','images/New%20Buttons/comoxValleyJobs%20button.png','images/New%20Buttons/careerDirection%20button.png','images/New%20Buttons/Interview%20prep%20button.JPG','images/New%20Buttons/job_seekers.JPG','images/New%20Buttons/career_changers.JPG','images/New%20Buttons/goingcivilian.png','images/New%20Buttons/militarySpouses.png','images/New%20Buttons/contact_us.JPG','images/New%20Buttons/successCircle%20button.png','images/New%20Buttons/career_services.JPG')">
+<!-- banner table -->
+<table cellSpacing="0" cellPadding="0" width="760" border="0" align="center">
+	<tr>      
+		
+    <td align="right" bgcolor="#1472BC" colspan="2"><img src="images/quick_nav.gif" width="165" height="20" border="0" usemap="#Map"></td>      
+    </tr>  
+	<tr>
+   		
+    <td width="142" ><img src="images/Morgan%20Ebbett_LOGO.JPG" alt="Morgan Ebbett Management and Career Services - business and career transitions in the Comox Valley and beyond" width="242" height="100"></td>   		
+    	
+    <td><img src="images/topban_tree2.png" alt="Career Transition Specialist helping you transfer your skills to a resume, cover letter, and interview in any career for any job" width="518" height="100"></td>   
+    </tr>  
+</table>
+
+
+<!-- Content table -->
+<div align="center">
+  <table width="760" border="1" cellpadding="0">
+    <tr bordercolor="#CCCCCC" bgcolor="#CCCCCC"> 
+      <td width="76"><div align="center"><a href="resumes.htm">Resumes</a></div></td>
+     
+      <td width="118"><div align="center"><a href="parents.htm">Youth/Parents 
+          </a></div></td>
+      <td width="107"><div align="center"><a href="military.htm">Going Civilian?</a></div></td>
+      <td width="103"><div align="center"><a href="SuccessCircle.htm">Success 
+          Circle</a></div></td>
+      <td width="121"><div align="center"><a href="Career%20Health%20Tips/CareerHealthEI.htm">Career Health Tips</a></div></td>
+      <td width="113"><div align="center"><a href="gifts.htm">Gift Ideas 
+          </a></div></td>
+    </tr>
+  </table>
+</div>
+<table cellSpacing="0" cellPadding="0" width="760" border="0" align="center">
+  <tr> 
+    <!-- navigation cell -->
+    <!-- InstanceBeginEditable name="left column" --> 
+    <td width="150" valign="top"  class="left_column" style="background-image:   url(/images/side_jobseek.jpg); background-repeat: no-repeat; "><img src="/images/spacer.gif" alt="*" width="1" height="1">&nbsp; 
+    </td>
+    <!-- InstanceEndEditable --> 
+    <!-- content cell -->
+    <!-- InstanceBeginEditable name="content area" --> 
+    <td class="content" valign=top align=left> <br> 
+      <h1><font size="+1">Job Seekers</font></h1>
+      <p>&nbsp;</p>
+      <p>Margot Knight wrote on LinkedIn &quot;<em>Karae is a no-nonsense, incredibly 
+        connected, and knowledgeable woman. She checked out my resume and gave 
+        me advise on how to change it so my resume will get noticed and gave me 
+        contacts to check out for job possibilities. What impressed me most was 
+        her to the point but very personable style. If you are looking for work 
+        make sure you contact Karae before you start!</em>&quot;</p>
+      <p><br>
+        Are you a job seeker? Answer the following questions yes or no.</p>
+      <ul>
+        <li><strong>Job Seekers</strong> <font color="#804040"><strong>know</strong></font> 
+          what type of work they want to do - they just have not been able to 
+          find a job. Is this you?<br>
+        </li>
+        <li><strong>Job Seekers</strong> <font color="#804040"><strong>have</strong></font> 
+          direction and ideas of what type of work to apply for. Is this you?<br>
+        <li><strong>Job Seekers <font color="#804040">need </font></strong> polished 
+          resumes to get the desired effect - interviews! Are you getting interviews?<br>
+        
+        <li><strong>Job Seekers <font color="#804040">need</font></strong><font color="#804040"> 
+          <font color="#000000">interview skills</font></font> that will land 
+          them the job. Are you getting job offers?
+      </ul>
+      If you answered yes to one of those questions click on the link below that applies to you.
+	  <ul>
+        <li><strong>Job Seekers</strong> <font color="#804040"><strong>need</strong></font> 
+          <strong><font color="#804040">Marketing Materials</font></strong> <a href="resumes.htm">(resume, 
+          cover letter, and references)</a> to sell their product (themselves) 
+          and the services they offer<br>
+        </li>
+        <li><strong>Job Seekers</strong> <font color="#804040"><strong>need</strong></font> 
+          <strong><font color="#804040">Search Strategies</font></strong> <a href="interviews.htm">(information 
+          interviews, interview answers, and networking skills)</a> to find companies 
+          that may employ them</li>
+        <p>&nbsp;</p>
+      </ul>
+      <p align="center"><font size="+1">Why would you, a Job Seeker, want to hire 
+        </font></p>
+      <p align="center"><font size="+1">a Morgan Ebbett Career Developer?</font></p>
+      <p align="center"><font size="+1"> Here are 10 reasons <a href="why hire.htm"><font size="+1">why to hire a Career Developer
+        </font></a><font size="+2">.</font></font></p>
+      <p>&nbsp;</p>
+      <p><font color="#800000">Here are links to job sites of major employers 
+        in the Comox Valley.</font> </p>
+      <p>These are only a few of the employers in town. Remember that 80% of new 
+        hires come from small business. Small business usually don't have hiring 
+        websites like the ones below.</p>
+      <p>&nbsp;</p>
+      <p><a href="http://www.city.courtenay.bc.ca/employment.aspx">City of Courtenay</a></p>
+      <p><a href="http://www.rdcs.bc.ca/section_hr/content.asp?id=1217&collection=33">Comox 
+        Valley Regional District</a></p>
+      <p><a href="http://sd71.bc.ca/hr/jobs.php">School District 71 Comox Valley</a></p>
+      <p><a href="http://www.nic.bc.ca/about_us/employment_ops/">North Island 
+        College</a> (chose from the categories on the left)</p>
+      <p><a href="http://www.civ.forces.gc.ca/index-eng.asp">Civilian Career with 
+        the Military</a> (scroll till you find Comox jobs)</p>
+      <p><a href="http://www.bchydro.com/careers/">BC Hydro</a></p>
+      <p><a href="http://www.terasengas.com/_Careers/default.htm">Terasen Gas</a></p>
+      <p><a href="http://c5dsp.westjet.com/guest/jobs/index.jsp;jsessionid=m03KHyTfy0Mjh1tjzrF9YxdQn7rm51g1hB8RVY9NRSvBQmG0Qwwg!1398874383?s_cid=hpbanner_jobs">West 
+        Jet</a></p>
+      <p><a href="http://employment.gov.bc.ca/index.php?p=Search_Wizard&rLoad=1">BC 
+        gov't - public service</a> (jobs in BC provincial gov't)</p>
+      <p><a href="https://psjobs-emploisfp.psc-cfp.gc.ca/psrs-srfp/applicant/page1000;jsessionid=jmn0Jc2TpGcK6JJ1jJpblfrlnLSQhF4ffH1RkTHTBTpByvw1dkXr!504527903?toggleLanguage=en">Federal 
+        Public Service</a> (jobs in federal gov't)</p>
+      <p><a href="http://www.jobbank.gc.ca/intro_eng.aspx">The Job Bank</a> (jobs 
+        from all over and operated by the federal gov't)</p>
+      <p><a href="http://thejobshop.ca/links.htm">The Job Shop</a> (this lists 
+        their links to job posting sites)</p>
+      <p>&nbsp;</p>
+      <!-- Start of StatCounter Code -->
+        <script type="text/javascript">
+var sc_project=4636588; 
+var sc_invisible=1; 
+var sc_partition=56; 
+var sc_click_stat=1; 
+var sc_security="4c02e2c9"; 
+</script>
+        <script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script>
+      <noscript>
+      <div
+class="statcounter"><a title="counter on myspace"
+href="http://www.statcounter.com/myspace/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/4636588/0/4c02e2c9/1/"
+alt="counter on myspace" ></a></div>
+      </noscript> 
+      <!-- End of StatCounter Code --> <br> </td>
+    <!-- InstanceEndEditable -->
+    <!-- right column Cell -->
+    <td width="164" valign="top" class="right_column"><img src="images/spacer.gif" alt="*" width="1" height="1"> 
+      <table width="130">
+        <tr>
+          <td><a href="resumes.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('resumesButton','','images/New%20Buttons/resume%20button.JPG',1)"><img src="images/New%20Buttons/resume%20button.JPG" alt="Writing unique resumes and cover letters for job seekers" name="resumesButton" width="120" height="60" border="0"></a></td>
+        </tr>
+		 <tr>
+          <td><a href="jobseekers.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('JobSeekers','','images/New%20Buttons/job_seekers.JPG',1)"><img src="images/New%20Buttons/job_seekers.JPG" alt="Helping Job Seekers find jobs by writing resumes and cover letters" name="JobSeekers" width="120" height="60" border="0"></a></td>
+        </tr>
+        <tr>
+          
+        </tr>
+        <tr>
+          <td><a href="direction.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('careerDirectionButton','','images/New%20Buttons/careerDirection%20button.png',1)"><img src="images/New%20Buttons/careerDirection%20button.png" alt="Helping people find Career Direction that matches with their talents and finds them jobs" name="careerDirectionButton" width="120" height="60" border="0"></a></td>
+        </tr>
+		<tr>
+          <td><a href="careerchanges.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('careerChangers','','images/New%20Buttons/career_changers.JPG',1)"><img src="images/New%20Buttons/career_changers.JPG" alt="Helping Career Changers make a career transition through direction and resumes that transfer your skills" name="careerChangers" width="120" height="60" border="0"></a></td>
+        </tr>
+        <tr>
+          <td><a href="military.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('goingCivilian','','images/New%20Buttons/goingcivilian.png',1)"><img src="images/New%20Buttons/goingcivilian.png" alt="Helping military members to become Civilians through career and education choices and resume writing services" name="goingCivilian" width="120" height="60" border="0"></a></td>
+        </tr>
+        <tr>
+          <td><a href="interviews.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('interviewPrepButton','','images/New%20Buttons/Interview%20prep%20button.JPG',1)"><img src="images/New%20Buttons/Interview%20prep%20button.JPG" alt="Helping you prepare for an Interview Prep" name="interviewPrepButton" width="120" height="60" border="0"></a></td>
+        </tr>
+        <tr>
+          <td><a href="militarySpouses.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('militarySpouses','','images/New%20Buttons/militarySpouses.png',1)"><img src="images/New%20Buttons/militarySpouses.png" alt="Helping Military Spouses write resumes and make career and job transitions" name="militarySpouses" width="120" height="60" border="0"></a></td>
+        </tr>
+        <tr>
+          <td><a href="careerservices.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('careerServicesButton','','images/New%20Buttons/career_services.JPG',1)"><img src="images/New%20Buttons/career_services.JPG" alt="Providing Career Services including writing resumes and cover letters, and identifying career direction" name="careerServicesButton" width="120" height="60" border="0"></a></td>
+        </tr>
+        <tr>
+          <td><a href="contact.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('contactUsAboutUs','','images/New%20Buttons/contact_us.JPG',1)"><img src="images/New%20Buttons/contact_us.JPG" alt="Contact Us for all your career transition needs (resumes, cover letters, job finding)" name="contactUsAboutUs" width="120" height="60" border="0"></a></td>
+        </tr>
+        <tr>
+          <td><a href="SuccessCircle.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('successCircleButton','','images/New%20Buttons/successCircle%20button.png',1)"><img src="images/New%20Buttons/successCircle%20button.png" alt="Morgan Ebbett Success Circle in the Comox Valley" name="successCircleButton" width="120" height="60" border="0"></a></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+      </table> </td>
+  </tr>
+</table>
+
+
+<table cellSpacing="0" cellPadding="0" width="760" border="0" align="center">
+<tr> 
+    <td  bgcolor="#1472BC"> <img src="images/spacer.gif" alt="*" width="1" height="20"></td>
+  
+</tr>
+</table>
+
+<!--Credits table -->
+<table cellSpacing="0" cellPadding="0" width="760" border="0" align="center">  
+  <tr> 
+    <td  colspan="2" align=right valign="top" bgcolor="#FFFFFF" class="Copyright"> 
+      <BR>
+      © 2005 - 2009 Morgan Ebbett Management<BR>
+      All Rights Reserved.&nbsp;&nbsp; Web site design by Logistica Systems </td>
+  </tr>  
+</table>
+
+<map name="Map">
+  <area shape="rect" coords="2,5,40,17" href="/index.htm" alt="Morgan Ebbett Career Services">
+  <area shape="rect" coords="51,4,110,17" href="/sitemap.htm" alt="Site Map for Morgan Ebbett Career Services">
+  <area shape="rect" coords="117,1,159,16" href="/contact.htm" alt="Email Morgan Ebbett in the Comox Valley">
+</map>
+</body>
+<!-- InstanceEnd --></HTML>

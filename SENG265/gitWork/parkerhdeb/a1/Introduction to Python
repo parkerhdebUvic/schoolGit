@@ -1,0 +1,805 @@
+Why?
+- built in data types
+    - strings, lists, and more
+- matrix operations
+- simpler syntax
+- good for machine learning
+
+eg:
+
+if z == 3.45 or y == "Hello":
+    x = x+1     #Addition
+    y = y + " World!"   # String concatenation
+    w = x // 4      # Integer Division
+    z = x / 4       # Floating point division
+
+print(x)
+print(format(y, ".2f")) # Two digits after decimal
+
+For numbers:
+- + - * %
+For strings
++ % (for formatting)
+Logic
+- and or not
+Variables
+- first assignment creates it
+- uses indentation
+
+Basic Datatypes
+- Integers
+    z = 5//2 # Answer is 2, integer division
+- Floats
+    x = 3.456
+    y = 4/3     # Answer is 1.33, floating point division
+- Strings
+    "abc" or 'abc'
+    - unmatched quotations occur within the string
+        - "matt's"
+    - use triple double-quotes for multi-line strings or strings that contain both ' and " inside them:
+    """a'b"c"""
+
+Whitespace
+- \ new line
+- no {} - consistent indentation instead
+- Often a colon appears at the start of a new block
+- Tip: configure editor to use spaces for indents (no tabs)
+            - no!
+
+Comments
+- #
+- (This is a bit like "//" in Java and C++)
+- tripple quotes for multi line:
+    """This is the docstring. This here function
+    does something truly wonderful, or so
+    we think despite seeing no code at all."""
+
+Assignment
+- Binding a variable means setting a name to hold a reference to some object
+- Names in Python do not have intrinsic type
+    - Objects have types
+- reference is deleted after any names have passed out of scope
+
+Multiple Assignment
+>>> x, y = 2, 3
+>>> x
+2
+>>> y
+3
+
+Nameing Rules
+- names are case sensitive and cannot start with a number
+- there are reserved words (obvious ones)
+
+Sequence Types: Tuples, Strings, and Lists
+
+Sequence Types: Tuple
+- Simple immutable ordered sequence of items 
+- items can be mixed types, including collection types
+        >>> tu = (23, 'abc', 4.56, (2,3), 'def')
+
+Strings
+- Immutable
+- Conceptually very much like a tuple
+        >>> st = "Hello World"
+List
+- Mutable ordered sequence of items or mixed types
+        >>> li = ["abc", 34, 4.34, 23]
+Similar Syntax
+- All three types share much the same syntax and funtionality
+- Key difference:
+    - Tuples and strings are immutable (cannot be modified)
+    - Lists are mutable (can be modified)
+    - opperations are the same for all of them
+
+Sequence Types continued:
+- we can index tuples, lists, and strings
+>>> tu[1]
+'abc'
+>>> li[1]
+34
+>>> st[1]
+'e'
+
+Positive and negative indices
+- 0 starts at the left
+- -1 starts from the right
+
+Slicing: Return copy of a Tuple 
+>>> t[1:4] #inclusive
+>>> t[1:-1]
+>>> t[:2]
+>>> t[2:]
+>>> li[:] #copy of entire sequence
+
+The 'in' Operator - Boolean test
+>>> t = [1,2,4,5]
+>>> 3 in t
+False
+- for strings, tests substrings
+>>> s = 'abcde'
+>>> 'c' in s
+True
+>>> 'cd' in s
+True
+>>> 'ac' in s
+False
+- in is also used for loops and comprehensions
+
+The + Operator
+- produces a new tuple, list , or string with concatenation of arrguments
+
+The * Operator
+- Produces a new tuple, list, or string that "repeats" the original content
+
+Mutability: Typles vs. Lists
+- Tuples: Immutable
+>>> t = (23, 'abc', 4.56, (2,3), 'def')
+>>> t(2) = 3.14
+Traceback (most recent call last):
+    File "<pyshell#75>, line 1, in -toplevel-
+        tu[2] = 3.14
+    TypeError: object doesn't support item assignment
+
+- You cannot change a tuple!
+- However, you can make a fresh tuple and assign its reference to previous name
+
+- Lists: Mutable
+>>> li = ['abc', 23, 4.34, 23]
+>>> li[1] = 45
+>>> li
+['abc', 45, 4.34, 23]
+- We can change lists in place
+- name still points to original list
+
+Operations on Lists Only
+>>> li = [1,11,3,4,5]
+>>> li.append('a') #using method syntax
+>>> li
+[1,11,3,4,5,'a']
+
+>>> li.insert(2,'i')
+>>>li.insert(2,'i')
+>>>li
+[1,11,'i',3,4,5,'a']
+
+The .extend method vs + operator
+- + creates a fresh list (with new memory reference)
+- .extend operates on a li in place
+>>> li.extend([9,8,7])
+>>>li
+[1,2'i',3,4,5,'a',9,8,7]
+
+- Confusing
+    -  extend takes a list as an argument
+    - append takes a singleton as an argument 
+>>> li.append([10,11,12])
+>>> li
+[1,2,'i',3,4,5,'a',9,8,7,[10,11,12]]
+
+- extend != append
+
+Operations on Lists Only
+>>> li.index('b') #index of first occurrence
+>>> li.count('b') #number of occurrences
+>>> li.remove('b') #remove first occurrence
+>>> li.reverse()    #reverse list in place
+>>> li.sort()       #sort the list in place
+>>> li.sort(some_funciton) #sort in place using user-defined comparison
+
+Tuples vs. Lists
+- Lists are slower at runtime, but more flexible than tuples
+- to convert between tuples and lists use the list() and tuple() functions
+    - li = list(tu)
+    - tu = tuple(li)
+
+Understanding Refernce Semantics in Python
+- x = y — not a copy of y!
+- x = y - is a reference to the object y
+- x = 3 - "x now refers to the integer 3"
+
+Assignment 
+- incrementing creates a new memory location with value, redirects the pointer, then garbage collects the old location
+
+Dicitonaries: A Mapping Type
+- stores a mapping between sets of keys and a set of values
+    - keys can be immutable
+    - values can be any type
+    - a single dictionary can store values of different types
+- You can define, modify, view, lookup, and delete the key-value pairs in the dictionary
+>>> d = {'user':'bozo', 'pswd':1234}
+>>> d['user']
+'bozo'
+>>> d['pswd']
+1234
+>>> d['bozo']
+KeyError: bozo
+
+Updating Dictionaries
+>>> d['user'] = 'clown'
+
+Removing dictionary entries
+>>> d = {'user':'bozo', 'p':1234, 'i'34}
+>>> del d['user']
+>>> d
+{'p':1234, 'i':34}
+
+>>> d.clear()
+>>> d
+{}
+
+Useful Accessor Methods
+>>> d.keys()        #list of keys
+>>> list(d.keys())  #actual list
+>>> d.values()      #list of values
+>>> d.items()       #list of item tuples
+
+Funcations in Python
+>>> def det_final_answer(filename):
+    """Documentation"""
+    total_counter = 0
+    line1
+    line2
+    return total_counter
+
+Reminder: Python and Types
+- determines types automatically
+- enforces the types of objects
+    - ex: must convert an integer to a string before appending it to a string
+
+Calling a Function
+>>> def myfun(x,y):
+        return x*y
+>>> my fun(3,4)
+12
+
+Parameters are "call by assignment"
+- acts like call by reference and sometimes like call by value in C++
+
+Functions without returns
+- all functions have a return value even if no return line inside code
+- functions without a return return None
+    - None is a special constant 
+    - None is used like NULL, void, or nil
+    - None is logically equivalent to False
+    - Interpreter doesn't print None
+
+Function overloading? No
+- two different functions can't have the same name
+
+Functions are first-class objects in Python
+- can be used as any other data type
+    - can be an argument to a function
+    - assigned to a variable
+    - part of a tuple, list, or any other container
+
+Default Values for Arguments
+- can provide default, optional, values 
+>>> def myfun(b, c=3, d="hello"):
+        return b+c
+>>> myfun(5,3,"hello")
+>>> myfun(5,3)
+>>> myfun(5)
+
+The Order of Arguements
+- can call a function with some or all of its arguments out of order as long as you specify them
+>>> def myfun(a,b,c):
+        return a-b
+>>> myfun(2,1,43)
+1
+>>> myfun(c=43, b1, a=2)
+1
+>>> myfun(2,c=43,b=1)
+1
+
+A detour: command-line args
+- import sys # gives command line arguments
+>>> def main():
+    if len(sys.argv) == 1:
+        print ("No arguments")
+    else:
+        print ("First argument is", sys.argv[1])
+if __name__ == "__main__":
+    main()
+
+import argparse
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--width', type=int, default=75, help='length of line')
+    parser.add_argument('--indent',type=int , default=0,
+        help='number of blank characters to use at start of line')
+    parser.add_argument('--number', type=int, default=10,
+        help="add line numbering")
+    parser.add_argument('filename', nargs='?', help='file to be processed')
+
+    args = parser.parse_args()
+
+    print ('width: {}; indent: {}; number: {}'.format( args.width,
+        args.indent, args.number))
+    if args.filename:
+        print ('filename: ', args.filename)
+    else:
+        print ('no filename specified')
+if __name__ == "__main__":
+main()
+
+Another detour: "main" function
+
+#!/usr/bin/env python # Must be where Python is located...
+def main():
+    print ("Here we are in main. About to visit caveOfCaerbannog.")
+    caveOfCaerbannog()
+    print()
+    print ("Now we're back in main. About to call camelot().")
+    camelot()
+    print()
+    print ("I feel happy! I feel hap...")
+def caveOfCaerbannog():
+    print ("We are visiting the dreadful Cave of Caerbannog.")
+    print ("Heck, there are cute rabbits here like at UVic.")
+    print ("Come here little raaaaa... AUGH!")
+def camelot():
+    print ("Here we are in Camelot.")
+    print ("Let's leave. It is a silly place.")
+if __name__ == "__main__":
+main()
+
+Logical Expressions: True and False
+- equivalents:
+    - False: sero, None, empty container or object
+    - True: non-zero numbers, non-empty objects
+- Comparison operators: ==, !=, <, <=, etc
+    - X and Y have same value: X == Y
+    - Compare with X is Y:
+        X and Y are two variables that refer to the same identical object
+
+Boolean Logic Expressions
+- and
+- or
+- not
+- use parentheses as needed
+
+Special Properties of and *and* or
+- uses short circuit evaluation
+
+Contiditional Expressions
+- x = (true_value if condition else false value)
+
+If, while, assert
+
+Break and continue
+- break leaves the loop entirely
+- continue skips current iteration
+
+assert
+- checks to make sure something is true
+- if false, the program stops
+        assert(number_of_players < 5)
+
+For Loops / List Comprehensions
+- for <item> in <collection>:
+    <statements>
+- if <collection> is a string, it will loop through each character
+- <item> can also be a collection if <collection> has nested collections
+    - for (x,y) in [("a",1), ("b",2), ("c",3), ("d",4)]:
+        print (x)
+
+For loops and the range() function
+- range() returns a list of numbers from 0 to n-1
+- enumerate() returns a sequence of integer, item pairs
+
+
+List Comprehensions
+- generates a new list by applying funtion to every member of original list
+>>> li = [3,6,2,7]
+>>> [elem*2 for elem in li]
+[6,12,4,14]
+
+- in general, [expression for name in list]
+- if elements are containers, then name can consist of container names
+>>> li = [('a',1), ('b',2) ('c',7)]
+>>> [n*3 for (x,n) in li]
+[3,6,21]
+
+- can also use expressions: [subtract(y,x) for (x,y) in oplist]
+
+Filtered list comprehensions
+- [expression for name in list if filter]
+>>> li = [3,6,2,7,1,9]
+>>> [elem*2 for elem in li if elem >4]
+[12,14,18]
+
+Nested list comprehensions
+- since expressions take a list as input and produce a list as output...
+>>> li = [3,2,4,1]
+>>> [elem*2 for elem in
+        [item+1 for item in li]]
+[8,6,10,4]
+
+FANCY FUNCTION SYNTAX
+
+Lambda Notation
+- functions can be defined without giving them names
+- only works for single-parameter, single-expression functions
+>>> def applier(q,x):
+    return q(x)
+>>> applier(lambda z: z*4,7)
+28
+
+String to list to string
+<separator_string>.join(<some_list>)
+>>> ":".join(["abc","def","ghi"])
+"abc:def:ghi"
+
+<some_string>.split(<separator_string>)
+>>> "abd:def:ghi".split(":")
+["abc","def",ghi"]
+
+Conver anything to a string
+- str()
+
+String Operations
+- "hello".upper()
+'HELLO'
+
+String Formatting Operator: %
+- basically, fill in the blanks
+>>> x="abc"
+>>>y=34
+>>>"%s xyz %d" % (x,y)
+'abc xyz 34'
+
+Printing with Python
+- print()
+- use % to format output text
+>>> print("%s xyz %d" % ("abc", 34) )
+abc xyz 34
+
+More complex formatting
+>>> print('Course unit: {}; Number {}'.format('SENG','265'))
+Course unit: SENG; Number 265
+>>> print('Course unit: {1}; Number {0}'.format('SENG','265'))
+Course unit: 265; Number SENG
+- controlling size of numeric fields:
+>>> import math
+>>> print('Value of e is about {0:.3f}'.format(math.e))
+Value of e is about 2.718
+
+Wordcout for stdin:
+#!/usr/bin/env python
+import sys
+def main():
+    num_chars = 0
+    num_words = 0
+    num_lines = 0
+    
+    for line in sys.stdin:
+        num_lines = num_lines + 1
+        num_chars = num_chars + len(line)
+        line = line.strip()
+        words = line.split()
+        num_words = num_words + len(words)
+
+    print (num_lines, num_words, num_chars)
+
+if __name__ == "__main__":
+main()
+
+Using filename:
+#!/usr/bin/env python
+import fileinput
+import sys
+def main():
+    num_chars = 0
+    num_words = 0
+    num_lines = 0   
+    for line in fileinput.input():
+        num_lines = num_lines + 1
+        num_chars += len(line)
+        line = line.strip()
+        words = line.split()
+        num_words += len(words)
+
+    print (num_lines, num_words, num_chars)
+if __name__ == "__main__":
+main()
+
+or
+#!/usr/bin/env python
+import sys
+def main():
+    num_chars = 0
+    num_words = 0
+    num_lines = 0
+    lines = sys.stdin.readlines()
+    while (lines):
+        a_line = lines[0]
+        num_lines = num_lines + 1
+        num_chars += len(a_line)
+        a_line = a_line.strip()
+        words = a_line.split()
+        num_words += len(words)
+        lines = lines[1:]
+    print (num_lines, num_words, num_chars)
+if __name__ == "__main__":
+main()
+
+File processing and error handling (practice)
+import sys
+fileptr = open('filename','r')
+if fileptr == None:
+    print("Something bad happened")
+    sys.exit(1)
+somestring = fileptr.read() # read one line
+for line in fileptr:        # continue reading
+    print (line)
+fileptr.close()
+
+WORKING WITH FILES
+- can specify read or write when opening and as strings or byte arrays
+file = open("somefile", "r") # or "rb", "w", "wb"
+
+Working with files
+>>> file = open("fubar", "w")
+>>> file.write("hamberders\n")
+11
+>>> file.close()
+
+Writing specific ASCII values
+- supports ASCII and UTF-8
+
+Working with binary
+- sometimes we need binary representation instead of integer value
+>>> import struct
+>>> bytes = struct.pack("I", 121) # 121 as a four-byte int
+>>> chars = [chr(c) for c in bytes] # each byte as a ASCII
+>>> s = "".join(chars)
+>>> s
+'y\x00\x00\x00'
+>>> somefile.write(s)
+
+pg 115
+
+Exeption Handling
+- errors are a kind of object in python
+- try, except, finally, catch
+while True:
+    try:
+        x = int(input("Number, please! "))
+        print ("The number was: ", x)
+        break
+    except ValueError:
+        print ("Oops! That was not a valid number.")
+        print ("Try again.")
+        print ()
+
+Exceptions and handlers
+try:
+    f = open("gift.txt", "r")
+    # do file-open things here
+    f.close()
+except FileNotFoundError:
+    print("Cannot open gift.txt")
+    # do file-doesn't-exist stuff here
+except PermissionError:
+    print("Whatcha trying to do here with gift.txt, eh?")
+    # do failure-due-to-permissions stuff here
+
+More examples:
+def loud_kaboom():
+    x = 1/0;
+def fireworks_factory():
+    raise ZeroDivisionError("Gasoline near bone-dry Christmas trees!")
+def playing_with_fire():
+    try:
+        loud_kaboom()
+    except ZeroDivisionError as exc:
+        print ("Handling run-time error: ", exc)
+    try:
+        fireworks_factory()
+    except ZeroDivisionError:
+        print ("Gotta stop this from happening...")
+
+SCOPING order:
+- Location definition
+    - Enclosing definition
+        - global definition
+            - built-in defintion
+
+ASSIGNMENT and CONTAINERS
+Multiple Assignment with sequences
+>>> (x, y, (w, z)) = (2, 3, (4, 5))
+>>> [x, y] = [4, 5]
+
+Empty Containers 1
+>>> li = []
+>>> tu = ()
+>>> di = {}
+
+Importing and Modules examples:
+>>> import somefile
+>>> from somefile import *
+>>> from somefile import className
+- * gets everything
+
+Common modules
+- sys, os, os.path, math, Random
+
+
+Creating and saving your own modules
+- looks in sys.path
+- to add a directory to this list, append it
+>>> sys.path.append(′/my/new/path′)
+
+Object Oriented Programming in Python: Defining Classes
+
+Objects
+- object.method()
+
+Defining a class
+- class is a special kind of data type which defines how you build an object
+- Python doesn't use separate class interface, you just define it in the same program then use it
+- define a method in a class by including function defintions
+    - must be a special first argument 'self' in all method definitions 
+    - usually a special method called __init__
+- Eg:
+class Student:
+    ″″″A class representing a student.″″″
+    def __init__(self, n, a):
+        self.full_name = n
+        self.age = a
+    def get_age(self):
+        return self.age
+
+Creating and Deleting Instances
+- there is no "new" keyword in python
+    - just use the class name and assign the result to a variable
+    - arguments passed this way are given the __init__() method
+- eg: b = Student("Bob", 21)
+    - __init__() can take any number of arguments, but first argument is special
+
+Deleting instances: No need to "free"
+- automatic garbage collection
+
+Access to Attributes and Methods
+class Student:
+    ″″″A class representing a student.″″″
+def __init__(self, n, a):
+    self.full_name = n
+    self.age = a
+def get_age(self):
+    return self.age
+
+>>> f = Student (″Bob Smith″, 23)
+>>> f.full_name # Access an attribute.
+    ″Bob Smith″
+>>> f.get_age() # Access a method.
+23
+
+Accessing unknown members
+- names or methods given at run time
+- use getattr(object_instance, string)
+    - string contains the name of an attribute or method of a class
+    - returns a reference to that attribute or method
+    - only needed when writing very extensible code
+
+>>> f = Student(″Bob Smith″, 23)
+>>> getattr(f, ″full_name″)
+″Bob Smith″
+
+>>> getattr(f, ″get_age″)
+    <method get_age of class studentClass at 010B3C2>
+
+>>> getattr(f, ″get_age″)() # We can call this.
+23
+
+>>> getattr(f, ″get_birthday″)
+# Raises AttributeError – No method exists.
+
+hasatttr(object, string)
+>>> f = Student(″Bob Smith″, 23)
+>>> hasattr(f, ″full_name″)
+True
+>>> hasattr(f, ″get_age″)
+True
+>>> hasattr(f, ″get_birthday″)
+False
+
+Two Kinds of Attributes
+- Data attributes
+    - each instance of the class has it's own value
+    - created by an __init__() method
+- Class attributes
+    - all instances of the class have the same value
+    - called static
+    - defined within a class
+    - accessed using: self.__class__.name
+    - eg:
+        class Sample:
+            x = 23
+            def increment(self):
+                self.__class__.x += 1
+        >>> a = Sample()
+        >>> a.increment()
+        >>> a.__class__.x
+        24
+
+INHERITANCE
+Subclasses
+- a class can extend the definition of another class
+- to define a subclass, put the name of the superclass in parentheses after the subclass's name in the signature
+    class AI_Student(Student):
+- python has no 'extends' keyword like Java
+- Multiple inheritance is supported
+
+Redefining Methods
+- to redefine a method from a parent class, include a new definition using the same name 
+- the only time you explicity pass 'self' as an argument is when calling a method of an ancestor
+    ParentClass.methodName(self,a,b,c)
+
+Definition of a class extending student
+class Student:
+    ″A class representing a student.″
+    def __init__(self, n, a):
+        self.full_name = n
+        self.age = a
+    def get_age(self):
+        return self.age
+class AI_Student (Student):
+    ″A class extending Student.″
+    def __init__(self,n,a,s):
+        Student.__init__(self,n,a) #Call __init__ for student
+        self.section_num = s
+    def get_age(self): #Redefines get_age method entirely
+    print(″Age: ″ + str(self.age))
+
+Extending __init__
+- parentClass.__init__(self, x,y)
+
+Built-In Members of Classes
+- all built-in members have double underscores around their names: __init__ __doc__
+
+Redefining the printing string: __repr__()
+class Student:
+    def __str__(self):
+        return "I am %s aged %d" % (self.full_name, self.age)
+    def __repr__(self):
+        return "Student(%s, %d)" % \
+            (repr(self.full_name), repr(self.age))
+...
+>>> f = Student(″Bob Smith″, 23)
+>>> print(f)
+I am Bob Smith aged 23
+>>> repr(f)
+Student("Bob Smith", 23)
+
+Special Methods
+- you can redefine these as well
+__init__ : The constructor for the class.
+__cmp__ : Define how == works for class.
+__len__ : Define how len( obj ) works.
+__copy__ : Define how to copy a class.
+- other built-in methods allow you to give a class the ability to use [] notation like an array or () like a function call
+
+Special Data Items
+__doc__ : Variable storing the documentation string for that
+class.
+__class__ : Variable which gives you a reference to the class
+from any instance of it.
+__module__ : Variable which gives you a reference to the
+module in which the particular class is defined.
+
+Useful:
+- dir(x) - returns a list of all methods and attributes
+
+Special Data Items - Example
+>>> f = Student(″Bob Smith″, 23)
+>>> print f.__doc__
+A class representing a student.
+>>> f.__class__
+< class studentClass at 010B4C6 >
+>>> g = f.__class__(″Tom Jones″, 34)
+
+Private Data and Methods
+- any attribute or method with two leading underscores is meant to be treated as private!
+- 

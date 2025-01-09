@@ -1,0 +1,100 @@
+:root {
+    /* --variable-name: value; */
+    --cyan-light: #22A9E0;
+    --cyan-dark: #0B3A68;
+    --white: #FFFFFF;
+    --black: #1F1F1F;
+    --grey: #525252;
+    --blue-dark: #010F34;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-image: url('./assets/background8.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+body > *:not(footer, navbar){
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.logo-box{
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--white);
+    gap: 1rem;
+    padding-left: 1rem;
+}
+
+.icons{
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.logo{
+    width: 3rem;
+    height: 3rem;
+}
+
+navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+navbar .buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-right: 1rem;
+    
+}
+
+.buttons > a:link, a:visited{
+    color: var(--white);
+    text-decoration: none;
+}
+
+.buttons > a:hover{
+    text-decoration: underline;
+}
+
+.active{
+    text-decoration: underline!important;
+} 
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+header .profile{
+    width: 40vw;
+}
+
+footer{
+    background-color: var(--blue-dark);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem;
+}

@@ -1,0 +1,51 @@
+.details {
+    border: 5px solid black;
+    border-radius: 15px;
+    background-color: powderblue;
+    padding: 10px;
+}
+
+#exam_details {
+    display: flex;
+    justify-content: center;
+}
+
+.subtopic {
+    border-top: 3px solid blue;
+}
+
+.subtopic:hover {
+    background-color: RGBA(255,255,255,0.3);
+}
+
+table, td, th, tr {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+table {
+    margin: 10px;
+}
+
+th {
+    background-color: rgb(187, 187, 187);
+}
+
+td {
+    background-color: white;
+}
+
+@media all and (max-width: 800px) {
+    body {
+        background-color: powderblue;
+    }
+
+    .details {
+        background-color: white;
+    }
+
+    h2 {
+        display: flex;
+        justify-content: center;
+    }
+}

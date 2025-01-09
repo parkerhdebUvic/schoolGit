@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Check if a URL is provided as an argument
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <URL>"
+    exit 1
+fi
+
+# Function to extract the root domain
+extract_root_domain() {
+    local url="$1"
+    # Remove the "http://" or "https://" prefix (if present)
+    url=${url#http://}
+    url=${url#https://}
+    # Remove any path or query parameters
+    url=${url%%/*}
+    url=${url%%\?*}
+    # Print the root domain
+    echo "$url"
+}
+
+# Main script
+url="$1"
+root_domain=$(extract_root_domain "$url")
+
+echo "Root domain: $root_domain"
+

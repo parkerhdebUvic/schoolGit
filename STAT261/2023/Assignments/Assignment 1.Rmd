@@ -1,0 +1,151 @@
+---
+title: "Assignment 1"
+author: "Parker DeBruyne - V00837207"
+date: '2023-05-21'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+1.
+(4 points) In November of each year, a walk-in clinic allows people to walk
+in to get a flu shot. Let X be the number of people who come to the clinic
+for a flu shot on a randomly selected day (in November). Suppose X has
+the following distribution:
+
+$$\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+X & 0 & 1 & 2 & 3 & 4 & 5 \\
+\hline
+P(X = x) & 0.3 & 0.1 & 0.2 & 0.1 & 0.1 & 0.2 \\
+\hline
+\end{tabular}$$
+
+If at least 3 people walk in for a flu shot on a particular day, what is the
+probability that there are 4 or fewer who walk in for a flu shot that day?
+
+
+
+
+
+$$P(X \leq 4|X \geq 3) = \frac{P((X \leq 4) \cap(X \geq 3 ))}{P(X \geq 3)}
+$$
+$$
+=\frac{0.2}{0.4}
+$$
+
+$$
+=0.5
+$$
+
+2. (6 points) Daily sales at a gas station are thought to be independent of one
+another with daily mean \$5000 and standard deviation \$700. Approximate
+the probability that the average daily sales over one year (i.e. 365 days)
+is greater than \$5,100.
+
+With $n \geq 30$ it is appropriate to use the Normal distribution:
+$$
+X \sim Normal(\mu=5000,\sigma=700)
+$$
+
+$$
+P(X > 5100) = 1 - P(X \leq 5100) 
+$$
+
+$$
+= 1-P(\frac{X-\mu}{\sigma} \leq \frac{5100-5000}{700})=1-P(Z \leq 0.142857162) $$
+
+$$
+\simeq 1-P(Z \leq 0.14)
+$$
+$$
+= 1-0.5517 
+$$
+
+$$
+= 0.4483
+$$
+
+3. (10 points) Suppose that diseased trees are distributed randomly and uniformly throughout a large forest with an average of $\lambda$ per acre. Let X denote the number of diseased trees in a randomly chosen one-acre forest
+plot where the range of X is, X = {0, 1, 2, ...}.
+
+(a) We will use the Poisson distribution with mean $\lambda$ to model X. Write
+down the probability mass function (p.m.f.) for X. Why would this
+distribution be suitable for modelling the number of diseased trees in
+a randomly chosen one-acre plot of forest?
+
+The Poisson probability mass function is given as follows:
+$$
+f(x)=\frac{\lambda^{x}e^{-\lambda}}{x!}
+$$
+The poisson distribution models the random occurance of events in any fixed interval, including time and space. In this case, we know the average number of diseased trees $\lambda$ per one-acre interval, and that each interval is independant.
+
+(b) Suppose that we observe the number of diseased trees on n randomly chosen one-acre parcels, X1, X2, ..., Xn. The random variables
+X1, X2, ..., Xn can be assumed to be independent. Write down the
+JOINT probability mass function for X1, X2, ..., Xn. Simplify this expression which is a function of $\lambda$ and the X'
+s. Use this joint distribution for the remainder of Question 1.
+
+$$
+P(X_1=x_1,X_2=x_2,...,X_n=x_n) = (\frac{\lambda^{x_1}e^{-\lambda}}{x_1!})(\frac{\lambda^{x_2}e^{-\lambda}}{x_2!})(...)(\frac{\lambda^{x_n}e^{-\lambda}}{x_n!})
+$$
+$$
+=\frac{\lambda^{\sum{i=1}^{n}x_i}e^{-n\lambda}}{\prod_{i=1}^{n}x_i!}
+$$
+
+(c) We are going to use the Method of Maximum Likelihood to estimate
+$\lambda$. Write down the Likelihood function L($\lambda$).
+
+The Likelihood function omits multiplicative constants to simplify and focus on our desired parameter $\lambda$
+$$
+L(\lambda)= cp(x_i,\lambda), c = \prod_{i=1}^{n}x_i!
+$$
+$$
+= L(\lambda) = e^{-n\lambda}\lambda^{\sum_{i=1}^{n}x_i}
+$$
+
+(d) Write down the Log-likelihood function l($\lambda$).
+
+$$
+l(\lambda)=-n\lambda+(\sum_{i=1}^{n}x_i)ln\lambda
+$$
+
+(e) Write down the Score Function S($\lambda$).
+$$
+S(\lambda)=l{}'(\lambda)=-n+\frac{\sum_{i=1}^{n}x_i}{\lambda}
+$$
+
+(f) Derive the maximum likelihood estimate of $\lambda$.
+
+The maximum likelihood is when the previous equality is set to zero and we solve for $\lambda$
+$$
+0=-n+\frac{\sum_{i=1}^{n}x_i}{\lambda}
+$$
+Solving, we get:
+$$
+\lambda = \frac{1}{n}\sum_{i=1}^{n}x_i
+$$
+(g) Write down the Information Function I($\lambda$).
+
+$$
+I(\lambda)=-l{}''(\lambda)=-(\frac{-\sum_{i=1}^{n}x_i}{\lambda^2})=\frac{\sum_{i=1}^{n}x_i}{\lambda^2}
+$$
+
+(h) Use the second derivative test to show that you have found a maximum.
+
+$$
+l{}''(\lambda)=\frac{-\sum_{i=1}^{n}x_i}{\lambda^2}
+$$
+$l{}''(\lambda)$ is always negative as $n$ goes to $\infty$ implies that we have found a maximum.
+
+(i) Suppose that the numbers of diseased trees observed in n = 4 randomly chosen one-acre parcels were: 5, 8, 9, 2. Compute the maximum likelihood estimate of $\lambda$ using this data.
+
+$$
+\lambda = \frac{1}{4}\sum_{i=1}^{4}x_i=\frac{1}{4}(5+8+9+2)=\frac{1}{4}(24)
+$$
+$$
+\lambda=6
+$$

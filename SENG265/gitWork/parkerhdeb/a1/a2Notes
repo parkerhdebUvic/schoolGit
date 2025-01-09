@@ -1,0 +1,68 @@
+- read a plain text file as input, produce a modified output file
+    - remove "the, a, an, of, for, to, and but, yet" words
+- must execute on Lunix machines in ELW B238
+- use C programming
+ 
+Description of task
+- develop a C program
+- reads text as standard input
+- produces text sent to standard output
+- uses a list of stop words (example in list 3)
+    - the a an of for to and but yet
+
+List 1 (example input)
+You were hired to work in a team that is building a new web search tool.
+Without much experience on the subject, and counting only with a small team,
+your team lead decided to take small steps.
+Another teammate is building the crawler, which produces a file with web links.
+On the other hand, you will be responsible for checking such text files with web links,
+downloading the files, and organizing them in a local Unix filesystem.
+
+List 2 (example output)
+You were hired work in team that is building new web search tool.
+Without much experience on subject, counting only with small team,
+your team lead decided take small steps.
+Another teammate is building crawler, which produces file with web links.
+On other hand, you will be responsible checking such text files with web links,
+downloading files, organizing them in local Unix filesystem.
+
+- run program from Unix command line
+    - input exprected from stdin
+    - output expected at stdout
+    - must not provide filenames to program, nor hardcode input and output file names
+- name of program: stop-word-remover.c
+- tests/ directory
+
+    % cat tests/in01.txt | ./stop-word-remover
+
+- use diff command to compare outputs
+
+    % cat tests/in01.txt | ./stop-word-remover | diff tests/out01.txt -
+
+Exercises for this assignment
+1. write your stop-word-remover.c program in the a1/ directory
+    a. practice with stdin, reading lines with loops and fgets() and printing the output with printf or fprintf()
+    b. stroe the stop words in an array of strings (array of char arrays)
+    c. redirect input to read from a file instead of keyboard
+    d. tokenize a sentence stored in a string with strtok() — slide 91 to 95
+    e. loop over string tokens by printing them on terminal screen
+    f. combine strtok() with strcmp() or strncmp() to search for a particular stop word
+    g. search for any stop words stored in your array of strings, looping over it
+    h. print to terminal screen only the words that are not stop words with printf() — first store in an array of strings printing spaces and newlines when finished your loop over words
+    i. loop over lines read from stdin and print lines wihtout stop words using printf()
+    j. redirect stdout to save data in a file 
+    k. test your program pipes and diff tool
+    l. make sure stop words with punctuation marks are also removed from text
+    m. same with uppercase stop words- copy strtok() result to another string and convert this new string to lowercase 
+    n. make sure not to remove words that contain stop words
+    o. "modularize your work into different functions to get an "A" grade
+2. use -std=c11 flag when compiling 
+3. keep all code in one file 
+4. commit your code frequently (git add and git commit) so you don't lose your work
+5. git push once done with your commit
+6. use test files in /home/rbittencourt/seng265/a2/tests: there are three pairs of test files
+
+SUBMITTING
+- single C source file named stop-word-remover.c
+- do not use anything in the malloc family of functions
+- 

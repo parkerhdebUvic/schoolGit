@@ -1,0 +1,49 @@
+#!/bin/bash
+
+i=0
+
+
+while IFS= read -r line; do
+	((i++))
+	
+	OLDIFS=$IFS
+	IFS='/'	
+
+	j=0
+	directory_path=""
+	extensions=(".html" ".php" ".py" ".perl")
+
+	for word in $line; do
+        	((j++))	
+       		if [ $j -ge 3 ]; then
+                	if [[ $word == *.* && $word != *.*.* ]]; then
+        			for extension in "${extensions[@]}"; do
+                			if [[ $word == *$extension ]]; then
+                        			if [[ $extension == ".html" ]]; then
+                                			# process htmls here
+                                			# directory_path="${directory_path#/}"
+							echo "$directory_path/$word"
+							curl -o "$directory_path/$word" "$line"
+                                			break
+                        			else
+                        				# process other extensions here
+							# directory_path="${directory_path#/}"
+							echo "$directory_path/${word}.html"
+							curl -o "$directory_path/${word}.html" "$line"
+                        				break
+						fi
+                			fi
+        			done
+                	else
+                	directory_path="$directory_path/$word"
+			fi
+		fi
+    	done
+
+	# process directory here
+        # directory_path="${directory_path#/}"	
+        echo "$directory_path/index.html"
+        curl -o "$directory_path/index.html" "$line"
+	
+	IFS=$OLDIFS
+done

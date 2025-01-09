@@ -1,0 +1,91 @@
+Data Mining 
+    - More about scaleability
+
+- Largest dataset in the world:
+    World Data Centre for Climate
+        Max Planck Institute and German Climate Computing Centre
+        - 220 TB on climate research
+        - 110 TB on simulation data
+
+![Byte Unit Table](image.png)
+
+
+Two main data mining tasks:
+    - Predictive tasks (predict future stuff)
+        - Classification
+        - Regression
+    - Descriptive tasks (find patterns)
+        - Association Discovery
+        - Clustering
+
+Predictive Data Mining (Supervised Machine Learning)
+- first a training set (collection of records)
+    - each record contains attributes
+    - one of the attributes is the class
+- learn a model
+- set a goal
+
+Nomenclature
+- traning set, testing set, validation set
+- traning instances = training examples
+- labeled instances
+- attributes = features = variables
+- class variable = target attribute
+- classification (target attribute is categorical)
+- regression (target attribute is numerical)
+
+Finding Associations (Descriptive data mining)
+- identifying items that are often bought together
+- you can look at either a basket of items and a customer profile, or a basket of "customer" with items (can flip it around)
+- used for recommender systems
+
+Words and Documents:
+- Baskets = sentences;
+- Items = words in those sentences
+    (Words that appear together frequently suggest linked concepts)
+
+    or
+
+- Baskets = sentences,
+- Items = documents containing those sentences
+    (items that appear togetehr too often could represent plagiarism)
+
+    Whenever you have a many-to-many relationship, it can be reversed
+
+
+Clustering
+- given a set of data points, find clusters such that
+    - data points in one cluster are more similar to one another
+    - data points in separate clusters are less similar to one another 
+        How do you measure similarity?
+            Euclidean Distane Based Clustering in 3-D space
+    Intracluster distances are minimized
+    Intercluster distances are maximized
+
+When you have a lot of data points with location attributes, you can map and cluster them to gain information—can we do this for homelessness?
+
+Document Clustering:
+- Find groups of documents that are similar to each other based on important words appearing in them
+    - each doccument can be represented by a vector of 50,000 numbers (0 || 1) and you can compare the similarity
+- Approach:
+    - Identify frequently occurring words in each document 
+    Form a similarity measure based on the word frequencies. Use it to cluster
+        COSINE SIMILARITY
+
+Course Outline:
+- Data Analytics
+- Visualization
+- Predictive data mining
+- Associatation Analysis
+- Clusterting
+- Web mining
+- Recommender Systems
+
+TOOLS
+- Python
+    - Numpy
+    - Matplotlib
+    - Seaborn
+    - Pandas - everything in SQL can be expressed in SQL but can do more
+    - Scikit-learn
+

@@ -1,0 +1,150 @@
+---
+title: "Homework Assignment 2"
+author: "Parker DeBruyne - V00837207"
+date: "09/02/2022"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+setwd("/Users/admin/Documents/School/STAT 123/homework/homework2")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Stat 123 Homework Assignment 2 Due Friday February 18th by 9:00pm
+Using R Markdown, please complete the following assignment. If an answer does not require any R code, you can type the answer to the question outside of a chunk. Make sure that your assignment is well labelled so that it is clear where each question’s answer begins. Your assignment should be submitted as a pdf (whether you knit directly to PDF, or knit to HTML or Word and then convert the file to a pdf).
+
+
+## 1. The built-in Titanic data set is a 4-dimensional array that contains the following information:
+• Dimension 1: Class of the passenger (1 = 1st, 2 = 2nd, 3 = 3rd, 4 = Crew member) • Dimension 2: Sex of the passenger (1 = male, 2 = female)
+• Dimension 3: Age of the passenger (1 = child, 2 = adult)
+• Dimension 4: Survival of the passenger (1 = died, 2 = survived)
+If you wanted to determine, for example, how many male, adult, crew members survived, you could type in Titanic[4,1,2,2] to get this value. If you wanted to create a table with how many 1st class passengers (of all genders and ages) died, you could type Titanic[1, , ,1].
+
+### (a) Create (and print out) a table which contains the adult passengers (of all classes and genders) who survived.
+
+```{r Q1a}
+Titanic_adult_survivors = as.table(Titanic[,,2,2])
+Titanic_adult_survivors
+```
+
+### (b) Create (and print out) a vector called survived which contains the adult passengers who survived. Hint: You may need to use rowSums() on your answer from part (a).
+
+```{r Q1b}
+survived = rowSums(Titanic_adult_survivors)
+print(survived)
+```
+
+### (c) Create a barplot displaying the survived vector. Make sure to include a main title and to label your x-axis. Also, make sure that each bar is a different colour.
+
+```{r Q1c}
+barplot(survived, main="Adult Survivors vs. Passenger Class", xlab="Passenger Class", col=rainbow(length(survived)))
+```
+
+### (d) What does the bar graph imply about the survival of adult passengers based on class?
+
+That most of the survivors were from either 1st class or Crew.
+
+### (e) Create (and print out) a vector called died which contains the adult passengers who did not survive.
+
+```{r Q1e}
+Titanic_adult_survivors = as.table(Titanic[,,2,1])
+died = rowSums(Titanic_adult_survivors)
+print(died)
+```
+
+### (f) Create (and print out) a vector called percent.Survived which contains the percentage of adult passengers who survived in each class.
+
+```{r Q1f}
+total = sum(survived)
+
+percent.Survived = round(((survived / total) * 100), 0)
+print(percent.Survived)
+
+percent.Survived.ch = paste(percent.Survived, "%", sep="")
+
+percent.Survived.ch = paste(names(percent.Survived), percent.Survived.ch)
+
+percent.Survived.ch
+```
+
+### (g) Create a pie chart that displays the percent.Survived data. Be sure to include a main title for your pie chart.
+
+```{r Q1g}
+pie(percent.Survived, main="Survivors By Class", labels=percent.Survived.ch, col=rainbow(length(percent.Survived)))
+```
+
+### (h) What does the pie chart imply about the survival of the adult passengers based on class? Does this imply something different than the bar graph did? If yes, why?
+
+It implies that 1st class passengers were most likely to survive. In the bar graph it looks like the Crew and 1st Class had equal survivors; this is because the total survivors from each were almost equal, but the total Crew passengers was greater than total 1st Class passengers, leading to better odds for the 1st class.
+
+## 2. The following question deals with the data set NHLData.csv which you will need to download from the assignment page.
+
+```{r Q2}
+NHLData = read.csv("NHLData.csv")
+```
+
+### (a) Create (but do not print) a vector called points containing the number of points for each player (the variable P in the data set).
+
+```{r Q2a}
+players = NHLData$Player
+points = NHLData$P
+names(points) = players
+```
+
+### (b) Create a histogram displaying the distribution of this variable. Be sure to have both a main title and a title on your x-axis. Also, make sure that the scale on the x axis goes to 30 and the scale on the y axis goes to 400.
+
+```{r Q2b}
+hist(points, main="Distribution of Points", xlab="Points Scored Per Player", xlim=c(0,30), ylim=c(0,400), col="blue", border="red")
+```
+
+### (c) Describe the shape of the distribution (symmetric, left-skewed, right-skewed).
+
+The shape of this distribution is left-skewed.
+
+### (d) What is an appropriate measure of the center of the distribution (mean or median), why?
+
+The appropriate measure of the distribution is the median. Using the median allows us to compare outliers to the rest of the data.
+
+### (e) Compute the appropriate center value and the corresponding measures of variability.
+
+```{r Q2e}
+med_str = paste("Median: ", as.character(median(points), sep=""))
+print(med_str)
+
+var_str = paste("Variance: ", as.character(round(var(points), digits=2), sep=""))
+print(var_str)
+
+sd_str = paste("Standard Deviation: ", as.character(round(sd(points), digits=2), sep=""))
+print(sd_str)
+
+rng_str = paste("Range: ", as.character(round(range(points), digits=2), sep=""))
+print(rng_str)
+
+IQR_str = paste("Inter Quartile Range: ", as.character(round(IQR(points), digits=2), sep=""))
+print(IQR_str)
+
+summary_str = paste("Summary: ")
+print(summary_str)
+print(summary(points))
+
+```
+
+## 3. (You may wish to do this question by hand) Consider the following sample of points from the NHL data set:
+
+![]("/Users/admin/Documents/School/STAT 123/homework/homework2/q3image.png")
+
+
+### (a) Create a stemplot of the distribution of the sample.
+   
+![](/Users/admin/Desktop/Screen Shot 2022-02-17 at 2.56.31 PM.png)
+
+### (b) Does the distribution resemble the one seen in question 2? Explain why there might be some differences.
+
+
+Yes, it does. There may be some differences however because this is only a sample of the population while the histogram includes all individuals.
+
+

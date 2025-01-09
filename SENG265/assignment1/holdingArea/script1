@@ -1,0 +1,31 @@
+#!/bin/bash
+# This script takes an input list of URLs (filename) as an argument,
+# splits each line into words using '/' to separate,
+# then iterates over the words.
+# returns a list of URLs with non-text files excluded
+
+i=0
+
+while read -r line; do
+ 	((i++))
+
+ 	OLDIFS=$IFS
+ 	IFS='/'
+	j=0
+	
+	directory_path=""
+
+	for word in $line; do
+		((j++))
+	
+		if [[ $word == *.jpg ||  $word == *.gif || $word == *.png || $word == *.img || $word == *.mp3 || $word == *.mp4 ]]; then
+			continue
+		fi
+		directory_path=$directory_path'/'$word
+	done
+	IFS=$OLDIFS
+	
+	directory_path="${directory_path#/}"
+	echo "$directory_path" >> "filtered_input.txt"
+	echo "$directory_path"
+done

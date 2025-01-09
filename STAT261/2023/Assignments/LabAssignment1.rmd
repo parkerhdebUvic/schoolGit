@@ -1,0 +1,71 @@
+---
+title: "Lab Assignment 1"
+author: "Fill in your Name"
+date: "Fill in the date"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Likelihood methods for the Poisson distribution
+
+* Put your name in the author section above.
+* Write R code in the R chunks provided to answer the questions posed.
+* Execute each chunk of code to ensure that your code works properly.
+* If you cannot compile all of your code without errors, comment out the chunks that are not working.
+* Save this .Rmd file to the (Windows) C: drive so that there are no knitting issues and then knit the entire document to pdf.
+* Copy your pdf and Rmd files to your personal directory (see the Lab 1 instructions if needed).
+* Upload the pdf file to the Lab Assignment 1 in BrightSpace. 
+
+## 1.  First generate 1 observation from the Poisson(lambda=5) distribution and print the value. [1 mark]
+
+
+```{r data}
+set.seed(12345)   #use this seed!
+
+
+```
+
+## 2.  Compute the Log-likelihood for a vector sequence of lambda values from 2 to 7 in steps of .05. 
+(Hint:  See help for the R function called *dpois*.)
+
+```{r LogLik}
+
+```
+
+
+## 3. Plot the Log-Likelihood function values from your answer in 2 versus lambda. Axes must be labelled and the plot must have a title. [4 marks]
+
+```{r plotLog}
+
+```
+
+
+## 4.  Generate n=10 observations from the same distribution and compute and display the sample mean of the 10 observations.  (This is the MLE of lambda.) [1 mark]
+(Hint:  See help for the R function called *mean*.)
+
+```{r mean10}
+set.seed(12345) #use this seed!
+
+```
+
+## 5.  Plot the log-likelihood function given the n=10 observations.  Axes must be labelled and the plot must have a title. [4 marks]
+
+```{r plotLog10}
+
+```
+
+## 6.  Generate n=100 observations from the same distribution and compute and display the sample mean of the 100 observations.  (This is the MLE of lambda.) [1 mark]
+
+
+```{r mean100}
+set.seed(12345) #use this seed!
+
+```
+
+## 7.  Plot the log-likelihood function given the n=100 observations.  Axes must be labelled and the plot must have a title. [4 marks]
+
+```{r plotLog100}
+
+```
+

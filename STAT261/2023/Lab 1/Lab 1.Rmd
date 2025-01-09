@@ -1,0 +1,42 @@
+---
+title: "Lab 1"
+author: "Parker DeBruyne - V00837207"
+date: '2023-05-10'
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$$\beta_{1} = \frac{\Sigma_{i=1}^n (x_{i} - \bar{x}) (y_{i} - \bar{y})}{\Sigma_{i=1}^n (x_{i} - \bar{x})^2}
+$$
+
+
+## Shortcuts:
+- Create new chunk: Cmd + Option + i
+
+1. Basics
+Addition: +
+Subtraction: - Multiplication: * Division: /
+Exponentiation: ^ Modulo: %% returns the remainder of the division
+<- assignment
+Data types: numerics, integers, logical, characters
+class()
+2. Vectors
+c()
+names()
+sum()
+vector selection []
+sequence operator :
+mean()
+Logical operators: <, >, <=, >=, ==, != Matrices
+matrix()
+rownames()
+colnames()
+rowSums(), colSums()
+cbind()
+rbind()

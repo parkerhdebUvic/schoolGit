@@ -1,0 +1,86 @@
+Midterm
+- everything up until Kruskal's Algorithm
+- There is a practice test!
+
+Shortest Paths
+- weight of a path is just the sum weight of the edges
+- d(v,u) is the length of the shortest path from v to u
+    - the total "cost"
+    - distance from v to u is the weight of the shortest path
+            - Can I use a shortest path algorithm to do course planning? Or maybe a different one
+- 
+
+Single Source Shortest Path
+- cannot allow negative weights in undirected graphs
+    - can in a digraph, but not if there's a cycle
+- Third algorithm can do anything though
+- If the graph has no weights, we can just do BFS!
+
+Algorithm
+DijkstraShortestPaths(𝐺,𝑣)
+Input: A simple undirected graph 𝐺 with nonnegative edge-weights, a distinguished vertex 𝑣 in 𝐺
+Output: A label 𝐷[𝑢] for each vertex 𝑢 in 𝐺 such that 𝐷[𝑢] is the shortest distance from 𝑣 to 𝑢 in 𝐺.
+
+Algorithm DijkstraShortestPaths(𝐺,𝑣)
+𝐷[𝑣] ← 0
+for each vertex 𝑢 ≠ 𝑣 of 𝐺 do
+    𝐷[𝑢] ← +∞
+Let 𝑄 be a priority queue containing all vertices of 𝐺 using 𝐷 as keys
+while 𝑄 is not empty do
+    𝑢 ← 𝑄.removeMin() //𝑢 is added to cloud
+    for each vertex 𝑧 ∈ 𝑄 adjacent to 𝑢 do
+        if 𝐷[𝑢] + 𝑤((𝑢, 𝑧)) < 𝐷[𝑧] then  // the only difference to Prims, is that we don't track D[u]
+        𝐷[𝑧] ← 𝐷[𝑢] + 𝑤((𝑢, 𝑧))     // // the only difference to Prims, is that we don't track D[u], Relaxation of the distance
+        update 𝑧’s key in 𝑄 to 𝐷[𝑧]
+return 𝐷
+
+Proof that the path is shortes from v to u
+
+- G with positive edge weights
+- starting vertex U
+- for all U in V, d(V,U) is the distance (shortest path) to U in G. D[U] is the weight of the path from V to U through verticies is cload C
+- For verticies in the cload D[u] = d(V,u) //goal
+
+- WTS: whenever U is pulled into clod C, D[u] stores the length of a shortest path form v(the starting vertex) to U
+- Defintion: for verticees U and V in G, we denote with d(v,U) the length of shortest path from V to U
+- Lemma: Any subpath of a shortest path, is also a shortest path
+- Using contradiction: 
+    - The weight of path P is 𝑤 𝑃 = 𝑤 𝑃0,𝑖 + 𝑤 𝑃𝑖,𝑗 +𝑤(𝑃𝑗,𝑘)
+    - Assume there exists a path from 𝑣𝑖 to 𝑣𝑗, 𝑃′𝑖,𝑗, not on path 𝑃 with weight
+    less than 𝑤 𝑃𝑖,𝑗 .
+    Replace 𝑃𝑖,𝑗 with 𝑃′𝑖,𝑗 in path 𝑃, resulting in new path 𝑃′. But, 𝑤 𝑃′
+    < 𝑤 𝑃 , a contradiction.
+
+- Theorem: Whenever 𝑢 is pulled into cloud 𝐶, 𝐷[𝑢]
+stores the length of a shortest path from 𝑣 to 𝑢
+Proof. 
+    Assume: claim is wrong. Then:
+    there exists a vertex 𝑡 that is pulled into cloud 𝐶 and 𝐷[𝑡]
+    > 𝑑(𝑣, 𝑡)
+    We define:
+    ○ 𝑢 the first such vertex (currently) pulled into 𝐶
+    ○ 𝑃 a shortest path in 𝐺 from source 𝑣 to vertex 𝑢
+    ○ 𝑦 the last vertex that lies on 𝑃 and is pulled “correctly” into 𝐶
+    ○ 𝑧 the vertex closest to 𝑦 that lies on 𝑃 and is not in 𝐶
+
+For contradiction, assume that there exists U in V, not in C, such that D[U] > d(V,U) and Dijkstra's Alg pulls U into cloud. Assuming U is the first such vertex.
+
+D[U] > d(V,U)
+Let P be the actual shortest path to U with distance d(v,u)
+Let Y in V be the last vertex in the cloud on path P
+and Z is the first outside the cloud on path P. (Path P is the actual shortest path).
+(induction hypothesis) The path from V to Y is the shortest. We know D[y] = d(v,y) 
+D[z] = D[y] + w(y,z) = d(v,y) + w(y,z) = d(v,z) because path from v to z is on P, the shortest path from V to U — by the lemma, this path this is the shortest path from v to z
+d(v,z) must be smaller than d(v,z) + d(z,u): d(v,z) <= d(v,z) + d(z,u), and d(v,z) + d(z,u) = d(v,u)
+Because the algorithm pulls off the top of the priority Queue, D[U] <= D[Z] 
+It can't be pulled in and also longer than a different path. Contradiction.
+
+
+
+
+
+
+
+Runtime for G(V,E) with |V| = n and |E| = m
+- O(mlogn)
+

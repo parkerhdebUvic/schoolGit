@@ -1,0 +1,124 @@
+---
+title: "DC Notes - Useful Functions"
+author: "Parker DeBruyne"
+date: "01/05/2022"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+knitr::opts_chunk$set(echo = TRUE)
+setwd("/Users/admin/Documents/School/STAT 123/Data Camp Notes")
+```
+
+n() #size of group
+
+str()
+is.*()
+as.*()
+identical()
+sort()
+
+unlist()
+
+rep() #repeat
+seq() #sequence
+diff() #Returns suitably lagged and iterated differences.
+
+append()
+rev() #reverse
+
+abs() #absolute value
+sum()
+mean()
+round()
+
+grep() #search string
+grepl() #logical search
+sub() #replace
+gsub() #replace all
+  meta: 
+    "x|y" #OR
+    "^" #start of string
+    "$" #end of string
+    ".*" #any character(s) before
+    "\\" #escape
+    [0-9]+ #match any numbers between, once
+    ([0-9]+) #match any and send within function
+                 \\1 #recieve
+
+Sys.Date() #today's date
+Sys.time() #current time
+
+unclass() #strips format, gives numeric
+as.Date("yyyy-mm-dd", format= "%inputmeta-%inputmeta-%inputmeta")
+    meta:
+      %Y #4-digit year
+      %y #2-digit-year
+      %m #2-digit month
+      %d #2-digit day
+      %A #weekday
+      %a #abbreviated weekday
+      %B #month
+      %b #abbreviated month
+format(x, format = "%meta-%meta-%meta") 
+    meta:
+      #see above meta
+as.POSIXct(x, format="%meta") #convert string to POSIXct object
+  meta:
+    %H #hours as a decimal number (00-23) 24hr
+    %I #hours as a decimal number (01-12) 12hr
+    %M #minutes as a decimal number
+    %S #seconds as a decimal number
+    %T #shorthand notation for %H:%M:%S
+    %p #AM/PM indicator
+    full list: ?strptime
+    default: %Y-%m-%d %H:%M:%S
+          
+
+```{r}   
+#Once something is a POSIXct object, R knows how to index it. Use format() to make a substring.
+
+          # Definition of character strings representing times
+str1 <- "May 23, '96 hours:23 minutes:01 seconds:45"
+str2 <- "2012-3-12 14:23:08"
+
+# Convert the strings to POSIXct objects: time1, time2
+time1 <- as.POSIXct(str1, format = "%B %d, '%y hours:%H minutes:%M seconds:%S")
+time2 <- as.POSIXct(str2, format = "%Y-%m-%d %T")
+
+# Convert times to formatted strings
+format(time1, format = "%M")
+
+format(time2, format="%I:%M %p")
+```
+
+
+#DATA MANIPULATION WITH DPLYR
+library(pillar)
+library(gapminder)
+
+glimpse() #shows a few values of all the columns
+%>%
+select( col, -col, col:col, , contains("string"), starts_with("string"), ends_with("string"), last_col(), , )    # ?select_helpers
+filter(bool, bool, bool)
+arrange(desc())
+mutate(new_col = expression)
+
+```{r}
+#Aggregate data: to take many observations and summarize them into one.
+```
+dplyr
+%>%
+  count(variable, wt = attribute, sort = T/F) #gives the number of observations by a variable. wt the n column will be weighted by a different variable instead of a numeric count. Sort from most common to least.
+
+summarize(new_var = function(var))
+arrange(desc(variable)) 
+group_by(var, var) #allows for subgroups
+ungroup()
+filter()
+top_n(n_observations, weight_variable) #returns the top value(s) of weight
+rename(new_col_name = old_col_name)

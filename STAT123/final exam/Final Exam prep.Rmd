@@ -1,0 +1,25 @@
+---
+title: "Final Exam prep"
+author: "Parker DeBruyne"
+date: "19/04/2022"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+setwd("/Users/admin/Documents/School/STAT 123/final exam")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+gm = read.csv("gapminder.csv")
+mk = read.csv("marketing.csv")
+```
+
+
+
+
+

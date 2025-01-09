@@ -1,0 +1,479 @@
+Addresses and Pointers 
+- related to memory access
+- All variables refer to data
+- all data resides in memory
+- every memory location has an address
+
+- everything has an address
+ 
+Pointers:
+- just a variable with a memory address inside it instead of an integer itself
+- can be used as a formal function parameter to receive the address of a variable
+- & - to obtain an address
+- * - to use an address
+
+When declaring a pointer variable
+- int *a;
+- double *f;
+
+When getting the address of a memory location:
+- double f = 30.0;
+- double *g = &f;
+- printf( "%lf %lf\n", f, *g );
+- so essentially, if you update the value of x, anyhting that points to x will now have that value
+
+Pointer arrays
+- char *st[10]
+
+void swap(int *a, int *b) {
+int temp = *a;
+*a = *b;
+*b = temp;
+}
+
+/* ... some code here ... */
+void blarg() {
+int x = 2;
+int y = 1;
+swap(&x, &y);
+printf("x = %d, y = %d\n", x, y);
+}
+
+Example word-count method:
+___________________________
+#include <ctype.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define MAX_LINE_LEN 256
+int main (int argc, char **argv) {
+FILE *infile;
+char line[MAX_LINE_LEN];
+int num_chars = 0;
+int num_lines = 0;
+int num_words = 0;
+char *c;
+if (argc < 2) {
+fprintf(stderr, "usage: %s filename\n", argv[0]);
+exit(1);
+}
+infile = fopen(argv[1], "r");
+if (infile == NULL) {
+fprintf(stderr, "%s: cannot open %s", argv[0], argv[1]);
+exit(1);
+}
+
+while (fgets(line, MAX_LINE_LEN-1, infile) != NULL) {
+num_lines += 1;
+num_chars += strlen(line);
+if (strncmp(line, "", MAX_LINE_LEN) != 0) {
+num_words++;
+}
+for ( c = line; *c; c++ ) {
+/* Not quite good enough!! */
+if (isspace(*c)) {
+num_words++;
+}
+}
+}
+fclose(infile);
+printf ("%s: %d %d %d\n", argv[1],
+num_lines, num_words, num_chars);
+return 0; /* return the success code */
+_________________
+
+- general purpose language
+    - network protocol
+    - database management system
+    - compiler for another language
+- ubiquitous: where you find UNIX, you usually find C
+- popular for embedded systems as it has a small footprint
+- good for porting programs
+- no native array accesss bound checking!
+- no native null-pointer checks (library for this)
+- no native checks on uninitialized variables
+
+- write a c file in terminal by:
+    $ cat > hello.c
+    - control+D to exit
+- compile with
+    $ gcc -c hello.c
+- produce an executeable
+    $ gcc hello.o -o hello
+    $ gcc hello.o -o hello -lm # Version which links in math libraries
+- or (shorter)
+    $ gcc -g -std=c11 -Wall hello.c -o hello
+- run the executeable
+    $ ./hello
+
+Basic rules
+- all C programs must have at most one main()
+- keywords are always lowercase
+- statements must be terminated with a semicolon
+- /* ... */ - comments
+- hello.c - for compiling
+- hello.o - object file
+
+Formatting style
+- any amount of white space is considered a single space - use tabs and spaces liberally
+- white space improves readability
+- declarations must appear at the beginning of a scope
+- snake_case_variable_names instead of camelCaseVariableNames
+
+C data types
+- char, int, float, double
+- struct - (for heterogeneous aggregate tyeps)
+- {arrays} - (for homogenous aggregate types)
+- enum - assign names to integral constants
+- union - (tricky to use, but nice when needed)
+
+Storage
+- static
+- extern
+- auto (assumed as default)
+- register
+
+Qualifier
+- const
+- volitile
+
+Literals: examples
+- char c = 65; /* Same as 'A' */
+- float x = 3.14159f;
+- double x = 1.25, y = 2.5E10, z = -2.5e-10;
+- long double x = 3.5e3L;
+- int a = 10;
+- int b = 0x1CE;
+- int c = 0777;
+- unsigned int x = 0xfffU;
+- long int y = 2L;
+
+Coding Example
+- reference a variable inside a print statement string
+    - printf("message s is: '%s'\n", s);
+
+Intro to C continued
+- user defined types: structures (struct)
+    - type synonyms (typedef)
+    - (briefly) enumerations (enum)
+- Simple I/O
+
+C Arrays
+- same elements
+- static or dynamic allocation
+    - static cannot grow at runtime
+    - Dynamic can
+- may be multidimensional; X[row][column]
+- 0 t0 n-1 size
+- C provides no array bounds checking!
+- <storage class> <type> <identifier>[<size>]
+    - eg: double vector[3]
+- size must be known at compile time
+
+Control Flow
+- Five basic flow control statements
+    - it-then, if-then-else
+    - switch
+    - while
+    - do-while
+    - for
+- other control flow constructs
+    - goto
+    - continue, break
+    - setjmp, longjmp
+
+Control Flow: true & false?
+- No boolean type!
+- relational operators: >, <, >=, <=
+- equality operators: ==, !=
+- logical operators: &&, ||, !
+- 0 is false, otherwise is true
+
+Switch cases:
+switch(toupper(ch)) {
+    case 'A':
+    case 'E':
+    case 'I':
+    case 'O':
+    case 'U':
+    res = TRUE;
+        break;
+    default:
+        res = FALSE;
+}
+
+While loops:
+while (...) {
+    S;
+}
+
+do {
+    S;
+} while (...)
+
+for (;;) {
+    S;
+}
+
+while (1) {
+    S;
+}
+
+FUNCTION SYNTAX:
+[<storage class>] <return type> name (<parameters>) {
+    <statements>
+}
+
+Use void if no return or parameter value
+    void f(void);
+
+Parameter passing: Call-by-value semantics
+- copies actual parameters into formal parameters
+- eg:
+    - void some_other_function() {
+        double g = 4.0;
+        int h = power2(g);
+        printf( "%f" %d \n", g, h );
+    }
+
+Addresses and Pointers
+- all variable refer to data, all data resides in memory
+- every memory location has an address
+
+POINTERS
+Pointer variables
+- Holds the address of a memory location
+    - that is storing a value of some data type
+- Often is an address within aggregated data type (array)
+- TO OBTAIN AN ADDRESS: use the & symbol (referencing)
+- TO USE AN ADDRESS: use the * symbol (dereferencing)
+- eg:
+    - int *a; variable holding address to an 'int'
+    - double *f; variable holding address to a 'double'
+
+Notation (expression)
+- &x - gets the memory address of variable X
+- *y - read the address y, go to that address, and get the data
+- char *st[10]; "st is a variable that holds ten addresses to char"
+
+- why do we need pointers?
+    - if we want to values to be modified inside the call function
+    - passing a large structure as an argument
+- functions can only return a single value 
+    - what if we need multiple vales to change?
+
+Invalid pointers
+- C does not check the valididity of a pointer!
+    - it is your responsibility to ensure pointers contain valid memory addresses
+    - avoid dereferencing when you're not sure "where it's been"
+char buffer[100];
+char *cursor;
+cursor = &buffer[0]; /* these two lines ... */
+cursor = buffer; /* ... have the same effect, */
+
+Strings are character arrays
+- the start of a string is an address to a char
+- end of a string indicated with a null character '\0'
+    - must have enough room for the char array plus 1 for the ending character
+    - ALWAYS CHECK YOUR CHAR ARRAY SIZE
+
+char words[20];
+char *pw;
+/* ... */
+strncpy(words, "the quick brown fox", 20);
+pw = &words[0]; /* That's the same as writing "pw = words;". */
+pw += 4;
+printf ("%s\n%s\n", words, pw); /* char 0 of words */
+printf ("%x\n%x\n", words, pw); /* char 4 of words */
+
+use "strncat" to append a string to an already existing string
+- good for adding spaces in between words
+    - strncat(words, " ", 2);
+
+- use strncpy to copy a string into a char array
+    - char words[20];
+    - strncpy(words, "the quick brown fox", 20);
+
+Always be aware of array-ness:
+- have enough room in the char array + 1
+
+Strings:
+- char *cp = buffer, or cp = &buffer[0]
+- cp + n, &buffer[n]
+- *(cp + n), buffer[n]
+- cp++, cp = cp + 1
+- *cp++, *cp, cp++
+
+C string functions
+- strncpy(char *dest, const char *src, int length):
+    - copies the contents of string src to array pointed to by dest.src and dest should not overlap
+    - DON'T USE strcpy()
+- strncmp(const char *s1, const char *s2, int length):
+    - compares the two strings s1 and s2, returning a negative, zero, or positive integer if s1 is lexicographically <,==,> s2
+- strlen(const char *s):
+    - compute the length of string s (not counting the terminal null character ('\0'))
+
+TOKENIZATION
+/*
+* Compile-time constants
+*/
+#define MAX_WORD_LEN 20
+#define MAX_WORDS 100
+#define MAX_LINE_LEN 100
+#define MAX_LINES 10
+/*
+* Global variables
+*/
+int num_words = 0;
+int num_lines = 0;
+char lines[MAX_LINES][MAX_LINE_LEN];
+char words[MAX_WORDS][MAX_WORD_LEN];
+
+void dump_words (void);
+void togenize_line (char *);
+
+void dump_words ()
+{
+int i = 0;
+for (i=0; i<num_words; i++) {
+printf("%5d : %s\n", i, words[i]);
+}
+
+return;
+}
+
+int main(int argc, char *argv[])
+{
+int i;
+if (argc == 1) {
+exit(0);
+}
+for (i=0; i < argc-1; i++) {
+strncpy(lines[i], argv[i+1], MAX_LINE_LEN);
+tokenize_line (lines[i]);
+}
+dump_words();
+printf("first line: \"%s\"\n", lines[0]);
+exit(0);
+}
+
+int main(int argc, char *argv[])
+{
+int i;
+if (argc == 1) {
+exit(0);
+}
+for (i=0; i < argc-1; i++) {
+strncpy(lines[i], argv[i+1], MAX_LINE_LEN);
+tokenize_line (lines[i]);
+}
+dump_words();
+printf("first line: \"%s\"\n", lines[0]);
+exit(0);
+}
+
+FILE INPUT AND OUTPUT
+- fopen() - opens a file, returns a pointer to info about the file being opened
+    - FILE *data = fopen("input.txt", "r");
+- streams FILE *stdin, FILE *stdout, and FILE *stderr are automaticall generated when a program starts
+
+FILE I/O
+- open modes (text)
+    - "r" for reading, "w" for writing, "a" for appending
+- open modes (binary)
+    - "rb" for reading, "wb" for writing, "ab" for appending
+- fclose() function used to close a file and flush any associated buffers
+- fgetc() read a single character from an open file 
+- fputc() output a single character to the open file
+
+I/O FUNCTIONS
+- FILE *fopen(char *filename, char *mode)
+    - open file corresponding to filename
+- char *fgets(char *buf, int n, FILE *stream)
+    - read at most n-1 characters from stream copy location to buf; input terminates when newline encountered or n-1 characters input. Appends a null character to end of buffer.
+    - returns NULL if error or end-of-file encountered
+    - set stream to stdin to accept input from standard input
+- int scanf( char *format, [...] )
+    - read formatted data from standard input
+    - returns E0F when end-of-file encountered, otherwise returns the number of fields successfully converted
+    - fprmat specifiers encoded in format (variable # of arguments)
+- int printf( char *format, [...])
+    - print formatted output to standard output
+    - format specifiers encoded in string format
+    - takes variable number of arguments
+        - printf("My name is %s\n", name); /* char array */
+        - printf("My name is %s and my age is %d\n", name, age); /* name is a char array, age is an int */
+        - printf("The temperature today is %f\n", temp_celsius); /* temp_celsius is a float */
+        - printf("%d/%d/%d", year, month, day); /* year, month and day are ints; there is no newline */
+
+I/O FUNCTIONS
+- fprintf( FILE *stream, char *format, [...])
+    - like printf, but output goes to (already opened stream)
+- fputc( int c, FILE *stream)
+    - outputs single character to alreadu opened stream
+    - int fclose(FILE *stream)
+        - closes the stream (flushes all OS buffers)
+        - returns 0 if file closed successfully
+
+STRUCTURES
+- new data types
+- eg:
+    struc day_of_year {
+        int month;
+        int day;
+        int year;
+        float rating;
+    }
+    - no methods or functions can be associated with such a datatype
+- construction:
+    - struct { int x; int y } id;
+- use member operator (".") reads "Get the value of member y from structure x"
+    struct day_of_year today;
+    today.day = 45;
+    today.month = 10;
+    today.year = 2014;
+    today.rating = -1.0;
+- arrays of struct can be defined
+    - struct day_of_year calendar[365];
+        - calendar[180].day = 27;
+        - calendar[180].moth = 9;
+        - etc..
+
+Type definitions (typedef)
+- creating your own name for data types
+    - typedef datatype synonym;
+- eg:
+    - typedef unsigned long int ulong;
+    typedef unsigned char byte;
+
+
+FUNCTION prototypes (signatures)
+- [storage class] [return type] [name] [parameters] { [definition] };
+    - prototypes are just the signature without the body
+
+Function pointers
+- foo = (*fp)(x,y)
+    - call is performed to whatever function is stored at the address in variable "fp"
+    - functions are not variables, but we can assign the address of functions to pointers, pass them to functions, return them from functions, etc
+    - a function name used as a reference without an argument is just the function's address
+
+MACRO PROCESSING
+- redifining text strings
+    #define BUFSIZE 512
+    #define min(x,y)
+
+#include DIRECTIVE
+- #include <stdio.h>
+- #include <sys/file.h>
+- #include "bitstring.h"
+- standard headers:
+    #include <studio.h>
+    #include <math.h>
+    #include <string.h>
+    #include <ctype.h>
+        - can use conditional inclusions 
+        #if 1
+        ...
+        #else
+        ...
+        #endif

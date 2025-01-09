@@ -1,0 +1,58 @@
+---
+title: "Lab Assignment 3"
+author: "Fill in your Name"
+date: "March 15, 2024"
+output:
+  pdf_document: default
+---
+
+## General Instructions
+
+* Put your name in the author section above.
+* Write R code in the R chunks provided to answer the questions posed.
+* Execute each chunk of code to ensure that your code works properly.
+* Sometimes one of your chunks of code will not compile properly, but you must hand your document in.  In that case, 'Comment' out the R code that is not working properly using # as the first character in your lines of code.
+* Save the Rmd file.
+* Knit the Rmd file to pdf.
+* Upload the pdf file to the **Lab Assignment 3 activity** on Brightspace.   
+* **If your file will not knit to pdf, then knit to Word and save the Word document as a pdf.**
+
+
+##   Independent Binomials [10 marks]
+
+Four hundred patients took part in a study to compare the effectiveness of three similar
+drugs versus a placebo.
+Each drug was given to 100 patients, and the remaining 100 patients received
+a placebo.  It was then observed whether or not there was improvement in the 
+condition of each patient.  The results were as follows:
+
+```{r results='asis', echo=FALSE}
+Improve <- matrix(c(24, 76, 100, 19, 81,100,  29, 71, 100, 
+                    10, 90, 100, 82, 318, 400), nrow=3)
+colnames(Improve) <- c("Drug A", "Drug B", "Drug C", "Placebo", "Total")
+rownames(Improve) <- c("Improvement", "No Improvement", "Total")
+knitr::kable(Improve)
+```
+
+Test the null hypothesis that the probability of improvement is the same in all four groups.
+
+* [2 marks] Display/print the estimated probability of improvement under the null hypothesis.
+* [2 marks] Display/print the observed value of the Likelihood ratio statistic  (dobs).
+* [2 marks] Display/print the degrees of freedom (k-q) for the chi-square p-value evaluation.
+* [2 marks] Display/print the p-value for the test.
+* [2 marks] Write a sentence with your conclusion.
+
+Note:  The BASIC model has 4 independent Binomials(n=100, p_i), i=1,2,3,4.
+
+```{r IndependentBinomials}
+y<-c(24, 19, 29, 10)
+n<-rep(100, 4)
+
+
+```
+
+
+
+
+
+

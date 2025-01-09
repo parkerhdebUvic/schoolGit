@@ -1,0 +1,54 @@
+---
+title: "lab5"
+author: "Parker DeBruyne"
+date: "2023-10-17"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r cars}
+# install.packages(c("tidyverse","rio","here"))
+# 
+# library(tidyverse) # for data wrangling and visualization
+# library(rio) # for input/output files
+# library(here) # file pathing in project root folder.
+
+# install.packages("pacman")
+
+
+
+sqrt(64)  # square root of 64
+
+sqrt_64 = 8 # create an object
+
+today = Sys.Date() # assign today's date to a value
+
+# yesterday's date
+yesterday = today-1
+
+# yesterday's date #2
+yesterday2 = Sys.Date() - 1
+
+if (!require("pacman")) {
+  install.packages("pacman")
+}
+
+
+pacman::p_load(
+  tidyverse, # data mangement and visualizaiton
+  rio, # importing data
+  here # relative file pathways
+)
+
+path <- paste0(here(), "/HINF381B/lab5/Canada CCHS data.csv")
+
+linelist <- import(path)
+head(linelist, n=2)
+
+```
+

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Check if a URL is provided as an argument
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <URL>"
+    exit 1
+fi
+
+# Function to extract and normalize subpage links from an HTML page
+extract_and_normalize_links() {
+    local url="$1"
+    wget -q -O - "$url" | grep -o 'href=["'\''][^"\'']*' | sed -e 's/href=["'\'']//' | while read -r link; do
+        # If the link is not empty, print it
+        if [ -n "$link" ]; then
+            echo "$link"
+        fi
+    done
+}
+
+# Main script
+start_url="$1"
+output_file="extracted_links.txt"
+
+# Extract links from the start URL and normalize them
+extract_and_normalize_links "$start_url" > "$output_file"
+
+# Print a completion message
+echo "Links extracted and saved to $output_file"
+

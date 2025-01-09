@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--  Something is missing above this line, and it is not just the optional XML Definition! -->
+    <catalogue>
+        <author name="Gambardella, Matthew">
+            <book id="bk101" format="print">
+                <title>XML Developer&apos;s Guide</title>
+                <genre>Computer</genre>
+                <subgenre>XML</subgenre>
+                <price note="SRP">44.95</price>
+                <publish_date>2000-10-01</publish_date>
+                <description>An in-depth look at creating applications with XML. </description>
+            </book>
+        </author>
+        <author name="O'Brien, Tim"> <!-- There is not an error on this line. Why? -->
+            <book id="bk110" format="print">
+                <title>Microsoft .NET: The Programming Bible</title>
+                <genre>Computer</genre>
+                <subgenre>.NET</subgenre>
+                <price note="SRP">36.95</price>
+                <publish_date>2000-12-09</publish_date>
+                <description>Microsoft&apos;s .NET initiative is explored in detail in this deep programmer&apos;s reference. </description>
+            </book>
+            <book id="bk121" format="print">
+                <title>MSXML3: A Comprehensive Guide</title>
+                <genre>Computer</genre>
+                <subgenre>XML</subgenre>
+                <price note="EXT-AM">36.95</price>
+                <publish_date>2000-12-01</publish_date>
+                <description>The Microsoft MSXML3 parser is covered in detail, with attention to XML DOM interfaces, XSLT processing, SAX and more. </description>
+            </book>
+        </author>
+        <author name="Galos, Mike">
+            <book id="bk137" format="print">
+            <title>Visual Studio 7: A Comprehensive Guide</title>
+            <genre>Computer</genre>
+            <subgenre>Visual Studio</subgenre>
+            <price note="SRP">49.95</price>
+            <publish_date>2001-04-16</publish_date>
+            <description>Microsoft Visual Studio 7 is explored in depth, looking at how Visual Basic, Visual C++, C#, &amp; ASP+ are integrated into a comprehensive development environment. </description>
+            </book>
+        </author>
+    </catalogue>

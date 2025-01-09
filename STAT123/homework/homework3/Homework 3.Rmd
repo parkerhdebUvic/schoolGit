@@ -1,0 +1,238 @@
+---
+title: "STAT 123 - Homework 3"
+author: "Parker DeBruyne - V00837207"
+date: "09/03/2022"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+setwd("/Users/admin/Documents/School/STAT 123/homework/homework3")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Download and save the homework3Data.csv dataset and read it into R. This data set contains 6 numerical variables A, B, C, X, Y, Z.
+
+```{r 1}
+hw3Data = read.csv("homework3Data.csv")
+head(hw3Data, 3)
+```
+
+## (a) If you use the function hist() to plot a histogram followed by the function abline(v=3,col=‘red’), this will add a red vertical line at x = 3.
+Using these functions:
+
+• plot a histogram for each of the variables.
+
+• add vertical lines for the sample mean and the sample median of those variables.
+Make the sample mean lines red and the sample median lines blue.
+
+• add a green density curve to each plot.
+
+• make sure your histogram has a main title.
+
+```{r 1a, figures-side, fig.show="hold", out.width="33.33%"}
+
+hw3Data_names = colnames(hw3Data)
+
+for(i in 2:length(hw3Data_names)){
+hist(hw3Data[[i]],
+     main = paste("Histogram of ",
+                  hw3Data_names[i]),
+     prob=TRUE,
+     xlab = hw3Data_names[i])
+abline(v=mean(hw3Data[[i]]),col='red')
+abline(v=median(hw3Data[[i]]),col='blue')
+lines(density(hw3Data[[i]]),col='green')
+}
+
+```
+
+## (b) One of the variables is normally distributed. Determine which variable it is and justify why you think it is that variable.
+
+Ans: Variable C is normally distributed because the mean and the median are approximately equal and overlap.
+
+## (c) For the normally distributed variable you identified in part (b), use the 68 − 95 − 99.7 rule to determine the intervals such that approximately 68% of the data, 95% of the data, and 99.7% of the data lie within those intervals.
+
+```{r 1c}
+sigma_C = sd(hw3Data[["C"]])
+mean_C = mean(hw3Data[["C"]])
+
+C_68 = round((mean_C + sigma_C), 2)
+print(paste("68th percentile =", C_68))
+
+C_95 = round((mean_C + 2*sigma_C), 2)
+print(paste("95th percentile =", C_95))
+
+C_99.7 = round((mean_C + 3*sigma_C), 2)
+print(paste("99.7th percentile =", C_99.7))
+
+```
+
+## (d) Use the quantile() function to approximate those same intervals. Are the intervals the same?
+
+```{r 1d}
+quantile(hw3Data[["C"]], 0.68)
+quantile(hw3Data[["C"]], 0.95)
+quantile(hw3Data[["C"]], 0.997)
+```
+
+## (e) Use the qnorm() function (with the sample mean and sample standard deviation) to approximate those same intervals. Are these intervals the same as the intervals in either part (c) or part (d)?
+
+```{r 1e}
+round(qnorm(c(0.68,0.95,0.997), mean= mean_C, sd=sigma_C), 2)
+```
+
+Ans: They're very close, but not exactly the same!
+
+## (f) Suppose you wish to estimate the population mean for the normally distributed variable you identified in part (b). Compute the following:
+
+• an estimate of the population mean.
+
+• the estimated standard error of the statistic.
+
+• the critical value for an 88% confidence interval.
+
+• a 88% confidence interval for the population mean.
+
+```{r 1f}
+
+n = length(hw3Data)
+
+#Estimate the population mean
+boot_sample = numeric()
+for(i in 1:10000){
+  temp_samp = sample(hw3Data[["C"]], n, replace=TRUE)
+  temp_mean = mean(temp_samp)
+  boot_sample[i] = temp_mean
+}
+
+boot_mean = mean(boot_sample)
+print(paste("Bootstrapped population mean =", round(boot_mean, 2)))
+
+#Estimate the standard error
+std_err = sd(hw3Data[["C"]])/sqrt(n)
+print(paste("Standard error of C =", round(std_err,2)))
+
+#Estimate the critical value for an 88% confidence interval.
+diff_88 = (100-88)/2
+interval_88 = c(diff_88, 100-diff_88)
+
+crit_val_88 = qnorm(interval_88/100, mean=0, sd=1)
+print(paste("Critical Value estimate for an 88% confidence interval =", round(crit_val_88[2], 2)))
+
+#Estimate a 88% confidence interval for the population mean.
+
+confidence_int_88 = c(boot_mean - crit_val_88[2]*std_err, boot_mean + crit_val_88[2]*std_err)
+
+print(paste("Confidence interval for 88% = (",
+            round(confidence_int_88[1], 2), 
+            ",", 
+            round(confidence_int_88[2], 2), 
+            ")"))
+
+
+
+
+```
+
+# 2. For this question, you will need to install the package ‘dplyr’ into R by typing in the command install.packages(‘dplyr’). Then you need to load dplyr into R by typing in the command library(dplyr). We will be using the starwars data set that is built into the dplyr package.
+
+```{r 2}
+library(dplyr)
+```
+
+## (a) Create a vector called names which contains the names of starwars characters that are included in the data set.
+
+```{r 2a}
+names = starwars$name
+```
+
+## (b) The function nchar() determines the number of characters in a string. How many characters are in the 5th, 20th, and 34th elements of the names vector?
+
+```{r 2b}
+print(paste("Number of characters in the 5th element = ",nchar(names[5])))
+print(paste("Number of characters in the 20th element = ",nchar(names[20])))
+print(paste("Number of characters in the 34th element = ",nchar(names[34])))
+```
+
+## (c) Create an empty numeric vector called num_char. Write a loop which calculates the number of characters in each element of the names vector, and puts the corresponding number in the num char vector.
+
+```{r 2c}
+num_char = numeric()
+for(i in 1:length(names)){
+  num_char[i] = nchar(names[i])
+}
+
+num_char
+
+```
+
+## (d) Now do the same thing that you did in part (c) using the lapply() or sapply() function in R. Be careful that your output is a vector.
+
+```{r 2d}
+
+num_char_sapply = sapply(names, nchar)
+num_char_sapply
+```
+
+# 3. Consider again the homework3Data.csv dataset and the variable X.
+
+## (a) Write a bootstrap computing the median on 10, 000 samples (with replacement) of size 600 of the variable X.
+
+```{r 3a}
+n = length(hw3Data[["X"]])
+
+boot_sample = numeric()
+for(i in 1:10000){
+  temp_samp = sample(hw3Data[["X"]], 600, replace=TRUE)
+  temp_median = median(temp_samp)
+  boot_sample[i] = temp_median
+}
+
+boot_median = mean(boot_sample)
+
+```
+
+## (b) Plot the resulting sampling distribution for the median of X.
+
+```{r 3b}
+hist(boot_sample, 
+     main="Distribution of Bootstrapped Median for X",
+     xlab="Median of X",
+     prob=TRUE)
+abline(v=mean(boot_sample),col='red')
+abline(v=median(boot_sample),col='blue')
+lines(density(boot_sample),col='green')
+```
+
+## (c) Determine an estimate for the median of X.
+
+```{r 3c}
+boot_median = mean(boot_sample)
+print(paste("Estimated median for the population of X =", round(boot_median, 2)))
+```
+
+## (d) Compute a 95% confidence interval for the median of X.
+
+```{r 3d}
+#Estimate the standard error
+std_err = sd(boot_sample)/sqrt(n)
+
+#Estimate the critical value for an 95% confidence interval.
+diff_95 = (100-95)/2
+interval_95 = c(diff_95, 100-diff_95)
+crit_val_95 = qnorm(interval_95/100, mean=0, sd=1)
+
+#Estimate a 95% confidence interval for the population median.
+confidence_int_95 = c(boot_median - crit_val_88[2]*std_err, boot_median + crit_val_88[2]*std_err)
+
+print(paste("Confidence interval for 95% = (",
+            round(confidence_int_95[1], 2), 
+            ",", 
+            round(confidence_int_95[2], 2), 
+            ")"))
+
+```
