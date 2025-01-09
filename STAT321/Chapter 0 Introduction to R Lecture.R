@@ -143,3 +143,8 @@ guess_parser("16:10")
 guess_parser(c("TRUE", "FALSE"))
 guess_parser(c("a", "b", "c"))
 guess_parser(c("12,352,561"))
+
+install.packages("tidyverse")
+install.packages("palmerpenguins")
+library(tidyverse)
+library(palmerpenguins)
