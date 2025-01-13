@@ -1,0 +1,3 @@
+[submodule "SENG321/course"]
+	path = SENG321/course
+	url = https://github.com/Uvic-SENG321Spring2025/course.git
