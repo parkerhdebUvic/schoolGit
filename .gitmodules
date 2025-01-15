@@ -1,3 +1,9 @@
 [submodule "SENG321/course"]
 	path = SENG321/course
 	url = https://github.com/Uvic-SENG321Spring2025/course.git
+[submodule "SENG321/path/to/submodule"]
+	path = SENG321/path/to/submodule
+	url = git@github.com:Uvic-SENG321Spring2025/team5_client.git
+[submodule "SENG321/team5_client"]
+	path = SENG321/team5_client
+	url = git@github.com:Uvic-SENG321Spring2025/team5_client.git
