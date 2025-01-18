@@ -25,3 +25,203 @@ You can add options to executable code like this
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+
+```
+
+Due Sun. January 26, 2025, by
+11:59pm.
+• Submit your solutions through Crowdmark.
+• Unless stated otherwise within a problem, you must show your work in your
+solutions. I.e.,an answer alone is insufficient for full marks-- sufficient justification
+or explanation is always needed.
+• For each problem, your solution is graded based on:
+-- Your ability to communicate it (Is your work clear and concise? Is there
+sufficient justification?)
+-- Your demonstrated understanding of the problem (Have you answered the
+question?)
+-- The validity of your logic (is your solution, i.e. both answer and reasoning,
+correct?)
+• Cite any outside source you use or consult in your solutions.
+• Write the names of your collaborators for each problem, if applicable. Do not write your solutions in the presence of other people-- refer to the Course
+syllabus for more details (\"Working Together\" subsection).
+
+## Description:
+You have been hired as a data analyst for a bank. The bank provided you with a dataset containing
+customer information to analyze trends in customer behavior. The dataset \"Bank_data.csv\" has
+the following columns:
+• age: Age of the customer
+• job: Customer\'s job category
+• marital: Marital status
+• education: Education level
+• balance: Customer's account balance
+• housing: Whether the customer has a housing loan (yes or no)
+• loan: Whether the customer has a personal loan (yes or no)
+• contact: Preferred contact method
+• starting_month: Month when the customer started their account
+• duration: Duration of last contact in seconds
+
+However, upon inspection, you notice several issues in the dataset:
+1. The age column has missing values for 10% of the customers.
+2. The job column contains inconsistent labels like bluecollar, blue collar or blueCollar.
+3. The balance column contains extreme outliers, with some customers showing balances
+above \$10,000.
+4. Duplicate rows exist for some customers, likely due to repeated data entry.
+
+## Questions:
+
+1. (1 point) Load the Bank_data.csv file into R as a tibble.
+• Hint: Use the readr package.
+• Assign the tibble to the variable \"Bank_data\".
+
+```{r}
+#| echo: false
+
+# Checking working directory
+getwd()
+list.files()
+
+# Installing necessary packages
+dynamic_install <- function(pk){
+  res <- require(pk, character.only = TRUE)
+  if (!res){
+    install.packages(pk)
+    require(pk, character.only = TRUE)
+  }
+}
+
+dynamic_install("readr")
+dynamic_install("readxl")
+dynamic_install("writexl")
+dynamic_install("tidyverse")
+dynamic_install("dplyr")
+dynamic_install("lubridate")
+dynamic_install("stringr")
+dynamic_install("tibble")
+dynamic_install("tidyr")
+dynamic_install("magrittr")
+```
+
+2. (2 points) View the first 10 rows of the dataset and print the structure of the data.
+3. (4 points) Identify and remove duplicate rows (if any). Print the number of rows before
+and after removing duplicates.
+4. (6 points) Handle missing values:
+a. Replace missing values in the age column with the median age.
+b. Replace missing values in balance with 0.
+c. Save the dataset as \"cleaned_bank\"
+d. Print the first 6 rows of \"cleaned_bank\" dataset.
+Use the \"cleaned_bank\" dataset for the questions (5 - 9):
+5. (2 points) Standardize the job column to ensure consistency (e.g convert all blue collar jobs
+to \"blue-collar\").
+6. (3 points) Fix inconsistencies in the starting month column by ensuring all month\'s names
+start with capital letter (e.g., "Jan", "Feb") and print the first 6 rows of the
+"starting_month" column.
+7. (4 points) Filter the dataset to include only customers aged 30-50 with a balance greater
+than 3000.
+8. (3 points) Add a new column \"loan_status\" that combines the \"housing\" and \"loan\"
+columns into a single string (e.g., "yes-yes", "no-yes"). Then print the first 6 rows of the
+dataset.
+9. (3 points) Create a summary table showing the average \"balance\" for each \"marital\" and
+\"education\" category. What is the advantage of creating this summary table?
+10. (4 points) What is the difference between outliers and missing values? How would you
+address outliers in the context of this \"Bank_data\" dataset? Hint: Explain with the variable
+having outliers.
+11. (4 points) What are the limitations of using drop_na() for handling missing values? Provide
+a scenario where this function might not be appropriate.
+12. (4 points) How does piping (%\>%) help simplify code that involves nested functions?
+Explain with an example of providing first 6 rows of this \"Bank_data\" dataset, for balance
+more than 3000 and age less than 40.
+
+## Personal Notes
+
+### To-Do
+
+-   Cite the course textbook
+
+    -   <https://bright.uvic.ca/d2l/le/content/367987/viewContent/3187843/View>
+
+-   
+
+### Data Cleaning:
+
+1.  **Handle Missing Values**
+    1.  Removing rows or columns with missing data.
+    2.  Imputing missing values by filling them with mean, median, mode, or a specific value.
+2.  **Removing Duplicates**
+3.  **Fixing Data Inconsistencies**
+    1.  Format, spelling errors, or different categorizations
+4.  **Correcting Outliers**
+    1.  Capping Outliers: Replace extreme values with upper and lower thresholds.
+
+        Thresholds are typically determined using IQR Method, where values below 𝑄1 − 1.5 ∗
+
+        𝐼𝑄𝑅 or above 𝑄3 + 𝐼𝑄𝑅 ∗ 𝐼𝑄𝑅 are capped.
+
+    2.  Removing Outliers: Exclude rows with outliers based on predefined criteria (IQR).
+
+        This method is commonly used when outliers result from data entry errors or irrelevant
+
+        observations.
+
+    3.  Transforming Data: Apply mathematical transformations (e.g., log, square root) to
+
+        reduce the influence of outliers. It is also useful for skewed data where extreme values
+
+        are valid observations.
+
+    4.  Windsorization (Not much recommended): Similar to capping but replaces outliers
+
+        with the nearest threshold value, keeping the overall data size intact.
+
+### Data Processing:
+
+1.  **Data Transformation**
+    1.  Changing the format or structure, such
+
+        as normalizing or scaling numerical data.
+2.  **Encoding Categorical Variables**
+    1.  Converting text labels into numerical
+
+        values (e.g., one-hot encoding)
+3.  **Feature Engineering**
+    1.  Creating new variables (features) based on the existing data,
+
+        which can make data more meaningful for modeling.
+4.  **Data Reshaping**
+    1.  Pivoting data (changing its layout), grouping data
+
+        by categories, or aggregating data by summaries like averages.
+
+### Data Transformation
+
+1.  **Scaling and Normalization**
+    1.  Adjusting numerical data to fit within a certain range
+
+        (e.g., between 0 and 1) or to follow a certain distribution.
+
+    2.  Example: Converting salary data in thousands (e.g., 75, 82) to standardized scores (z-scores)
+
+        for uniform analysis.
+2.  **Encoding Categorical Variables**
+    1.  Converting categories into numerical values, often
+
+        using techniques like one-hot encoding or label encoding.
+
+    2.  Example: Converting gender categories (\"Male\" and \"Female\") to binary variables (0 and
+
+        1).
+3.  **Feature Engineering**
+    1.  Creating new features based on existing ones to enhance the\
+        model\'s ability to detect patterns.
+    2.  Example: Creating an \"Age Group\" feature based on age, where people under 30 are labeled\
+        as \"Junior,\" and those 30 or above are labeled as \"Senior.\"
+4.  **Aggregation and Summarization**
+    1.  Combining data points or summarizing informa-\
+        tion, such as averaging, summing, or grouping data.
+    2.  Example: Calculating the average monthly sales data from daily sales data.
+5.  **Data Reshaping**
+    1.  Changing the layout or structure, like pivoting tables to switch\
+        between long and wide formats.
+    2.  Example: Converting a dataset with sales per month to show months as columns instead of\
+        rows.
