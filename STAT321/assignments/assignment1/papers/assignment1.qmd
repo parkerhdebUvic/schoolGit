@@ -26,6 +26,10 @@ You can add options to executable code like this
 
 The `echo: false` option disables the printing of code (only output is displayed).
 
+```{r}
+
+```
+
 Due Sun. January 26, 2025, by
 11:59pm.
 • Submit your solutions through Crowdmark.
@@ -43,9 +47,7 @@ correct?)
 • Write the names of your collaborators for each problem, if applicable. Do not write your solutions in the presence of other people-- refer to the Course
 syllabus for more details (\"Working Together\" subsection).
 
-## 
-Description:
-
+## Description:
 You have been hired as a data analyst for a bank. The bank provided you with a dataset containing
 customer information to analyze trends in customer behavior. The dataset \"Bank_data.csv\" has
 the following columns:
@@ -69,21 +71,14 @@ above \$10,000.
 
 ## Questions:
 
-*Since this is the first assignment in this course, and is fairly foundational, I'm going to write it as a reference document for my future self since I'll likely be reviewing it before the midterm or during future assignments.*
-
-**1. (1 point) Load the Bank_data.csv file into R as a tibble.**
+1. (1 point) Load the Bank_data.csv file into R as a tibble.
 • Hint: Use the readr package.
 • Assign the tibble to the variable \"Bank_data\".
 
-Let's check our working directory, then install and load all our packages. I wrote a short function that uses the require() function, mentioned in DataCamp, instead of library() so that executing this code block repeatedly won't re-install existing packages.
-
 ```{r}
-# The following Quarto line hides the printout results in the rendered doccument
-#| results: hidden
+##| echo: false
 
 # Checking working directory
-getwd()
-setwd("/Users/parker/Documents/schoolGit/STAT321/assignments/assignment1")
 getwd()
 list.files()
 
@@ -124,102 +119,11 @@ dynamic_install("stringr")
 dynamic_install("tibble")
 dynamic_install("tidyr")
 dynamic_install("magrittr")
-
-# Checking loaded packages
-search()
-
 ```
 
-Now, we'll load in our data set. R already has a function for reading CSVs, read.csv(), but this function returns a dataframe and is slow. The package readr, however, is optimized with C++ for faster preformance and returns the tibble format we need. The readr package also gives us two versions of the function, read_csv and read_csv2; the alternative is intended for European CSV conventions. Good to know if working with global data!
-
-```{r}
-# Checking functions in "package:readr"
-ls("package:readr")
-
-# We have read_csv() and read_csv2()
-?read_csv # common North American CSV seporator format
-?read_csv2 # common European CSV seporator format
-
-data <- read_csv("./data/raw/Bank_data.csv") # read_csv detects headers and types automatically
-
-# There's a few different ways we can check it out:
-# Looking at the data itself...
-View(data) # Opens data in the View window in R Studio
-print(data) # Prints the whole darn thing... yuk!
-glimpse(data) # Prints a compact view, thanks to dplyr
-head(data) # Shows the first 6 rows
-tail(data) # Shows the last 6 rows
-
-# Looking at the structure...
-str(data) # Shows columns and types!
-spec(data) # Shows fields with associated functions, readr
-summary(data) # Shows a statistics summarry
-dim(data) # Shows the number of rows and columns
-nrow(data) # Number of rows
-ncol(data) # Number of oclumns
-colnames(data) # Shows all the field names
-rownames(data) # Shows all the row names (usually just numbers on large sets)
-
-# Info about the data object itself...
-class(data) # Shows the class of the dataset
-typeof(data) # Returns the data type of the set, I'm not sure why a tibble is a list in this case...
-sapply(data, class) # Returns the class of each column
-sapply(data, typeof) # Returns the type of each column
-
-# My personal favourites are:
-View(data)
-head(data)
-str(data)
-spec(data)
-nrow(data)
-ncol(data)
-colnames(data)
-class(data)
-sapply(data, class)
-
-# This is great and all, but we don't want to be messing around with our raw data, so let's copy it from ./data/raw to ./data/clean and rename it with the following convention: [yyyy-mm-dd]_[short description]_[group/affiliation]_[activity]_[location]_[editor or creator]_[other relevant information]
-getwd()
-list.files()
-list.files("./data")
-list.files("./data/raw")
-# file.copy("FROM", "TO and you can rename it")
-file.copy("./data/raw/Bank_data.csv", "./data/clean/2025-01-18_bank-data_university-of-victoria_stat-321_assignment-1_v00837207_parker-debruyne")
-list.files("./data/clean") # yay!
-
-# Now let's load the copied version to a new variable, Bank_data
-Bank_data <- read_csv("./data/clean/2025-01-18_bank-data_university-of-victoria_stat-321_assignment-1_v00837207_parker-debruyne")
-```
-
-**2. (2 points) View the first 10 rows of the dataset and print the structure of the data.**
-
-```{r}
-head(Bank_data)
-str(Bank_data)
-```
-
-**3. (4 points) Identify and remove duplicate rows (if any). Print the number of rows before
-and after removing duplicates.**
-
-First, let's explore all the ways we can identify errors in datasets before we try removing or cleaning anything.
-
-```{r}
-# is.na() # Logical operator telling you if something is NA
-anyNA(Bank_data) # Tells you if there are any NAs in your entire dataset
-sum(is.na(Bank_data)) # Counts the total NAs in the entire dataset
-colSums(is.na(Bank_data)) # Counts NAs by column
-rowSums(is.na(Bank_data)) # Counts NAs by row
-colMeans(is.na(Bank_data)) * 100 # Tells you the % of NA values per column
-complete.cases(Bank_data) # Returns a logical vector telling you which cases have no missing values
-which(!complete.cases(Bank_data)) # Checks which rows have NA values
-
-duplicated(Bank_data) # Identify duplicate rows
-sum(duplicated((Bank_data))) # Tells you the number of duplicate rows
-
-unique(Bank_data) # returns a new df with only unique rows
-distinct(Bank_data) # From dplyr, returns a new df with only unique rows but allows column-specific filtering and is more efficient for large datasets.
-
-```
-
+2. (2 points) View the first 10 rows of the dataset and print the structure of the data.
+3. (4 points) Identify and remove duplicate rows (if any). Print the number of rows before
+and after removing duplicates.
 4. (6 points) Handle missing values:
 a. Replace missing values in the age column with the median age.
 b. Replace missing values in balance with 0.
@@ -255,9 +159,7 @@ more than 3000 and age less than 40.
 
     -   <https://bright.uvic.ca/d2l/le/content/367987/viewContent/3187843/View>
 
--   Cite course slides
-
--   Cite Datacamp
+-   
 
 ### Data Cleaning:
 
